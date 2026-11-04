@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Marca colimanlab — propostas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&text=%E3%82%B3%E3%83%AA%E3%83%9E%E3%83%B3%E3%83%BB%E3%83%A9%E3%83%9C%E9%BA%BB%E3%81%AE%E8%91%89%E5%86%86%E7%9B%B8%E9%9D%92%E6%B5%B7%E6%B3%A2%E5%8D%B0%E9%91%91" rel="stylesheet">
+<style>
+  :root {
+    --papel: #f4f2ec; --papel-2: #ebe8df; --tinta: #17191c; --tinta-2: #4a4f57; --linha: #d6d2c6;
+    --sinal: #0f7b5f; --shu: #c8442f;
+    --escuro: #121416; --escuro-tinta: #ecebe6; --escuro-sinal: #4fd1a5; --escuro-shu: #e5664f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --papel: #121416; --papel-2: #1a1d20; --tinta: #ecebe6; --tinta-2: #a3a7ad; --linha: #2c3035; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 16px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 56px 24px 80px; }
+  .rotulo { font: 500 12px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--sinal); }
+  h1 { font: 400 clamp(40px, 6vw, 68px)/1.02 "Instrument Serif", serif; margin: 14px 0 12px; }
+  .intro { color: var(--tinta-2); max-width: 62ch; margin: 0 0 48px; }
+  .jp { font-family: "Noto Serif JP", serif; font-weight: 500; }
+
+  .proposta { border-top: 1px solid var(--linha); padding: 40px 0; display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
+  @media (max-width: 860px) { .proposta { grid-template-columns: 1fr; gap: 24px; } }
+  .proposta h2 { font: 400 36px/1.1 "Instrument Serif", serif; margin: 10px 0 4px; }
+  .proposta h2 .jp { display: block; font-size: 20px; color: var(--tinta-2); margin-top: 6px; }
+  .proposta p { color: var(--tinta-2); margin: 10px 0 0; }
+  .proposta ul { color: var(--tinta-2); padding-left: 18px; margin: 10px 0 0; }
+
+  .amostras { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .amostra { border: 1px solid var(--linha); border-radius: 6px; display: grid; place-items: center; padding: 28px; min-height: 220px; }
+  .amostra.claro { background: #f4f2ec; color: #17191c; --sinal: #0f7b5f; --shu: #c8442f; }
+  .amostra.escuro { background: var(--escuro); color: var(--escuro-tinta); --sinal: var(--escuro-sinal); --shu: var(--escuro-shu); border-color: #2c3035; }
+  .amostra svg.grande { width: 150px; height: 150px; }
+  .amostra.lockup { grid-column: 1 / -1; min-height: 0; }
+  .assinatura { display: flex; align-items: center; gap: 18px; }
+  .assinatura svg { width: 64px; height: 64px; flex: none; }
+  .assinatura .nome { font: 500 28px/1 "IBM Plex Mono", monospace; letter-spacing: -.01em; }
+  .assinatura .nome b { color: var(--sinal); font-weight: 500; }
+  .assinatura .kana { display: block; font-size: 14px; letter-spacing: .3em; margin-top: 8px; opacity: .7; }
+  .pequenos { display: flex; align-items: end; gap: 18px; }
+  .pequenos svg { display: block; }
+  .pequenos small { display: block; font: 400 11px/1 "IBM Plex Mono", monospace; opacity: .6; text-align: center; margin-top: 6px; }
+  @media (max-width: 520px) { .wrap { padding: 40px 16px 64px; } .amostras { grid-template-columns: 1fr; } .assinatura .nome { font-size: 22px; } }
+  footer { border-top: 1px solid var(--linha); padding-top: 24px; color: var(--tinta-2); font-size: 14px; }
+  footer a { color: var(--sinal); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- textura de carimbo: bordas levemente irregulares -->
+    <filter id="tinta-carimbo" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="2.2"/>
+    </filter>
+    <!-- textura de pincel para o ensō -->
+    <filter id="pincel" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".06 .5" numOctaves="2" seed="3" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="3.5"/>
+    </filter>
+    <clipPath id="dentro-enso"><circle cx="60" cy="60" r="35"/></clipPath>
+    <clipPath id="meia-onda"><rect x="-20" y="-20" width="40" height="20"/></clipPath>
+
+    <!-- A · Hanko (carimbo) -->
+    <symbol id="m-hanko" viewBox="0 0 120 120">
+      <g filter="url(#tinta-carimbo)">
+        <rect x="8" y="8" width="104" height="104" rx="12" fill="var(--shu)"/>
+        <rect x="17" y="17" width="86" height="86" rx="5" fill="none" stroke="#f4f2ec" stroke-width="2.5"/>
+        <path d="M80 33 H35 V87 H80" fill="none" stroke="#f4f2ec" stroke-width="10" stroke-linejoin="miter"/>
+        <path d="M56 46 V72 H90" fill="none" stroke="#f4f2ec" stroke-width="10" stroke-linejoin="miter"/>
+      </g>
+    </symbol>
+
+    <!-- B · Kamon asanoha (folha de cânhamo = grafo de dados) -->
+    <symbol id="m-asanoha" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="3.5"/>
+      <circle cx="60" cy="60" r="47" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <polygon points="60,20 94.64,40 94.64,80 60,100 25.36,80 25.36,40"/>
+        <path d="M60 60 L60 20 M60 60 L94.64 40 M60 60 L94.64 80 M60 60 L60 100 M60 60 L25.36 80 M60 60 L25.36 40"/>
+        <path d="M71.55 40 L60 60 M71.55 40 L60 20 M71.55 40 L94.64 40
+                 M83.09 60 L60 60 M83.09 60 L94.64 40 M83.09 60 L94.64 80
+                 M71.55 80 L60 60 M71.55 80 L94.64 80 M71.55 80 L60 100
+                 M48.45 80 L60 60 M48.45 80 L60 100 M48.45 80 L25.36 80
+                 M36.91 60 L60 60 M36.91 60 L25.36 80 M36.91 60 L25.36 40
+                 M48.45 40 L60 60 M48.45 40 L25.36 40 M48.45 40 L60 20"/>
+      </g>
+      <g fill="var(--sinal)">
+        <circle cx="60" cy="20" r="4"/><circle cx="94.64" cy="40" r="4"/><circle cx="94.64" cy="80" r="4"/>
+        <circle cx="60" cy="100" r="4"/><circle cx="25.36" cy="80" r="4"/><circle cx="25.36" cy="40" r="4"/>
+      </g>
+      <circle cx="60" cy="60" r="5.5" fill="var(--shu)"/>
+    </symbol>
+
+    <!-- C · Ensō com seigaiha (camadas de dados) -->
+    <symbol id="m-enso" viewBox="0 0 120 120">
+      <g filter="url(#pincel)" fill="none" stroke="currentColor" stroke-linecap="round">
+        <circle cx="60" cy="60" r="44" stroke-width="9" stroke-dasharray="240 400" transform="rotate(-62 60 60)"/>
+        <circle cx="58.5" cy="61.5" r="44" stroke-width="4" stroke-dasharray="150 400" transform="rotate(10 60 60)"/>
+      </g>
+      <circle cx="91" cy="27" r="7" fill="var(--shu)"/>
+      <g clip-path="url(#dentro-enso)" fill="none" stroke="var(--sinal)" stroke-width="2.2">
+        <g id="onda">
+          <g transform="translate(60 70)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+          <g transform="translate(44 82)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+          <g transform="translate(76 82)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+          <g transform="translate(28 94)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+          <g transform="translate(60 94)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+          <g transform="translate(92 94)"><circle r="16" fill="var(--fundo-onda, #f4f2ec)" stroke="none" clip-path="url(#meia-onda)"/><path d="M-16 0 A16 16 0 0 1 16 0 M-11 0 A11 11 0 0 1 11 0 M-6 0 A6 6 0 0 1 6 0"/></g>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <span class="rotulo">colimanlab · marca</span>
+  <h1>Três propostas com raízes japonesas</h1>
+  <p class="intro">Cada símbolo mistura uma forma tradicional japonesa com uma ideia do trabalho com dados. Todas usam a paleta do site (tinta, papel e verde) e acrescentam o <span class="jp">朱</span> (shu), o vermelho dos carimbos e dos portões dos templos. A assinatura em katakana, <span class="jp">コリマン・ラボ</span>, lê-se "koriman rabo".</p>
+
+  <section class="proposta">
+    <div>
+      <span class="rotulo">A</span>
+      <h2>Hanko <span class="jp">印鑑</span></h2>
+      <p>O carimbo pessoal que no Japão vale como assinatura. Aqui ele carrega o monograma C e L encaixados, como dois blocos de um pipeline.</p>
+      <ul><li>Leitura imediata, ótimo como favicon</li><li>Remete a "assinado, auditado, documentado"</li></ul>
+    </div>
+    <div class="amostras">
+      <div class="amostra claro"><svg class="grande" role="img" aria-label="Hanko colimanlab"><use href="#m-hanko"/></svg></div>
+      <div class="amostra escuro"><svg class="grande" role="img" aria-label="Hanko colimanlab"><use href="#m-hanko"/></svg></div>
+      <div class="amostra claro lockup">
+        <div class="assinatura"><svg><use href="#m-hanko"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="kana jp">コリマン・ラボ</span></div></div>
+      </div>
+      <div class="amostra claro lockup"><div class="pequenos">
+        <div><svg width="64" height="64"><use href="#m-hanko"/></svg><small>64</small></div>
+        <div><svg width="32" height="32"><use href="#m-hanko"/></svg><small>32</small></div>
+        <div><svg width="16" height="16"><use href="#m-hanko"/></svg><small>16</small></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="proposta">
+    <div>
+      <span class="rotulo">B</span>
+      <h2>Kamon asanoha <span class="jp">麻の葉</span></h2>
+      <p>Um kamon, o brasão de família japonês, com o padrão asanoha (folha de cânhamo) dentro. As linhas do padrão já formam um grafo: os nós verdes são as fontes de dados e o centro vermelho é onde tudo se junta.</p>
+      <ul><li>O mais "dados" dos três</li><li>Muito detalhado abaixo de 32 px</li></ul>
+    </div>
+    <div class="amostras">
+      <div class="amostra claro"><svg class="grande" role="img" aria-label="Kamon asanoha colimanlab"><use href="#m-asanoha"/></svg></div>
+      <div class="amostra escuro"><svg class="grande" role="img" aria-label="Kamon asanoha colimanlab"><use href="#m-asanoha"/></svg></div>
+      <div class="amostra claro lockup">
+        <div class="assinatura"><svg><use href="#m-asanoha"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="kana jp">コリマン・ラボ</span></div></div>
+      </div>
+      <div class="amostra claro lockup"><div class="pequenos">
+        <div><svg width="64" height="64"><use href="#m-asanoha"/></svg><small>64</small></div>
+        <div><svg width="32" height="32"><use href="#m-asanoha"/></svg><small>32</small></div>
+        <div><svg width="16" height="16"><use href="#m-asanoha"/></svg><small>16</small></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="proposta">
+    <div>
+      <span class="rotulo">C</span>
+      <h2>Ensō e seigaiha <span class="jp">円相 · 青海波</span></h2>
+      <p>O ensō é o círculo zen feito numa pincelada só. Dentro dele, as ondas seigaiha aparecem empilhadas como camadas de dados, e o sol vermelho sai pela abertura do círculo.</p>
+      <ul><li>O mais artístico e autoral</li><li>Funciona melhor grande, em capa e cabeçalho</li></ul>
+    </div>
+    <div class="amostras">
+      <div class="amostra claro"><svg class="grande" role="img" aria-label="Ensō colimanlab"><use href="#m-enso"/></svg></div>
+      <div class="amostra escuro" style="--fundo-onda:#121416"><svg class="grande" role="img" aria-label="Ensō colimanlab"><use href="#m-enso"/></svg></div>
+      <div class="amostra claro lockup">
+        <div class="assinatura"><svg><use href="#m-enso"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="kana jp">コリマン・ラボ</span></div></div>
+      </div>
+      <div class="amostra claro lockup"><div class="pequenos">
+        <div><svg width="64" height="64"><use href="#m-enso"/></svg><small>64</small></div>
+        <div><svg width="32" height="32"><use href="#m-enso"/></svg><small>32</small></div>
+        <div><svg width="16" height="16"><use href="#m-enso"/></svg><small>16</small></div>
+      </div></div>
+    </div>
+  </section>
+
+  <footer>Escolha uma (ou peça uma mistura, por exemplo o asanoha dentro do hanko) e ela entra no site como logo e favicon. <a href="./">Voltar ao site</a></footer>
+</main>
+</body>
+</html>
