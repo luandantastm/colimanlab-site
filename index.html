@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>colimanlab — Data & AI on AWS | Luan Coli</title>
 <meta name="description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
-<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png">
-<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=3" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="colimanlab — Data & AI on AWS | Luan Coli">
 <meta property="og:description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
@@ -17,29 +17,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --papel: #f6f5f1;
-    --papel-2: #eeece6;
+    color-scheme: light;
+    --papel: #f4f4f2;
+    --papel-2: #ebebe8;
     --cartao: #ffffff;
-    --tinta: #15171a;
-    --tinta-2: #50555d;
-    --linha: #e0ddd5;
-    --sinal: #0f7b5f;
-    --sinal-suave: #e3f0eb;
+    --tinta: #18191b;
+    --tinta-2: #55585e;
+    --linha: #d9d9d5;
+    --sinal: #c8442f;
+    --sinal-suave: #f7e6e2;
     --shu: #c8442f;
+    --g1: rgba(24, 25, 27, .085);
+    --g2: rgba(24, 25, 27, .04);
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "IBM Plex Sans", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
-    --sombra: 0 1px 2px rgba(20, 22, 26, .04), 0 8px 24px rgba(20, 22, 26, .05);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
-      --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
-    }
-  }
-  :root[data-theme="dark"] {
-    --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
-    --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
+    --sombra: 0 1px 2px rgba(20, 22, 26, .04), 0 8px 24px rgba(20, 22, 26, .06);
   }
 
   /* idioma: mostra só o bloco do idioma ativo */
@@ -48,7 +41,9 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
-  body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background-color: var(--papel); color: var(--tinta); font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased;
+    background-image: linear-gradient(var(--g1) 1px, transparent 1px), linear-gradient(90deg, var(--g1) 1px, transparent 1px), linear-gradient(var(--g2) 1px, transparent 1px), linear-gradient(90deg, var(--g2) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px; background-position: -1px -1px; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--sinal); outline-offset: 3px; }
   .pular { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: var(--papel); padding: 8px 12px; z-index: 10; }
@@ -73,6 +68,7 @@
   nav a:hover, nav a[aria-current="page"] { color: var(--tinta); }
   nav a.btn-topo { color: var(--papel); background: var(--tinta); padding: 9px 16px; border-radius: 6px; font-weight: 500; }
   nav a.btn-topo:hover { background: var(--sinal); color: #fff; }
+  nav a.btn-topo:hover { color: #fff; }
   .idiomas { display: flex; border: 1px solid var(--linha); border-radius: 999px; overflow: hidden; flex: none; }
   .idiomas button { font: 500 12px/1 var(--mono); background: none; color: var(--tinta-2); border: 0; padding: 8px 11px; cursor: pointer; }
   .idiomas button[aria-pressed="true"] { background: var(--tinta); color: var(--papel); }
@@ -90,7 +86,10 @@
   .btn.vazio:hover { background: var(--papel-2); }
 
   /* hero */
-  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--linha); background: radial-gradient(1200px 500px at 85% -10%, var(--sinal-suave), transparent 60%); }
+  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--linha); position: relative; }
+  .regua { position: absolute; left: 24px; right: 24px; top: 22px; height: 8px; max-width: 1072px; margin: 0 auto; background: repeating-linear-gradient(90deg, rgba(24,25,27,.4) 0 1px, transparent 1px 8px); }
+  .regua::after { content: ""; position: absolute; left: 0; right: 0; top: -5px; height: 13px; background: repeating-linear-gradient(90deg, rgba(24,25,27,.6) 0 1.5px, transparent 1.5px 40px); }
+  @media (max-width: 520px) { .regua { left: 16px; right: 16px; top: 16px; } }
   .hero h1 { font: 400 clamp(44px, 7vw, 86px)/1 var(--serif); letter-spacing: -.02em; margin: 18px 0 24px; max-width: 14ch; }
   .hero h1 em { color: var(--sinal); }
   .hero p.lead { font-size: clamp(18px, 2vw, 21px); color: var(--tinta-2); max-width: 54ch; margin: 0 0 34px; }
@@ -114,16 +113,18 @@
   @media (max-width: 900px) { .etapas { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .etapas { grid-template-columns: 1fr; } }
 
-  /* contato (escuro) */
-  .contato { background: #121416; color: #ecebe6; border-bottom: 0; --tinta: #ecebe6; --tinta-2: #a3a7ad; --linha: #2a2e33; --sinal: #4fd1a5; --papel: #121416; --papel-2: #1a1d20; --cartao: #1a1d21; }
+  /* contato (claro, painel tracejado) */
+  .contato { border-bottom: 0; }
+  .contato > .wrap { background: color-mix(in srgb, var(--papel-2) 88%, transparent); border: 1px dashed var(--sinal); border-radius: 12px; padding-top: 48px; padding-bottom: 48px; }
+  @media (min-width: 1121px) { .contato > .wrap { padding-left: 48px; padding-right: 48px; } }
   .contato h2 { font: 400 clamp(40px, 6vw, 68px)/1.02 var(--serif); margin: 16px 0 20px; max-width: 16ch; }
   .contato p { color: var(--tinta-2); max-width: 52ch; }
   .canais { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid #3a3f45; border-radius: 6px; text-decoration: none; }
+  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid var(--linha); background: var(--cartao); border-radius: 6px; text-decoration: none; }
   .canais a:hover { border-color: var(--sinal); color: var(--sinal); }
 
   /* rodapé */
-  footer { padding: 64px 0 32px; background: var(--papel); }
+  footer { padding: 64px 0 32px; background: var(--papel); border-top: 1px solid var(--linha); }
   .rodape { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
   .rodape h4 { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-2); margin: 6px 0 16px; }
   .rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
@@ -134,6 +135,10 @@
   @media (max-width: 860px) { .rodape { grid-template-columns: 1fr 1fr; } .rodape .sobre-marca { grid-column: 1 / -1; } }
 
   @media (max-width: 520px) { .wrap { padding: 0 16px; } .hero { padding: 56px 0 48px; } section { padding: 64px 0; } }
+
+  /* etiqueta de amostra (EXP-01) */
+  .cod { display: inline-flex; align-items: center; gap: 8px; font: 500 11.5px/1 var(--mono); letter-spacing: .04em; color: var(--sinal); }
+  .cod::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--linha); background: var(--papel); flex: none; }
   /* página inicial */
   .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
   @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
@@ -155,6 +160,7 @@
 
   .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .servico { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; padding: 32px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra); }
+  .servico .topo-card { display: flex; justify-content: space-between; align-items: center; }
   .servico .icone { width: 44px; height: 44px; border-radius: 10px; background: var(--sinal-suave); color: var(--sinal); display: grid; place-items: center; }
   .servico h3 { font: 600 21px/1.25 var(--sans); margin: 4px 0 0; }
   .servico p { margin: 0; color: var(--tinta-2); }
@@ -163,11 +169,10 @@
   .servico li::before { content: "→"; color: var(--sinal); font-family: var(--mono); }
   @media (max-width: 960px) { .servicos { grid-template-columns: 1fr; } }
 
-  .oferta { margin-top: 20px; border-radius: 10px; background: var(--tinta); color: var(--papel); padding: 32px 36px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
-  .oferta .rotulo { color: var(--sinal); }
+  .oferta { margin-top: 20px; border-radius: 10px; background: var(--cartao); color: var(--tinta); border: 1.5px solid var(--tinta); padding: 32px 36px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; box-shadow: 6px 6px 0 var(--sinal-suave); }
   .oferta h3 { font: 400 32px/1.1 var(--serif); margin: 10px 0 8px; }
-  .oferta p { margin: 0; color: color-mix(in srgb, var(--papel) 72%, transparent); max-width: 60ch; }
-  .oferta .btn { border-color: var(--papel); background: var(--papel); color: var(--tinta); }
+  .oferta p { margin: 0; color: var(--tinta-2); max-width: 60ch; }
+  .oferta .btn { border-color: var(--tinta); background: var(--tinta); color: var(--papel); }
   .oferta .btn:hover { background: var(--sinal); border-color: var(--sinal); color: #fff; }
   @media (max-width: 760px) { .oferta { grid-template-columns: 1fr; padding: 28px 24px; } }
 
@@ -178,11 +183,11 @@
   .caso-uso p { margin: 0; color: var(--tinta-2); }
   .caso-uso .resultado { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--linha); font-size: 15px; color: var(--tinta); }
   .caso-uso .resultado b { color: var(--sinal); font-weight: 600; }
-  .caso-uso.pesquisa { grid-column: 1 / -1; background: var(--sinal-suave); border-color: transparent; }
+  .caso-uso.pesquisa { grid-column: 1 / -1; background: var(--cartao); border: 1px dashed var(--tinta-2); }
   @media (max-width: 760px) { .casos-lista { grid-template-columns: 1fr; } }
 
   .sobre-grid { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
-  .retrato { aspect-ratio: 4 / 5; border-radius: 12px; background: linear-gradient(160deg, #1d2a26, #0f1412); position: relative; overflow: hidden; display: grid; place-items: center; }
+  .retrato { aspect-ratio: 4 / 5; border-radius: 12px; background: linear-gradient(160deg, #2b2c30, #141517); position: relative; overflow: hidden; display: grid; place-items: center; }
   .retrato::after { content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 50%; background: var(--shu); opacity: .9; }
   .retrato span { font: 400 120px/1 var(--serif); color: #ecebe6; position: relative; z-index: 1; letter-spacing: -.04em; }
   .retrato small { position: absolute; left: 16px; bottom: 14px; font: 500 12px/1 var(--mono); color: #a3a7ad; z-index: 1; }
@@ -201,8 +206,8 @@
   .form input, .form textarea, .form select { font: 400 16px/1.4 var(--sans); color: var(--tinta); background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; padding: 12px 14px; width: 100%; }
   .form textarea { min-height: 120px; resize: vertical; }
   .form input:focus, .form textarea:focus, .form select:focus { outline: 2px solid var(--sinal); outline-offset: 0; border-color: transparent; }
-  .form .btn { justify-self: start; background: var(--sinal); border-color: var(--sinal); color: #0b1512; font-weight: 600; }
-  .form .btn:hover { filter: brightness(1.08); }
+  .form .btn { justify-self: start; background: var(--tinta); border-color: var(--tinta); color: #fff; font-weight: 600; }
+  .form .btn:hover { background: var(--sinal); border-color: var(--sinal); }
   .form .aviso { font-size: 13px; color: var(--tinta-2); margin: 0; }
   .form .ok { display: none; padding: 12px 14px; border-radius: 6px; background: var(--sinal-suave); color: var(--sinal); font-size: 15px; }
   .form.enviado .ok { display: block; }
@@ -212,8 +217,9 @@
   .curso { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--sombra); }
   .curso-capa { aspect-ratio: 16 / 8; position: relative; display: flex; align-items: flex-end; padding: 14px 16px; color: #fff; font: 500 12px/1 var(--mono); letter-spacing: .04em;
     background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px); background-size: 16px 16px; }
-  .curso-capa::after { content: ""; position: absolute; right: 18px; top: 18px; width: 34px; height: 34px; border-radius: 50%; background: var(--shu); }
-  .curso-capa.c1 { background-color: #0f5a47; } .curso-capa.c2 { background-color: #1c2a3a; } .curso-capa.c3 { background-color: #3a2a1c; }
+  .curso-capa::after { content: ""; position: absolute; right: 18px; top: 18px; width: 34px; height: 34px; border-radius: 50%; background: var(--shu); box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
+  .curso-capa.c2::after { background: #f4f4f2; }
+  .curso-capa.c1 { background-color: #2a2b2e; } .curso-capa.c2 { background-color: #6e2a1f; } .curso-capa.c3 { background-color: #44464b; }
   .curso-corpo { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .curso h3 { font: 600 19px/1.3 var(--sans); margin: 0; }
   .curso p { margin: 0; color: var(--tinta-2); font-size: 15.5px; }
@@ -261,6 +267,7 @@
 
 <main id="conteudo">
   <div class="hero">
+    <span class="regua" aria-hidden="true"></span>
     <div class="wrap">
       <div class="hero-grid">
         <div>
@@ -303,7 +310,7 @@
       </div>
       <div class="servicos">
         <article class="servico">
-          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+          <div class="topo-card"><span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span><span class="cod">EXP-01 · PLATFORM</span></div>
           <h3><span lang="pt-BR">Plataforma de dados na AWS</span><span lang="en">Data platform on AWS</span></h3>
           <p lang="pt-BR">Bancos de dados, sistemas e planilhas chegando sozinhos a um data lake único, que se consulta em SQL.</p>
           <p lang="en">Databases, systems and spreadsheets flowing automatically into a single data lake you can query in SQL.</p>
@@ -311,7 +318,7 @@
           <ul lang="en"><li>Ingestion and database replication with no load on production</li><li>Catalogued data lake on S3</li><li>Consolidated queries with Athena</li><li>Dashboards that refresh themselves</li></ul>
         </article>
         <article class="servico">
-          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+          <div class="topo-card"><span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><span class="cod">EXP-02 · AI</span></div>
           <h3><span lang="pt-BR">IA sobre os seus dados</span><span lang="en">AI on your data</span></h3>
           <p lang="pt-BR">Perguntas em linguagem natural respondidas com os seus documentos e bancos de dados, sempre com a fonte citada.</p>
           <p lang="en">Plain-language questions answered from your own documents and databases, always with the source cited.</p>
@@ -319,7 +326,7 @@
           <ul lang="en"><li>RAG over contracts, manuals and reports</li><li>"Ask your database" (text becomes SQL)</li><li>Predictive models with SageMaker</li><li>Data never leaves your account</li></ul>
         </article>
         <article class="servico">
-          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+          <div class="topo-card"><span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="cod">EXP-03 · GOVERNANCE</span></div>
           <h3><span lang="pt-BR">Governança, LGPD e custo</span><span lang="en">Governance, privacy &amp; cost</span></h3>
           <p lang="pt-BR">Saber quem vê o quê, passar na auditoria e nunca levar susto com a fatura da AWS.</p>
           <p lang="en">Know who sees what, pass the audit, and never get a surprise AWS bill.</p>
