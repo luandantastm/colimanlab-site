@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>colimanlab — Data & AI on AWS | Luan Coli</title>
 <meta name="description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
-<link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
-<link rel="icon" href="favicon-32.png?v=3" sizes="32x32" type="image/png">
-<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="colimanlab — Data & AI on AWS | Luan Coli">
 <meta property="og:description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
@@ -22,13 +22,13 @@
     --papel-2: #ebebe8;
     --cartao: #ffffff;
     --tinta: #18191b;
-    --tinta-2: #55585e;
+    --tinta-2: #43464b;
     --linha: #d9d9d5;
     --sinal: #c8442f;
     --sinal-suave: #f7e6e2;
     --shu: #c8442f;
-    --g1: rgba(24, 25, 27, .085);
-    --g2: rgba(24, 25, 27, .04);
+    --g1: rgba(24, 25, 27, .062);
+    --g2: rgba(24, 25, 27, .022);
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "IBM Plex Sans", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -139,6 +139,14 @@
   /* etiqueta de amostra (EXP-01) */
   .cod { display: inline-flex; align-items: center; gap: 8px; font: 500 11.5px/1 var(--mono); letter-spacing: .04em; color: var(--sinal); }
   .cod::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--linha); background: var(--papel); flex: none; }
+
+  /* legibilidade: texto direto sobre o papel milimetrado ganha um halo da cor do papel,
+     que apaga as linhas da grade em volta das letras */
+  .hero h1, .hero p.lead, .hero .rotulo, .credenciais, .cab, .etapas, .sobre-texto, .sobre-grid .rotulo,
+  .lista-espera > div, .governanca, .texto-legal, .fluxo .etq {
+    text-shadow: 0 0 2px var(--papel), 0 0 4px var(--papel), 0 0 8px var(--papel), 0 0 12px var(--papel);
+  }
+  .cab p, .hero p.lead, .etapas p, .texto-legal p, .texto-legal li { color: var(--tinta-2); font-weight: 400; }
   /* página inicial */
   .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
   @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
