@@ -131,6 +131,8 @@
   .sobre { display: grid; grid-template-columns: 220px 1fr; gap: 32px; }
   .sobre .texto { font-size: 19px; max-width: 62ch; }
   .sobre .texto p:first-child { margin-top: 0; }
+  .lema-sobre { display: inline-block; margin-top: 8px; font: 600 clamp(22px, 3vw, 30px)/1 var(--mono); letter-spacing: -.01em; }
+  .lema-sobre b { color: var(--sinal); font-weight: 600; }
   @media (max-width: 760px) { .sobre { grid-template-columns: 1fr; gap: 12px; } }
 
   .contato { background: var(--tinta); color: var(--papel); border-bottom: 0; }
@@ -325,10 +327,14 @@
         <div lang="pt-BR">
           <p>Sou Luan Coli, mestrando no IDP, onde pesquiso como órgãos públicos podem usar modelos de linguagem sem expor dados pessoais.</p>
           <p>O colimanlab é onde essa pesquisa encontra problemas do dia a dia: dados espalhados em planilhas e sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis. Eu levo isso para a AWS de forma organizada, segura e com custo que você entende.</p>
+          <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
+          <span class="lema-sobre">effort <b>&gt;</b> talent</span>
         </div>
         <div lang="en">
           <p>I'm Luan Coli, a master's researcher at IDP (Brasília), studying how public institutions can use language models without exposing personal data.</p>
           <p>colimanlab is where that research meets everyday problems: data scattered across spreadsheets and systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data. I bring it to AWS in an organized, secure way, at a cost you understand.</p>
+          <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
+          <span class="lema-sobre">effort <b>&gt;</b> talent</span>
         </div>
       </div>
     </div>
@@ -352,7 +358,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© <span id="ano">2026</span> colimanlab · Luan Coli</span>
+    <span>© <span id="ano">2026</span> colimanlab · Luan Coli · effort &gt; talent</span>
     <span lang="pt-BR">Brasília, Brasil</span><span lang="en">Brasília, Brazil</span>
   </div>
 </footer>
