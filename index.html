@@ -3,39 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>colimanlab — Luan Coli</title>
-<meta name="description" content="colimanlab: engenharia de dados e IA na AWS, por Luan Coli. Data engineering and AI on AWS.">
+<title>colimanlab — Data & AI on AWS | Luan Coli</title>
+<meta name="description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon.ico?v=2" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="colimanlab — Data & AI on AWS | Luan Coli">
+<meta property="og:description" content="colimanlab: data engineering and AI on AWS by Luan Coli. Engenharia de dados e IA na AWS.">
 <meta property="og:image" content="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --papel: #f4f2ec;
-    --papel-2: #ebe8df;
-    --tinta: #17191c;
-    --tinta-2: #4a4f57;
-    --linha: #d6d2c6;
+    --papel: #f6f5f1;
+    --papel-2: #eeece6;
+    --cartao: #ffffff;
+    --tinta: #15171a;
+    --tinta-2: #50555d;
+    --linha: #e0ddd5;
     --sinal: #0f7b5f;
-    --sinal-suave: #d9ece5;
-    --grade: rgba(23, 25, 28, .045);
+    --sinal-suave: #e3f0eb;
+    --shu: #c8442f;
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "IBM Plex Sans", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --sombra: 0 1px 2px rgba(20, 22, 26, .04), 0 8px 24px rgba(20, 22, 26, .05);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --papel: #121416; --papel-2: #1a1d20; --tinta: #ecebe6; --tinta-2: #a3a7ad;
-      --linha: #2c3035; --sinal: #4fd1a5; --sinal-suave: #16302a; --grade: rgba(236, 235, 230, .035);
+      --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+      --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
     }
   }
   :root[data-theme="dark"] {
-    --papel: #121416; --papel-2: #1a1d20; --tinta: #ecebe6; --tinta-2: #a3a7ad;
-    --linha: #2c3035; --sinal: #4fd1a5; --sinal-suave: #16302a; --grade: rgba(236, 235, 230, .035);
+    --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+    --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
   }
 
   /* idioma: mostra só o bloco do idioma ativo */
@@ -43,90 +47,64 @@
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-  body {
-    margin: 0; background: var(--papel); color: var(--tinta);
-    font: 400 17px/1.6 var(--sans);
-    background-image:
-      linear-gradient(var(--grade) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grade) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--sinal); outline-offset: 3px; }
   .pular { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: var(--papel); padding: 8px 12px; z-index: 10; }
   .pular:focus { left: 16px; }
 
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-  .rotulo { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--sinal); }
+  .rotulo { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--sinal); }
 
   /* topo */
-  header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
-  .topo { display: flex; align-items: center; gap: 24px; height: 64px; }
+  header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linha); }
+  .topo { display: flex; align-items: center; gap: 24px; height: 68px; }
   .marca { display: flex; align-items: center; gap: 10px; font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
   .marca .logo { width: 30px; height: 30px; display: block; flex: none; }
-  .logo .t { stroke: var(--tinta); } .logo .f { fill: var(--papel); } .logo .g { stroke: var(--sinal); } .logo .gf { fill: var(--sinal); } .logo .r { fill: #c8442f; }
+  .logo .t { stroke: var(--tinta); } .logo .f { fill: var(--papel); } .logo .g { stroke: var(--sinal); } .logo .gf { fill: var(--sinal); } .logo .r { fill: var(--shu); }
   .logo .cursor { animation: pisca 1.1s steps(1) infinite; }
   @keyframes pisca { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .logo .cursor { animation: none; } }
   .marca b { color: var(--sinal); font-weight: 500; }
   .marca .lema-topo { font: 500 12px/1 var(--mono); color: var(--tinta-2); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--linha); letter-spacing: 0; white-space: nowrap; }
   .marca .lema-topo b { color: var(--sinal); }
-  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca .logo { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
-  @media (max-width: 359px) { .marca .lema-topo { display: none; } }
-  nav { display: flex; gap: 22px; margin-left: auto; }
+  nav { display: flex; gap: 26px; margin-left: auto; align-items: center; }
   nav a { text-decoration: none; font-size: 15px; color: var(--tinta-2); }
-  nav a:hover { color: var(--tinta); }
-  .idiomas { display: flex; border: 1px solid var(--linha); border-radius: 999px; overflow: hidden; }
+  nav a:hover, nav a[aria-current="page"] { color: var(--tinta); }
+  nav a.btn-topo { color: var(--papel); background: var(--tinta); padding: 9px 16px; border-radius: 6px; font-weight: 500; }
+  nav a.btn-topo:hover { background: var(--sinal); color: #fff; }
+  .idiomas { display: flex; border: 1px solid var(--linha); border-radius: 999px; overflow: hidden; flex: none; }
   .idiomas button { font: 500 12px/1 var(--mono); background: none; color: var(--tinta-2); border: 0; padding: 8px 11px; cursor: pointer; }
   .idiomas button[aria-pressed="true"] { background: var(--tinta); color: var(--papel); }
-  @media (max-width: 760px) { nav { display: none; } .idiomas { margin-left: auto; } }
+  @media (max-width: 900px) { nav a:not(.btn-topo) { display: none; } }
+  @media (max-width: 600px) { nav { display: none; } .idiomas { margin-left: auto; } }
+  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca .logo { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
+  @media (max-width: 359px) { .marca .lema-topo { display: none; } }
+
+  /* botões */
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 6px; font-weight: 500; font-size: 15.5px; text-decoration: none; border: 1px solid var(--tinta); cursor: pointer; font-family: var(--sans); }
+  .btn.cheio { background: var(--tinta); color: var(--papel); }
+  .btn.cheio:hover { background: var(--sinal); border-color: var(--sinal); color: #fff; }
+  .btn.vazio { background: transparent; color: var(--tinta); }
+  .btn.vazio:hover { background: var(--papel-2); }
 
   /* hero */
-  .hero { padding: 96px 0 80px; border-bottom: 1px solid var(--linha); }
-  .hero h1 { font: 400 clamp(44px, 7.4vw, 92px)/1 var(--serif); letter-spacing: -.02em; margin: 20px 0 28px; max-width: 14ch; }
+  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--linha); background: radial-gradient(1200px 500px at 85% -10%, var(--sinal-suave), transparent 60%); }
+  .hero h1 { font: 400 clamp(44px, 7vw, 86px)/1 var(--serif); letter-spacing: -.02em; margin: 18px 0 24px; max-width: 14ch; }
   .hero h1 em { color: var(--sinal); }
-  .hero p.lead { font-size: clamp(18px, 2vw, 21px); color: var(--tinta-2); max-width: 58ch; margin: 0 0 36px; }
-  .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 4px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--tinta); }
-  .btn.cheio { background: var(--tinta); color: var(--papel); }
-  .btn.cheio:hover { background: var(--sinal); border-color: var(--sinal); }
-  .btn.vazio:hover { background: var(--papel-2); }
-  .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
-  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
-  .pipeline { margin: 0; border: 1px solid var(--linha); background: var(--papel); border-radius: 6px; padding: 8px 20px; }
-  .pipeline figcaption { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); padding: 14px 0 10px; border-bottom: 1px solid var(--linha); }
-  .pipeline ol { list-style: none; margin: 0; padding: 6px 0; position: relative; }
-  .pipeline ol::before { content: ""; position: absolute; left: 11px; top: 26px; bottom: 26px; width: 1px; background: var(--sinal); opacity: .5; }
-  .pipeline li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; padding: 12px 0; position: relative; }
-  .pipeline .no { width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--sinal); background: var(--papel); color: var(--sinal); font: 500 11px/21px var(--mono); text-align: center; position: relative; }
-  .pipeline li:last-child .no { background: var(--sinal); color: var(--papel); }
-  .pipeline strong { display: block; font-weight: 600; font-size: 15px; }
-  .pipeline span.svc { font: 400 13px/1.5 var(--mono); color: var(--tinta-2); }
-  .ficha { margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--linha); }
-  .ficha div { padding: 18px 18px 0 0; }
-  .ficha dt { font: 500 11px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); margin-bottom: 6px; }
-  .ficha dd { margin: 0; font-size: 15px; }
-  @media (max-width: 760px) { .ficha { grid-template-columns: 1fr 1fr; row-gap: 8px; } }
+  .hero p.lead { font-size: clamp(18px, 2vw, 21px); color: var(--tinta-2); max-width: 54ch; margin: 0 0 34px; }
 
   /* seções */
-  section { padding: 88px 0; border-bottom: 1px solid var(--linha); }
-  .cab { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 48px; }
-  .cab h2 { font: 400 clamp(34px, 4.4vw, 52px)/1.05 var(--serif); margin: 0; letter-spacing: -.01em; }
-  .cab p { color: var(--tinta-2); max-width: 60ch; margin: 14px 0 0; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--linha); }
+  .cab { max-width: 720px; margin-bottom: 48px; }
+  .cab h2 { font: 400 clamp(36px, 4.6vw, 54px)/1.05 var(--serif); margin: 14px 0 0; letter-spacing: -.01em; }
+  .cab p { color: var(--tinta-2); margin: 16px 0 0; font-size: 18px; }
   .link-seta { color: var(--sinal); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
   .link-seta:hover { border-bottom-width: 2px; }
-  @media (max-width: 760px) { .cab { grid-template-columns: 1fr; gap: 12px; } }
-
-  .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linha); border: 1px solid var(--linha); }
-  .servico { background: var(--papel); padding: 32px; display: flex; flex-direction: column; gap: 14px; }
-  .servico:hover { background: var(--papel-2); }
-  .servico .num { font: 500 12px/1 var(--mono); color: var(--tinta-2); }
-  .servico h3 { font: 600 21px/1.25 var(--sans); margin: 0; }
-  .servico p { margin: 0; color: var(--tinta-2); }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
-  .tags span { font: 400 12px/1 var(--mono); padding: 6px 8px; background: var(--sinal-suave); color: var(--sinal); border-radius: 3px; }
-  @media (max-width: 960px) { .servicos { grid-template-columns: 1fr 1fr; } } @media (max-width: 640px) { .servicos { grid-template-columns: 1fr; } .servico { padding: 24px; } }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font: 400 12px/1 var(--mono); padding: 6px 8px; background: var(--sinal-suave); color: var(--sinal); border-radius: 4px; }
+  .num { font: 500 12px/1 var(--mono); color: var(--tinta-2); }
 
   .etapas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: e; }
   .etapas li { border-top: 2px solid var(--tinta); padding-top: 18px; counter-increment: e; }
@@ -136,33 +114,100 @@
   @media (max-width: 900px) { .etapas { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .etapas { grid-template-columns: 1fr; } }
 
-  .projetos { display: grid; gap: 0; border-top: 1px solid var(--linha); }
-  .projeto { display: grid; grid-template-columns: 160px 1fr 200px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--linha); align-items: baseline; }
-  .projeto .tipo { font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-2); }
-  .projeto h3 { font: 400 28px/1.15 var(--serif); margin: 0 0 8px; }
-  .projeto p { margin: 0; color: var(--tinta-2); }
-  .projeto .stack { font: 400 13px/1.6 var(--mono); color: var(--tinta-2); }
-  @media (max-width: 760px) { .projeto { grid-template-columns: 1fr; gap: 8px; } }
-
-  .sobre { display: grid; grid-template-columns: 220px 1fr; gap: 32px; }
-  .sobre .texto { font-size: 19px; max-width: 62ch; }
-  .sobre .texto p:first-child { margin-top: 0; }
-  .lema-sobre { display: inline-block; margin-top: 8px; font: 600 clamp(22px, 3vw, 30px)/1 var(--mono); letter-spacing: -.01em; }
-  .lema-sobre b { color: var(--sinal); font-weight: 600; }
-  @media (max-width: 760px) { .sobre { grid-template-columns: 1fr; gap: 12px; } }
-
-  .contato { background: var(--tinta); color: var(--papel); border-bottom: 0; }
-  .contato .rotulo { color: var(--sinal); }
-  .contato h2 { font: 400 clamp(40px, 6vw, 72px)/1.02 var(--serif); margin: 18px 0 24px; max-width: 16ch; }
-  .contato p { color: color-mix(in srgb, var(--papel) 70%, transparent); max-width: 52ch; }
+  /* contato (escuro) */
+  .contato { background: #121416; color: #ecebe6; border-bottom: 0; --tinta: #ecebe6; --tinta-2: #a3a7ad; --linha: #2a2e33; --sinal: #4fd1a5; --papel: #121416; --papel-2: #1a1d20; --cartao: #1a1d21; }
+  .contato h2 { font: 400 clamp(40px, 6vw, 68px)/1.02 var(--serif); margin: 16px 0 20px; max-width: 16ch; }
+  .contato p { color: var(--tinta-2); max-width: 52ch; }
   .canais { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid color-mix(in srgb, var(--papel) 30%, transparent); border-radius: 4px; text-decoration: none; }
+  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid #3a3f45; border-radius: 6px; text-decoration: none; }
   .canais a:hover { border-color: var(--sinal); color: var(--sinal); }
 
-  footer { padding: 28px 0; font: 400 13px/1.5 var(--mono); color: var(--tinta-2); }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  /* rodapé */
+  footer { padding: 64px 0 32px; background: var(--papel); }
+  .rodape { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+  .rodape h4 { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-2); margin: 6px 0 16px; }
+  .rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
+  .rodape ul a { text-decoration: none; color: var(--tinta-2); }
+  .rodape ul a:hover { color: var(--tinta); }
+  .rodape .sobre-marca p { color: var(--tinta-2); font-size: 15px; max-width: 34ch; margin: 14px 0 0; }
+  .legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--tinta-2); }
+  @media (max-width: 860px) { .rodape { grid-template-columns: 1fr 1fr; } .rodape .sobre-marca { grid-column: 1 / -1; } }
 
-  @media (max-width: 520px) { .wrap { padding: 0 16px; } .hero { padding: 64px 0 56px; } section { padding: 64px 0; } }
+  @media (max-width: 520px) { .wrap { padding: 0 16px; } .hero { padding: 56px 0 48px; } section { padding: 64px 0; } }
+  /* página inicial */
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .credenciais { list-style: none; margin: 40px 0 0; padding: 22px 0 0; border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 14.5px; color: var(--tinta-2); }
+  .credenciais li { display: flex; align-items: center; gap: 8px; }
+  .credenciais li::before { content: ""; width: 16px; height: 16px; flex: none; border-radius: 50%; background: var(--sinal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+  .credenciais li.andamento::before { background: transparent; border: 1.5px dashed var(--sinal); }
+  .credenciais strong { color: var(--tinta); font-weight: 600; }
+
+  .pipeline { margin: 0; border: 1px solid var(--linha); background: var(--cartao); border-radius: 10px; padding: 8px 22px; box-shadow: var(--sombra); }
+  .pipeline figcaption { font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-2); padding: 16px 0 12px; border-bottom: 1px solid var(--linha); }
+  .pipeline ol { list-style: none; margin: 0; padding: 6px 0; position: relative; }
+  .pipeline ol::before { content: ""; position: absolute; left: 11px; top: 26px; bottom: 26px; width: 1px; background: var(--sinal); opacity: .5; }
+  .pipeline li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; padding: 11px 0; position: relative; }
+  .pipeline .no { width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--sinal); background: var(--cartao); color: var(--sinal); font: 500 11px/21px var(--mono); text-align: center; position: relative; }
+  .pipeline li:last-child .no { background: var(--sinal); color: var(--cartao); }
+  .pipeline strong { display: block; font-weight: 600; font-size: 15px; }
+  .pipeline span.svc { font-size: 13.5px; color: var(--tinta-2); }
+
+  .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .servico { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; padding: 32px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra); }
+  .servico .icone { width: 44px; height: 44px; border-radius: 10px; background: var(--sinal-suave); color: var(--sinal); display: grid; place-items: center; }
+  .servico h3 { font: 600 21px/1.25 var(--sans); margin: 4px 0 0; }
+  .servico p { margin: 0; color: var(--tinta-2); }
+  .servico ul { margin: 6px 0 0; padding: 16px 0 0; border-top: 1px solid var(--linha); list-style: none; display: grid; gap: 9px; font-size: 15px; }
+  .servico li { display: flex; gap: 10px; }
+  .servico li::before { content: "→"; color: var(--sinal); font-family: var(--mono); }
+  @media (max-width: 960px) { .servicos { grid-template-columns: 1fr; } }
+
+  .oferta { margin-top: 20px; border-radius: 10px; background: var(--tinta); color: var(--papel); padding: 32px 36px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .oferta .rotulo { color: var(--sinal); }
+  .oferta h3 { font: 400 32px/1.1 var(--serif); margin: 10px 0 8px; }
+  .oferta p { margin: 0; color: color-mix(in srgb, var(--papel) 72%, transparent); max-width: 60ch; }
+  .oferta .btn { border-color: var(--papel); background: var(--papel); color: var(--tinta); }
+  .oferta .btn:hover { background: var(--sinal); border-color: var(--sinal); color: #fff; }
+  @media (max-width: 760px) { .oferta { grid-template-columns: 1fr; padding: 28px 24px; } }
+
+  .casos-lista { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .caso-uso { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .caso-uso .tipo { font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-2); }
+  .caso-uso h3 { font: 400 28px/1.15 var(--serif); margin: 4px 0 0; }
+  .caso-uso p { margin: 0; color: var(--tinta-2); }
+  .caso-uso .resultado { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--linha); font-size: 15px; color: var(--tinta); }
+  .caso-uso .resultado b { color: var(--sinal); font-weight: 600; }
+  .caso-uso.pesquisa { grid-column: 1 / -1; background: var(--sinal-suave); border-color: transparent; }
+  @media (max-width: 760px) { .casos-lista { grid-template-columns: 1fr; } }
+
+  .sobre-grid { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
+  .retrato { aspect-ratio: 4 / 5; border-radius: 12px; background: linear-gradient(160deg, #1d2a26, #0f1412); position: relative; overflow: hidden; display: grid; place-items: center; }
+  .retrato::after { content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 50%; background: var(--shu); opacity: .9; }
+  .retrato span { font: 400 120px/1 var(--serif); color: #ecebe6; position: relative; z-index: 1; letter-spacing: -.04em; }
+  .retrato small { position: absolute; left: 16px; bottom: 14px; font: 500 12px/1 var(--mono); color: #a3a7ad; z-index: 1; }
+  .sobre-texto { font-size: 19px; max-width: 60ch; }
+  .sobre-texto p { margin: 0 0 18px; }
+  .lema-sobre { display: inline-block; margin-top: 8px; font: 600 clamp(22px, 3vw, 30px)/1 var(--mono); letter-spacing: -.01em; }
+  .lema-sobre b { color: var(--sinal); font-weight: 600; }
+  @media (max-width: 860px) { .sobre-grid { grid-template-columns: 1fr; gap: 32px; } .retrato { max-width: 280px; } }
+
+  .contato-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  @media (max-width: 900px) { .contato-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .form { background: var(--cartao); border: 1px solid var(--linha); border-radius: 12px; padding: 28px; display: grid; gap: 16px; }
+  .form .linha2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .form .linha2 { grid-template-columns: 1fr; } }
+  .form label { display: grid; gap: 6px; font-size: 14px; color: var(--tinta-2); }
+  .form input, .form textarea, .form select { font: 400 16px/1.4 var(--sans); color: var(--tinta); background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; padding: 12px 14px; width: 100%; }
+  .form textarea { min-height: 120px; resize: vertical; }
+  .form input:focus, .form textarea:focus, .form select:focus { outline: 2px solid var(--sinal); outline-offset: 0; border-color: transparent; }
+  .form .btn { justify-self: start; background: var(--sinal); border-color: var(--sinal); color: #0b1512; font-weight: 600; }
+  .form .btn:hover { filter: brightness(1.08); }
+  .form .aviso { font-size: 13px; color: var(--tinta-2); margin: 0; }
+  .form .ok { display: none; padding: 12px 14px; border-radius: 6px; background: var(--sinal-suave); color: var(--sinal); font-size: 15px; }
+  .form.enviado .ok { display: block; }
+  .form a { color: var(--sinal); }
+
 </style>
 </head>
 <body>
@@ -170,14 +215,13 @@
 
 <header>
   <div class="wrap topo">
-    <a class="marca" href="#" aria-label="colimanlab, effort > talent"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf cursor" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
+    <a class="marca" href="index.html" aria-label="colimanlab, effort > talent"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf cursor" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
     <nav aria-label="Principal">
-      <a href="#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
+      <a href="index.html#servicos" aria-current="page"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
-      <a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
-      <a href="#projetos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
-      <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
-      <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+      <a href="index.html#casos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
+      <a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+      <a class="btn-topo" href="#contato"><span lang="pt-BR">Fale comigo</span><span lang="en">Get in touch</span></a>
     </nav>
     <div class="idiomas" role="group" aria-label="Idioma / Language">
       <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
@@ -191,90 +235,77 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <span class="rotulo"><span lang="pt-BR">Dados na AWS · Brasília</span><span lang="en">Data on AWS · Brasília, Brazil</span></span>
+          <span class="rotulo"><span lang="pt-BR">Dados e IA na AWS</span><span lang="en">Data &amp; AI on AWS</span></span>
           <h1 lang="pt-BR">Seus dados na AWS, <em>organizados</em> e prontos para IA.</h1>
           <h1 lang="en">Your data on AWS, <em>organized</em> and ready for AI.</h1>
-          <p class="lead" lang="pt-BR">Eu sou Luan Coli. No colimanlab, construo pipelines, data lakes e análises na AWS para empresas e organizações que precisam confiar nos próprios dados, com custo previsível, LGPD desde o início e cada decisão documentada.</p>
-          <p class="lead" lang="en">I'm Luan Coli. At colimanlab I build pipelines, data lakes and analytics on AWS for companies and organizations that need to trust their own data, with predictable cost, privacy by design and every decision documented.</p>
+          <p class="lead" lang="pt-BR">Ajudo organizações a reunir dados espalhados num só lugar seguro na AWS e a transformá-los em painéis, respostas e previsões, com custo previsível e privacidade desde o primeiro dia.</p>
+          <p class="lead" lang="en">I help organizations bring scattered data into one secure place on AWS and turn it into dashboards, answers and predictions, with predictable cost and privacy from day one.</p>
           <div class="acoes">
-            <a class="btn cheio" href="#contato"><span lang="pt-BR">Conversar sobre seus dados</span><span lang="en">Talk about your data</span> →</a>
-            <a class="btn vazio" href="#servicos"><span lang="pt-BR">Ver serviços</span><span lang="en">See services</span></a>
+            <a class="btn cheio" href="#contato"><span lang="pt-BR">Agendar uma conversa</span><span lang="en">Book a call</span> →</a>
+            <a class="btn vazio" href="aws.html"><span lang="pt-BR">O que dá para fazer na AWS</span><span lang="en">What's possible on AWS</span></a>
           </div>
+          <ul class="credenciais">
+            <li><span><strong>AWS Certified</strong> Solutions Architect – Professional</span></li>
+            <li class="andamento"><span><strong>AWS Certified</strong> Data Engineer – Associate <span lang="pt-BR">(em andamento)</span><span lang="en">(in progress)</span></span></li>
+            <li><span lang="pt-BR"><strong>Mestrado</strong> em IA segura · IDP</span><span lang="en"><strong>MSc</strong> research on safe AI · IDP</span></li>
+          </ul>
         </div>
         <figure class="pipeline" aria-label="Pipeline de dados na AWS / Data pipeline on AWS">
-          <figcaption><span lang="pt-BR">Um pipeline típico</span><span lang="en">A typical pipeline</span></figcaption>
+          <figcaption><span lang="pt-BR">Como os seus dados fluem</span><span lang="en">How your data flows</span></figcaption>
           <ol>
             <li><span class="no">1</span><div><strong><span lang="pt-BR">Fontes</span><span lang="en">Sources</span></strong><span class="svc"><span lang="pt-BR">bancos de dados, sistemas, planilhas, APIs, PDFs</span><span lang="en">databases, systems, spreadsheets, APIs, PDFs</span></span></div></li>
-            <li><span class="no">2</span><div><strong><span lang="pt-BR">Ingestão</span><span lang="en">Ingestion</span></strong><span class="svc">DMS · Glue · Lambda</span></div></li>
-            <li><span class="no">3</span><div><strong>Data lake</strong><span class="svc">S3 · Glue Catalog · Lake Formation</span></div></li>
-            <li><span class="no">4</span><div><strong><span lang="pt-BR">Consulta</span><span lang="en">Query</span></strong><span class="svc">Athena · Redshift</span></div></li>
-            <li><span class="no">5</span><div><strong><span lang="pt-BR">Uso</span><span lang="en">Use</span></strong><span class="svc">QuickSight · Bedrock RAG · SageMaker</span></div></li>
+            <li><span class="no">2</span><div><strong><span lang="pt-BR">Ingestão automática</span><span lang="en">Automated ingestion</span></strong><span class="svc"><span lang="pt-BR">cópia contínua, limpeza e padronização</span><span lang="en">continuous copy, cleaning, standardization</span></span></div></li>
+            <li><span class="no">3</span><div><strong><span lang="pt-BR">Data lake no S3</span><span lang="en">Data lake on S3</span></strong><span class="svc"><span lang="pt-BR">um só lugar, catalogado e seguro</span><span lang="en">one catalogued, secure place</span></span></div></li>
+            <li><span class="no">4</span><div><strong><span lang="pt-BR">Consulta</span><span lang="en">Query</span></strong><span class="svc"><span lang="pt-BR">SQL sobre tudo com o Athena</span><span lang="en">SQL over everything with Athena</span></span></div></li>
+            <li><span class="no">5</span><div><strong><span lang="pt-BR">Resultado</span><span lang="en">Outcome</span></strong><span class="svc"><span lang="pt-BR">painéis, RAG e modelos preditivos</span><span lang="en">dashboards, RAG and predictive models</span></span></div></li>
           </ol>
         </figure>
       </div>
-      <dl class="ficha">
-        <div><dt><span lang="pt-BR">Foco</span><span lang="en">Focus</span></dt><dd><span lang="pt-BR">Engenharia de dados na AWS</span><span lang="en">Data engineering on AWS</span></dd></div>
-        <div><dt><span lang="pt-BR">Pesquisa</span><span lang="en">Research</span></dt><dd><span lang="pt-BR">LLMs seguros e LGPD</span><span lang="en">Safe LLMs &amp; privacy law</span></dd></div>
-        <div><dt><span lang="pt-BR">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="pt-BR">Português e inglês</span><span lang="en">Portuguese &amp; English</span></dd></div>
-        <div><dt><span lang="pt-BR">Atendimento</span><span lang="en">Engagement</span></dt><dd><span lang="pt-BR">Remoto, todo o Brasil</span><span lang="en">Remote, worldwide</span></dd></div>
-      </dl>
     </div>
   </div>
 
   <section id="servicos">
     <div class="wrap">
       <div class="cab">
-        <span class="rotulo"><span lang="pt-BR">01 — Serviços</span><span lang="en">01 — Services</span></span>
-        <div>
-          <h2><span lang="pt-BR">O que eu faço</span><span lang="en">What I do</span></h2>
-          <p lang="pt-BR">Do dado espalhado ao dado útil, tudo dentro da sua conta AWS. Projetos bem delimitados ou acompanhamento contínuo.</p>
-          <p lang="en">From scattered data to useful data, all inside your own AWS account. Well-scoped projects or ongoing support.</p>
-          <p><a class="link-seta" href="aws.html"><span lang="pt-BR">O que dá para fazer na AWS com os seus dados</span><span lang="en">What you can do with your data on AWS</span> →</a></p>
-        </div>
+        <span class="rotulo"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></span>
+        <h2><span lang="pt-BR">Três frentes, uma base de dados confiável</span><span lang="en">Three services, one trusted data foundation</span></h2>
+        <p lang="pt-BR">Tudo é construído dentro da sua própria conta AWS. Os dados, o código e a documentação ficam com você.</p>
+        <p lang="en">Everything is built inside your own AWS account. The data, the code and the documentation stay with you.</p>
       </div>
       <div class="servicos">
         <article class="servico">
-          <span class="num">/01</span>
-          <h3><span lang="pt-BR">Pipelines e engenharia de dados</span><span lang="en">Pipelines &amp; data engineering</span></h3>
-          <p lang="pt-BR">Ingestão automática de bancos de dados, sistemas, planilhas, APIs e documentos. Limpeza, padronização e cargas agendadas, com monitoramento e alerta quando algo falha.</p>
-          <p lang="en">Automated ingestion from databases, systems, spreadsheets, APIs and documents. Cleaning, standardization and scheduled loads, with monitoring and alerts when something breaks.</p>
-          <div class="tags"><span>DMS</span><span>Glue</span><span>Lambda</span><span>Step Functions</span></div>
+          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+          <h3><span lang="pt-BR">Plataforma de dados na AWS</span><span lang="en">Data platform on AWS</span></h3>
+          <p lang="pt-BR">Bancos de dados, sistemas e planilhas chegando sozinhos a um data lake único, que se consulta em SQL.</p>
+          <p lang="en">Databases, systems and spreadsheets flowing automatically into a single data lake you can query in SQL.</p>
+          <ul lang="pt-BR"><li>Ingestão e réplica dos bancos sem pesar o sistema</li><li>Data lake catalogado no S3</li><li>Consultas consolidadas com o Athena</li><li>Painéis que se atualizam sozinhos</li></ul>
+          <ul lang="en"><li>Ingestion and database replication with no load on production</li><li>Catalogued data lake on S3</li><li>Consolidated queries with Athena</li><li>Dashboards that refresh themselves</li></ul>
         </article>
         <article class="servico">
-          <span class="num">/02</span>
-          <h3><span lang="pt-BR">Data lake e analytics</span><span lang="en">Data lake &amp; analytics</span></h3>
-          <p lang="pt-BR">Um lugar único e catalogado para os seus dados, consultável em SQL e pago por uso. Painéis para quem decide, sem depender de exportar planilha.</p>
-          <p lang="en">One catalogued home for your data, queryable in SQL and pay-per-use. Dashboards for decision makers, no more spreadsheet exports.</p>
-          <div class="tags"><span>S3</span><span>Athena</span><span>Redshift</span><span>QuickSight</span></div>
+          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+          <h3><span lang="pt-BR">IA sobre os seus dados</span><span lang="en">AI on your data</span></h3>
+          <p lang="pt-BR">Perguntas em linguagem natural respondidas com os seus documentos e bancos de dados, sempre com a fonte citada.</p>
+          <p lang="en">Plain-language questions answered from your own documents and databases, always with the source cited.</p>
+          <ul lang="pt-BR"><li>RAG sobre contratos, manuais e relatórios</li><li>"Pergunte ao banco de dados" (texto vira SQL)</li><li>Modelos preditivos com o SageMaker</li><li>Os dados nunca saem da sua conta</li></ul>
+          <ul lang="en"><li>RAG over contracts, manuals and reports</li><li>"Ask your database" (text becomes SQL)</li><li>Predictive models with SageMaker</li><li>Data never leaves your account</li></ul>
         </article>
         <article class="servico">
-          <span class="num">/03</span>
-          <h3><span lang="pt-BR">RAG sobre os dados do seu sistema</span><span lang="en">RAG on your own system's data</span></h3>
-          <p lang="pt-BR">Pergunte em linguagem natural e receba respostas tiradas dos seus documentos e dos bancos de dados do seu sistema, com a fonte citada. Tudo fica dentro da sua conta, com detecção de dados pessoais e trilha de auditoria.</p>
-          <p lang="en">Ask in plain language and get answers drawn from your documents and your system's databases, with sources cited. Everything stays in your account, with personal-data detection and audit trails.</p>
-          <div class="tags"><span>Bedrock</span><span>RAG</span><span>text-to-SQL</span><span>PII</span></div>
+          <span class="icone" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+          <h3><span lang="pt-BR">Governança, LGPD e custo</span><span lang="en">Governance, privacy &amp; cost</span></h3>
+          <p lang="pt-BR">Saber quem vê o quê, passar na auditoria e nunca levar susto com a fatura da AWS.</p>
+          <p lang="en">Know who sees what, pass the audit, and never get a surprise AWS bill.</p>
+          <ul lang="pt-BR"><li>Permissões por tabela e por coluna</li><li>Criptografia e registro de cada acesso</li><li>Dados pessoais encontrados e mascarados</li><li>Alertas e revisão periódica de custo</li></ul>
+          <ul lang="en"><li>Table- and column-level permissions</li><li>Encryption and a log of every access</li><li>Personal data discovered and masked</li><li>Spend alerts and regular cost reviews</li></ul>
         </article>
-        <article class="servico">
-          <span class="num">/04</span>
-          <h3><span lang="pt-BR">Ciência de dados e ML</span><span lang="en">Data science &amp; ML</span></h3>
-          <p lang="pt-BR">Análise exploratória, classificação de textos e modelos preditivos sobre o data lake, entregues como notebooks reprodutíveis ou endpoints em produção.</p>
-          <p lang="en">Exploratory analysis, text classification and predictive models on top of the data lake, delivered as reproducible notebooks or production endpoints.</p>
-          <div class="tags"><span>SageMaker</span><span>pandas</span><span>scikit-learn</span><span>NLP</span></div>
-        </article>
-        <article class="servico">
-          <span class="num">/05</span>
-          <h3><span lang="pt-BR">Governança, segurança e custo</span><span lang="en">Governance, security &amp; cost</span></h3>
-          <p lang="pt-BR">Quem pode ver o quê, por quanto tempo cada dado fica guardado e quanto cada consulta custa. Permissões, criptografia, retenção e alertas de gasto.</p>
-          <p lang="en">Who can see what, how long each record is kept and what each query costs. Permissions, encryption, retention and spend alerts.</p>
-          <div class="tags"><span>IAM</span><span>Lake Formation</span><span>KMS</span><span>Cost Explorer</span></div>
-        </article>
-        <article class="servico">
-          <span class="num">/06</span>
+      </div>
+      <div class="oferta" id="diagnostico">
+        <div>
+          <span class="rotulo"><span lang="pt-BR">Comece por aqui</span><span lang="en">Start here</span></span>
           <h3><span lang="pt-BR">Diagnóstico de dados</span><span lang="en">Data assessment</span></h3>
-          <p lang="pt-BR">Ponto de partida curto: mapeio as fontes, os problemas e os riscos de LGPD, e entrego uma arquitetura proposta com estimativa de custo mensal na AWS.</p>
-          <p lang="en">A short starting point: I map your sources, issues and privacy risks, and deliver a proposed architecture with a monthly AWS cost estimate.</p>
-          <div class="tags"><span lang="pt-BR">arquitetura</span><span lang="en">architecture</span><span lang="pt-BR">estimativa</span><span lang="en">estimate</span></div>
-        </article>
+          <p lang="pt-BR">Um projeto curto e de escopo fechado: mapeio as suas fontes, os problemas e os riscos de LGPD, e entrego uma arquitetura proposta com estimativa de custo mensal na AWS.</p>
+          <p lang="en">A short, fixed-scope engagement: I map your sources, issues and privacy risks, and deliver a proposed architecture with a monthly AWS cost estimate.</p>
+        </div>
+        <a class="btn" href="#contato"><span lang="pt-BR">Quero um diagnóstico</span><span lang="en">Request an assessment</span> →</a>
       </div>
     </div>
   </section>
@@ -282,122 +313,170 @@
   <section id="metodo">
     <div class="wrap">
       <div class="cab">
-        <span class="rotulo"><span lang="pt-BR">02 — Método</span><span lang="en">02 — Method</span></span>
-        <div>
-          <h2><span lang="pt-BR">Como eu trabalho</span><span lang="en">How I work</span></h2>
-          <p lang="pt-BR">Rigor de pesquisa aplicado a projetos práticos. Você sempre sabe o que foi feito, o que foi decidido e por quê.</p>
-          <p lang="en">Research rigor applied to practical projects. You always know what was done, what was decided and why.</p>
-        </div>
+        <span class="rotulo"><span lang="pt-BR">Método</span><span lang="en">Method</span></span>
+        <h2><span lang="pt-BR">Rigor de pesquisa, ritmo de projeto</span><span lang="en">Research rigor, project pace</span></h2>
+        <p lang="pt-BR">Você sempre sabe o que foi feito, o que foi decidido e por quê.</p>
+        <p lang="en">You always know what was done, what was decided and why.</p>
       </div>
       <ol class="etapas">
-        <li><h3><span lang="pt-BR">Diagnóstico</span><span lang="en">Diagnosis</span></h3><p lang="pt-BR">Entendo o problema, os dados e as restrições antes de propor tecnologia.</p><p lang="en">I understand the problem, the data and the constraints before proposing technology.</p></li>
-        <li><h3><span lang="pt-BR">Protótipo</span><span lang="en">Prototype</span></h3><p lang="pt-BR">Uma versão funcional rápida para validar com você, com custo e limites medidos.</p><p lang="en">A quick working version to validate together, with cost and limits measured.</p></li>
-        <li><h3><span lang="pt-BR">Entrega</span><span lang="en">Delivery</span></h3><p lang="pt-BR">Código no seu repositório, testado e com instruções para rodar sem depender de mim.</p><p lang="en">Code in your repository, tested, with instructions to run it without depending on me.</p></li>
-        <li><h3><span lang="pt-BR">Registro</span><span lang="en">Record</span></h3><p lang="pt-BR">Decisões e handoffs escritos em cada etapa. Nada se perde entre uma conversa e outra.</p><p lang="en">Decisions and handoffs written at every step. Nothing gets lost between conversations.</p></li>
+        <li><h3><span lang="pt-BR">Diagnóstico</span><span lang="en">Assessment</span></h3><p lang="pt-BR">Entendo o problema, os dados e as restrições antes de propor tecnologia.</p><p lang="en">I understand the problem, the data and the constraints before proposing technology.</p></li>
+        <li><h3><span lang="pt-BR">Protótipo</span><span lang="en">Prototype</span></h3><p lang="pt-BR">Uma versão funcional rápida, com custo e limites medidos.</p><p lang="en">A quick working version, with cost and limits measured.</p></li>
+        <li><h3><span lang="pt-BR">Entrega</span><span lang="en">Delivery</span></h3><p lang="pt-BR">Código no seu repositório, testado e com instruções para rodar sem depender de mim.</p><p lang="en">Code in your repository, tested, with instructions to run it without me.</p></li>
+        <li><h3><span lang="pt-BR">Registro</span><span lang="en">Record</span></h3><p lang="pt-BR">Decisões e handoffs escritos em cada etapa.</p><p lang="en">Decisions and handoffs written at every step.</p></li>
       </ol>
     </div>
   </section>
 
-  <section id="projetos">
+  <section id="casos">
     <div class="wrap">
       <div class="cab">
-        <span class="rotulo"><span lang="pt-BR">03 — Casos de uso</span><span lang="en">03 — Use cases</span></span>
-        <div>
-          <h2><span lang="pt-BR">O que isso vira na prática</span><span lang="en">What it looks like in practice</span></h2>
-          <p lang="pt-BR">Cenários típicos de projetos de dados com AWS e IA. Cada organização tem os seus dados, mas os problemas se repetem.</p>
-          <p lang="en">Typical data projects with AWS and AI. Every organization has its own data, but the problems repeat.</p>
-        </div>
+        <span class="rotulo"><span lang="pt-BR">Casos de uso</span><span lang="en">Use cases</span></span>
+        <h2><span lang="pt-BR">O que isso vira na prática</span><span lang="en">What it looks like in practice</span></h2>
+        <p lang="pt-BR">Cenários típicos de projetos de dados e IA na AWS. Cada organização tem os seus dados, mas os problemas se repetem.</p>
+        <p lang="en">Typical data and AI projects on AWS. Every organization has its own data, but the problems repeat.</p>
       </div>
-      <div class="projetos">
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Varejo · Previsão</span><span lang="en">Retail · Forecasting</span></span>
-          <div>
-            <h3><span lang="pt-BR">Data lake de vendas com previsão de demanda</span><span lang="en">Sales data lake with demand forecasting</span></h3>
-            <p lang="pt-BR">O banco do ERP é replicado para o S3 sem pesar o sistema. As vendas de todas as lojas ficam consultáveis no Athena, e um modelo no SageMaker prevê a demanda por produto para orientar a reposição.</p>
-            <p lang="en">The ERP database is replicated to S3 without loading the system. Sales from every store become queryable in Athena, and a SageMaker model forecasts demand per product to guide restocking.</p>
-          </div>
-          <span class="stack">DMS · S3 · Athena · SageMaker</span>
+      <div class="casos-lista">
+        <article class="caso-uso">
+          <span class="tipo"><span lang="pt-BR">Varejo</span><span lang="en">Retail</span></span>
+          <h3><span lang="pt-BR">Vendas consolidadas e previsão de demanda</span><span lang="en">Consolidated sales and demand forecasting</span></h3>
+          <p lang="pt-BR">O banco do ERP é replicado para o data lake sem pesar o sistema. As vendas de todas as lojas ficam numa consulta só, e um modelo prevê a demanda por produto.</p>
+          <p lang="en">The ERP database is replicated to the data lake with no load on the system. Sales from every store sit behind one query, and a model forecasts demand per product.</p>
+          <p class="resultado" lang="pt-BR"><b>Resultado:</b> reposição guiada por previsão, não por intuição.</p>
+          <p class="resultado" lang="en"><b>Outcome:</b> restocking driven by forecasts, not gut feeling.</p>
         </article>
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Serviços · RAG</span><span lang="en">Services · RAG</span></span>
-          <div>
-            <h3><span lang="pt-BR">Assistente para contratos e normas internas</span><span lang="en">Assistant for contracts and internal policies</span></h3>
-            <p lang="pt-BR">Milhares de PDFs viram uma base de conhecimento. A equipe pergunta em linguagem natural e recebe a resposta com o trecho e o documento de origem, e cada pessoa só vê o que tem permissão para ver.</p>
-            <p lang="en">Thousands of PDFs become a knowledge base. The team asks in plain language and gets the answer with the source passage and document, and each person only sees what they're allowed to see.</p>
-          </div>
-          <span class="stack">S3 · Bedrock · Knowledge Bases</span>
+        <article class="caso-uso">
+          <span class="tipo"><span lang="pt-BR">Serviços</span><span lang="en">Professional services</span></span>
+          <h3><span lang="pt-BR">Assistente para contratos e normas internas</span><span lang="en">Assistant for contracts and internal policies</span></h3>
+          <p lang="pt-BR">Milhares de PDFs viram uma base de conhecimento. A equipe pergunta em linguagem natural e recebe a resposta com o trecho e o documento de origem.</p>
+          <p lang="en">Thousands of PDFs become a knowledge base. The team asks in plain language and gets the answer with the source passage and document.</p>
+          <p class="resultado" lang="pt-BR"><b>Resultado:</b> respostas em segundos, com a fonte para conferir.</p>
+          <p class="resultado" lang="en"><b>Outcome:</b> answers in seconds, with the source to verify.</p>
         </article>
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Operações · Text-to-SQL</span><span lang="en">Operations · Text-to-SQL</span></span>
-          <div>
-            <h3><span lang="pt-BR">"Pergunte ao sistema"</span><span lang="en">"Ask the system"</span></h3>
-            <p lang="pt-BR">Gestores fazem perguntas sobre pedidos, estoque e clientes sem depender da TI. A pergunta vira SQL sobre o data lake e a resposta volta explicada, com a consulta usada à mostra para conferência.</p>
-            <p lang="en">Managers ask about orders, stock and customers without waiting on IT. The question becomes SQL over the data lake and the answer comes back explained, with the query shown for review.</p>
-          </div>
-          <span class="stack">Bedrock · Athena · Glue Catalog</span>
+        <article class="caso-uso">
+          <span class="tipo"><span lang="pt-BR">Operações</span><span lang="en">Operations</span></span>
+          <h3><span lang="pt-BR">"Pergunte ao sistema"</span><span lang="en">"Ask the system"</span></h3>
+          <p lang="pt-BR">Gestores perguntam sobre pedidos, estoque e clientes sem depender da TI. A pergunta vira SQL sobre o data lake, e a resposta volta explicada.</p>
+          <p lang="en">Managers ask about orders, stock and customers without waiting on IT. The question becomes SQL over the data lake and the answer comes back explained.</p>
+          <p class="resultado" lang="pt-BR"><b>Resultado:</b> a fila de pedidos de relatório para a TI some.</p>
+          <p class="resultado" lang="en"><b>Outcome:</b> the queue of report requests to IT disappears.</p>
         </article>
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Saúde · LGPD</span><span lang="en">Healthcare · Privacy</span></span>
-          <div>
-            <h3><span lang="pt-BR">Indicadores com dados sensíveis protegidos</span><span lang="en">KPIs with sensitive data protected</span></h3>
-            <p lang="pt-BR">Dados de atendimento consolidados em painéis, com os dados pessoais encontrados automaticamente, mascarados por coluna e com cada acesso registrado para auditoria.</p>
-            <p lang="en">Care data consolidated into dashboards, with personal data discovered automatically, masked per column, and every access logged for audit.</p>
-          </div>
-          <span class="stack">Macie · Lake Formation · QuickSight</span>
+        <article class="caso-uso">
+          <span class="tipo"><span lang="pt-BR">Saúde</span><span lang="en">Healthcare</span></span>
+          <h3><span lang="pt-BR">Indicadores com dados sensíveis protegidos</span><span lang="en">KPIs with sensitive data protected</span></h3>
+          <p lang="pt-BR">Dados de atendimento consolidados em painéis, com dados pessoais encontrados automaticamente, mascarados por coluna e cada acesso registrado.</p>
+          <p lang="en">Care data consolidated into dashboards, with personal data discovered automatically, masked per column, and every access logged.</p>
+          <p class="resultado" lang="pt-BR"><b>Resultado:</b> visão de gestão sem expor o paciente.</p>
+          <p class="resultado" lang="en"><b>Outcome:</b> management visibility without exposing patients.</p>
         </article>
-        <article class="projeto">
+        <article class="caso-uso pesquisa">
           <span class="tipo"><span lang="pt-BR">Pesquisa · Mestrado</span><span lang="en">Research · MSc</span></span>
-          <div>
-            <h3>BOPPII</h3>
-            <p lang="pt-BR">Proxy open source para uso seguro e auditável de LLMs em organizações que lidam com dados pessoais. Detecta dados pessoais, decide se o prompt pode sair da organização e pseudonimiza antes do envio.</p>
-            <p lang="en">Open-source proxy for safe, auditable use of LLMs in organizations that handle personal data. It detects personal data, decides whether a prompt may leave the organization, and pseudonymizes it before sending.</p>
-          </div>
-          <span class="stack">Python · Ollama · Qwen3 · LGPD</span>
+          <h3>BOPPII</h3>
+          <p lang="pt-BR">Proxy open source para uso seguro e auditável de LLMs em organizações que lidam com dados pessoais. Ele detecta dados pessoais, decide se o prompt pode sair da organização e pseudonimiza antes do envio.</p>
+          <p lang="en">Open-source proxy for safe, auditable use of LLMs in organizations that handle personal data. It detects personal data, decides whether a prompt may leave the organization, and pseudonymizes it before sending.</p>
         </article>
       </div>
     </div>
   </section>
 
   <section id="sobre">
-    <div class="wrap sobre">
-      <span class="rotulo"><span lang="pt-BR">04 — Sobre</span><span lang="en">04 — About</span></span>
-      <div class="texto">
-        <div lang="pt-BR">
-          <p>Sou Luan Coli, mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
-          <p>O colimanlab é onde essa pesquisa encontra problemas do dia a dia: dados espalhados em planilhas e sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis. Eu levo isso para a AWS de forma organizada, segura e com custo que você entende.</p>
-          <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
-          <span class="lema-sobre">effort <b>&gt;</b> talent</span>
-        </div>
-        <div lang="en">
-          <p>I'm Luan Coli, a master's researcher at IDP (Brasília), studying how organizations can use language models without exposing personal data.</p>
-          <p>colimanlab is where that research meets everyday problems: data scattered across spreadsheets and systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data. I bring it to AWS in an organized, secure way, at a cost you understand.</p>
-          <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
-          <span class="lema-sobre">effort <b>&gt;</b> talent</span>
+    <div class="wrap">
+      <div class="sobre-grid">
+        <div class="retrato" role="img" aria-label="Luan Coli"><span>LC</span><small lang="pt-BR">foto em breve</small><small lang="en">photo coming soon</small></div>
+        <div>
+          <span class="rotulo"><span lang="pt-BR">Sobre</span><span lang="en">About</span></span>
+          <div class="sobre-texto" style="margin-top:18px">
+            <div lang="pt-BR">
+              <p>Sou Luan Coli, arquiteto de soluções certificado AWS (Professional) e mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
+              <p>O colimanlab é onde isso encontra problemas do dia a dia: dados espalhados em sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis.</p>
+              <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
+            </div>
+            <div lang="en">
+              <p>I'm Luan Coli, an AWS Certified Solutions Architect – Professional and a master's researcher at IDP, studying how organizations can use language models without exposing personal data.</p>
+              <p>colimanlab is where that meets everyday problems: data scattered across systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data.</p>
+              <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
+            </div>
+            <span class="lema-sobre">effort <b>&gt;</b> talent</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="contato" class="contato">
-    <div class="wrap">
-      <span class="rotulo"><span lang="pt-BR">05 — Contato</span><span lang="en">05 — Contact</span></span>
-      <h2><span lang="pt-BR">Seus dados estão espalhados?</span><span lang="en">Is your data all over the place?</span></h2>
-      <p lang="pt-BR">Conte em poucas linhas de onde vêm os seus dados e o que você queria fazer com eles. Respondo em até dois dias úteis, em português ou inglês.</p>
-      <p lang="en">Tell me in a few lines where your data comes from and what you'd like to do with it. I reply within two business days, in English or Portuguese.</p>
-      <div class="canais">
-        <!-- PROTÓTIPO: trocar pelos contatos reais -->
-        <a href="mailto:EMAIL_CONTATO">E-mail</a>
-        <a href="#" aria-disabled="true">LinkedIn</a>
-        <a href="#" aria-disabled="true">GitHub</a>
+    <div class="wrap contato-grid">
+      <div>
+        <span class="rotulo"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></span>
+        <h2><span lang="pt-BR">Vamos olhar para os seus dados?</span><span lang="en">Shall we look at your data?</span></h2>
+        <p lang="pt-BR">Conte de onde vêm os seus dados e qual pergunta você ainda não consegue responder. Respondo em até dois dias úteis, em português ou inglês.</p>
+        <p lang="en">Tell me where your data comes from and which question you still can't answer. I reply within two business days, in English or Portuguese.</p>
+        <div class="canais">
+          <a href="mailto:contato@colimanlab.com">contato@colimanlab.com</a>
+          <a href="#" aria-disabled="true">LinkedIn</a>
+        </div>
       </div>
+      <form class="form" id="form-contato" novalidate>
+        <div class="linha2">
+          <label><span lang="pt-BR">Nome</span><span lang="en">Name</span><input name="nome" autocomplete="name" required></label>
+          <label><span lang="pt-BR">E-mail</span><span lang="en">Email</span><input name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <label><span lang="pt-BR">Organização</span><span lang="en">Organization</span><input name="org" autocomplete="organization"></label>
+        <label><span lang="pt-BR">Assunto</span><span lang="en">Topic</span>
+          <select name="assunto">
+            <option lang="pt-BR">Diagnóstico de dados</option><option lang="en">Data assessment</option>
+            <option lang="pt-BR">Plataforma de dados na AWS</option><option lang="en">Data platform on AWS</option>
+            <option lang="pt-BR">IA sobre os meus dados</option><option lang="en">AI on my data</option>
+            <option lang="pt-BR">Governança e LGPD</option><option lang="en">Governance &amp; privacy</option>
+            <option lang="pt-BR">Outro</option><option lang="en">Other</option>
+          </select>
+        </label>
+        <label><span lang="pt-BR">Mensagem</span><span lang="en">Message</span><textarea name="msg" required></textarea></label>
+        <button class="btn" type="submit"><span lang="pt-BR">Enviar mensagem</span><span lang="en">Send message</span> →</button>
+        <p class="ok" role="status"><span lang="pt-BR">Obrigado! Protótipo: o envio ainda não está ligado.</span><span lang="en">Thanks! Prototype: sending is not wired up yet.</span></p>
+        <p class="aviso"><span lang="pt-BR">Seus dados são usados só para responder a você. Veja a <a href="privacidade.html">política de privacidade</a>.</span><span lang="en">Your data is used only to reply to you. See the <a href="privacidade.html">privacy policy</a>.</span></p>
+      </form>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="ano">2026</span> colimanlab · Luan Coli · effort &gt; talent</span>
-    <span lang="pt-BR">Brasília, Brasil</span><span lang="en">Brasília, Brazil</span>
+    <div class="rodape">
+      <div class="sobre-marca">
+        <a class="marca" href="index.html" aria-label="colimanlab"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span></a>
+        <p lang="pt-BR">Engenharia de dados e IA na AWS para organizações que querem confiar nos próprios dados. effort &gt; talent.</p>
+        <p lang="en">Data engineering and AI on AWS for organizations that want to trust their own data. effort &gt; talent.</p>
+      </div>
+      <div>
+        <h4><span lang="pt-BR">Serviços</span><span lang="en">Services</span></h4>
+        <ul>
+          <li><a href="index.html#servicos"><span lang="pt-BR">Plataforma de dados</span><span lang="en">Data platform</span></a></li>
+          <li><a href="index.html#servicos"><span lang="pt-BR">IA sobre os seus dados</span><span lang="en">AI on your data</span></a></li>
+          <li><a href="index.html#servicos"><span lang="pt-BR">Governança e custo</span><span lang="en">Governance &amp; cost</span></a></li>
+          <li><a href="index.html#diagnostico"><span lang="pt-BR">Diagnóstico de dados</span><span lang="en">Data assessment</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>colimanlab</h4>
+        <ul>
+          <li><a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
+          <li><a href="aws.html"><span lang="pt-BR">Dados na AWS</span><span lang="en">Data on AWS</span></a></li>
+          <li><a href="index.html#casos"><span lang="pt-BR">Casos de uso</span><span lang="en">Use cases</span></a></li>
+          <li><a href="privacidade.html"><span lang="pt-BR">Privacidade</span><span lang="en">Privacy</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span lang="pt-BR">Contato</span><span lang="en">Contact</span></h4>
+        <ul>
+          <li><a href="mailto:contato@colimanlab.com">contato@colimanlab.com</a></li>
+          <li><a href="#" aria-disabled="true">LinkedIn</a></li>
+          <li><a href="#" aria-disabled="true">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span class="ano">2026</span> colimanlab · Luan Coli · CNPJ 00.000.000/0001-00</span>
+      <span><span lang="pt-BR">Brasília, Brasil · atendimento remoto</span><span lang="en">Brasília, Brazil · working remotely</span></span>
+    </div>
   </div>
 </footer>
 
@@ -410,6 +489,12 @@
       root.lang = l === "en" ? "en" : "pt-BR";
       document.title = titulos[l];
       document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.setLang === l); });
+      var alvo = l === "en" ? "en" : "pt-BR";
+      document.querySelectorAll("select").forEach(function (s) {
+        var primeira = null;
+        Array.prototype.forEach.call(s.options, function (o) { var ok = o.lang === alvo; o.hidden = !ok; o.disabled = !ok; if (ok && !primeira) primeira = o; });
+        if (s.selectedOptions[0] && s.selectedOptions[0].disabled && primeira) primeira.selected = true;
+      });
       try { localStorage.setItem("colimanlab-lang", l); } catch (e) {}
     }
     var salvo = null;
@@ -417,7 +502,13 @@
     var url = new URLSearchParams(location.search).get("lang");
     aplicar(url === "en" || url === "pt" ? url : salvo || "en");
     document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
-    document.getElementById("ano").textContent = new Date().getFullYear();
+    document.querySelectorAll(".ano").forEach(function (e) { e.textContent = new Date().getFullYear(); });
+    var form = document.getElementById("form-contato");
+    if (form) form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (!form.reportValidity()) return;
+      form.classList.add("enviado");
+    });
   })();
 </script>
 </body>

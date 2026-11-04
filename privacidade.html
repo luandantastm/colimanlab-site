@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — colimanlab</title>
+<meta name="description" content="colimanlab privacy policy (LGPD). Política de privacidade do colimanlab.">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Privacy — colimanlab">
+<meta property="og:description" content="colimanlab privacy policy (LGPD). Política de privacidade do colimanlab.">
+<meta property="og:image" content="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papel: #f6f5f1;
+    --papel-2: #eeece6;
+    --cartao: #ffffff;
+    --tinta: #15171a;
+    --tinta-2: #50555d;
+    --linha: #e0ddd5;
+    --sinal: #0f7b5f;
+    --sinal-suave: #e3f0eb;
+    --shu: #c8442f;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --sombra: 0 1px 2px rgba(20, 22, 26, .04), 0 8px 24px rgba(20, 22, 26, .05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+      --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --papel: #111315; --papel-2: #171a1d; --cartao: #1a1d21; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+    --linha: #2a2e33; --sinal: #4fd1a5; --sinal-suave: #15302a; --shu: #e5664f; --sombra: none;
+  }
+
+  /* idioma: mostra só o bloco do idioma ativo */
+  html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt-BR"] { display: none !important; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--sinal); outline-offset: 3px; }
+  .pular { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: var(--papel); padding: 8px 12px; z-index: 10; }
+  .pular:focus { left: 16px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .rotulo { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--sinal); }
+
+  /* topo */
+  header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linha); }
+  .topo { display: flex; align-items: center; gap: 24px; height: 68px; }
+  .marca { display: flex; align-items: center; gap: 10px; font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
+  .marca .logo { width: 30px; height: 30px; display: block; flex: none; }
+  .logo .t { stroke: var(--tinta); } .logo .f { fill: var(--papel); } .logo .g { stroke: var(--sinal); } .logo .gf { fill: var(--sinal); } .logo .r { fill: var(--shu); }
+  .logo .cursor { animation: pisca 1.1s steps(1) infinite; }
+  @keyframes pisca { 50% { opacity: 0; } }
+  .marca b { color: var(--sinal); font-weight: 500; }
+  .marca .lema-topo { font: 500 12px/1 var(--mono); color: var(--tinta-2); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--linha); letter-spacing: 0; white-space: nowrap; }
+  .marca .lema-topo b { color: var(--sinal); }
+  nav { display: flex; gap: 26px; margin-left: auto; align-items: center; }
+  nav a { text-decoration: none; font-size: 15px; color: var(--tinta-2); }
+  nav a:hover, nav a[aria-current="page"] { color: var(--tinta); }
+  nav a.btn-topo { color: var(--papel); background: var(--tinta); padding: 9px 16px; border-radius: 6px; font-weight: 500; }
+  nav a.btn-topo:hover { background: var(--sinal); color: #fff; }
+  .idiomas { display: flex; border: 1px solid var(--linha); border-radius: 999px; overflow: hidden; flex: none; }
+  .idiomas button { font: 500 12px/1 var(--mono); background: none; color: var(--tinta-2); border: 0; padding: 8px 11px; cursor: pointer; }
+  .idiomas button[aria-pressed="true"] { background: var(--tinta); color: var(--papel); }
+  @media (max-width: 900px) { nav a:not(.btn-topo) { display: none; } }
+  @media (max-width: 600px) { nav { display: none; } .idiomas { margin-left: auto; } }
+  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca .logo { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
+  @media (max-width: 359px) { .marca .lema-topo { display: none; } }
+
+  /* botões */
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 6px; font-weight: 500; font-size: 15.5px; text-decoration: none; border: 1px solid var(--tinta); cursor: pointer; font-family: var(--sans); }
+  .btn.cheio { background: var(--tinta); color: var(--papel); }
+  .btn.cheio:hover { background: var(--sinal); border-color: var(--sinal); color: #fff; }
+  .btn.vazio { background: transparent; color: var(--tinta); }
+  .btn.vazio:hover { background: var(--papel-2); }
+
+  /* hero */
+  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--linha); background: radial-gradient(1200px 500px at 85% -10%, var(--sinal-suave), transparent 60%); }
+  .hero h1 { font: 400 clamp(44px, 7vw, 86px)/1 var(--serif); letter-spacing: -.02em; margin: 18px 0 24px; max-width: 14ch; }
+  .hero h1 em { color: var(--sinal); }
+  .hero p.lead { font-size: clamp(18px, 2vw, 21px); color: var(--tinta-2); max-width: 54ch; margin: 0 0 34px; }
+
+  /* seções */
+  section { padding: 96px 0; border-bottom: 1px solid var(--linha); }
+  .cab { max-width: 720px; margin-bottom: 48px; }
+  .cab h2 { font: 400 clamp(36px, 4.6vw, 54px)/1.05 var(--serif); margin: 14px 0 0; letter-spacing: -.01em; }
+  .cab p { color: var(--tinta-2); margin: 16px 0 0; font-size: 18px; }
+  .link-seta { color: var(--sinal); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+  .link-seta:hover { border-bottom-width: 2px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font: 400 12px/1 var(--mono); padding: 6px 8px; background: var(--sinal-suave); color: var(--sinal); border-radius: 4px; }
+  .num { font: 500 12px/1 var(--mono); color: var(--tinta-2); }
+
+  .etapas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: e; }
+  .etapas li { border-top: 2px solid var(--tinta); padding-top: 18px; counter-increment: e; }
+  .etapas li::before { content: "0" counter(e); font: 500 12px/1 var(--mono); color: var(--sinal); display: block; margin-bottom: 12px; }
+  .etapas h3 { font: 600 18px/1.3 var(--sans); margin: 0 0 8px; }
+  .etapas p { margin: 0; color: var(--tinta-2); font-size: 15px; }
+  @media (max-width: 900px) { .etapas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .etapas { grid-template-columns: 1fr; } }
+
+  /* contato (escuro) */
+  .contato { background: #121416; color: #ecebe6; border-bottom: 0; --tinta: #ecebe6; --tinta-2: #a3a7ad; --linha: #2a2e33; --sinal: #4fd1a5; --papel: #121416; --papel-2: #1a1d20; --cartao: #1a1d21; }
+  .contato h2 { font: 400 clamp(40px, 6vw, 68px)/1.02 var(--serif); margin: 16px 0 20px; max-width: 16ch; }
+  .contato p { color: var(--tinta-2); max-width: 52ch; }
+  .canais { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid #3a3f45; border-radius: 6px; text-decoration: none; }
+  .canais a:hover { border-color: var(--sinal); color: var(--sinal); }
+
+  /* rodapé */
+  footer { padding: 64px 0 32px; background: var(--papel); }
+  .rodape { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+  .rodape h4 { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-2); margin: 6px 0 16px; }
+  .rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
+  .rodape ul a { text-decoration: none; color: var(--tinta-2); }
+  .rodape ul a:hover { color: var(--tinta); }
+  .rodape .sobre-marca p { color: var(--tinta-2); font-size: 15px; max-width: 34ch; margin: 14px 0 0; }
+  .legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--tinta-2); }
+  @media (max-width: 860px) { .rodape { grid-template-columns: 1fr 1fr; } .rodape .sobre-marca { grid-column: 1 / -1; } }
+
+  @media (max-width: 520px) { .wrap { padding: 0 16px; } .hero { padding: 56px 0 48px; } section { padding: 64px 0; } }
+
+  .hero-priv h1 { max-width: 20ch; }
+  .texto-legal { padding-top: 56px; }
+  .texto-legal .wrap > div { max-width: 720px; }
+  .texto-legal h2 { font: 600 20px/1.3 var(--sans); margin: 36px 0 10px; }
+  .texto-legal h2:first-child { margin-top: 0; }
+  .texto-legal p, .texto-legal li { color: var(--tinta-2); }
+  .texto-legal a { color: var(--sinal); }
+
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo"><span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap topo">
+    <a class="marca" href="index.html" aria-label="colimanlab, effort > talent"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf cursor" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
+    <nav aria-label="Principal">
+      <a href="index.html#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
+      <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
+      <a href="index.html#casos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
+      <a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+      <a class="btn-topo" href="#contato"><span lang="pt-BR">Fale comigo</span><span lang="en">Get in touch</span></a>
+    </nav>
+    <div class="idiomas" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="hero hero-priv">
+    <div class="wrap">
+      <span class="rotulo"><span lang="pt-BR">Política de privacidade</span><span lang="en">Privacy policy</span></span>
+      <h1 lang="pt-BR">Como o colimanlab trata os seus dados.</h1>
+      <h1 lang="en">How colimanlab handles your data.</h1>
+      <p class="lead" lang="pt-BR">Última atualização: 4 de novembro de 2026. Texto-modelo do protótipo, a ser revisado antes da publicação definitiva.</p>
+      <p class="lead" lang="en">Last updated: November 4, 2026. Prototype template text, to be reviewed before final publication.</p>
+    </div>
+  </div>
+  <section class="texto-legal">
+    <div class="wrap">
+      <div lang="pt-BR">
+        <h2>1. Quem somos</h2>
+        <p>O colimanlab (Luan Coli, CNPJ 00.000.000/0001-00, Brasília, DF) é o controlador dos dados pessoais coletados neste site, nos termos da Lei nº 13.709/2018 (LGPD).</p>
+        <h2>2. Quais dados coletamos</h2>
+        <ul>
+          <li><strong>Formulário de contato:</strong> nome, e-mail, organização e o conteúdo da mensagem que você enviar.</li>
+          <li><strong>Preferência de idioma:</strong> guardada só no seu navegador (armazenamento local), nunca enviada para nós.</li>
+          <li><strong>Fontes tipográficas:</strong> o site carrega fontes do Google Fonts, e o Google recebe o seu endereço IP para entregá-las.</li>
+        </ul>
+        <p>Não usamos cookies de rastreamento, pixels de publicidade nem ferramentas de analytics.</p>
+        <h2>3. Para que usamos</h2>
+        <p>Exclusivamente para responder ao seu contato e, se você quiser, preparar uma proposta. A base legal é o seu consentimento e o procedimento preliminar a um contrato (LGPD, art. 7º, I e V).</p>
+        <h2>4. Por quanto tempo guardamos</h2>
+        <p>As mensagens de contato são guardadas por até 12 meses, se não virarem um projeto, e depois são apagadas.</p>
+        <h2>5. Com quem compartilhamos</h2>
+        <p>Com ninguém para fins comerciais. Os dados ficam no provedor de e-mail e de hospedagem usados pelo colimanlab, que atuam como operadores.</p>
+        <h2>6. Seus direitos</h2>
+        <p>Você pode pedir a qualquer momento acesso, correção, portabilidade ou exclusão dos seus dados, além de revogar o consentimento (LGPD, art. 18). Basta escrever para <a href="mailto:privacidade@colimanlab.com">privacidade@colimanlab.com</a>.</p>
+        <h2>7. Contato do encarregado</h2>
+        <p>Encarregado pelo tratamento de dados: Luan Coli, <a href="mailto:privacidade@colimanlab.com">privacidade@colimanlab.com</a>.</p>
+      </div>
+      <div lang="en">
+        <h2>1. Who we are</h2>
+        <p>colimanlab (Luan Coli, Brazilian company ID 00.000.000/0001-00, Brasília, Brazil) is the controller of the personal data collected on this site, under Brazil's General Data Protection Law (LGPD, Law 13.709/2018).</p>
+        <h2>2. What we collect</h2>
+        <ul>
+          <li><strong>Contact form:</strong> name, email, organization and the content of your message.</li>
+          <li><strong>Language preference:</strong> stored only in your browser (local storage), never sent to us.</li>
+          <li><strong>Fonts:</strong> the site loads fonts from Google Fonts, and Google receives your IP address to deliver them.</li>
+        </ul>
+        <p>We don't use tracking cookies, advertising pixels or analytics tools.</p>
+        <h2>3. Why we use it</h2>
+        <p>Only to reply to your message and, if you wish, prepare a proposal. The legal bases are your consent and pre-contractual steps (LGPD, art. 7, I and V).</p>
+        <h2>4. How long we keep it</h2>
+        <p>Contact messages are kept for up to 12 months if they don't become a project, and are then deleted.</p>
+        <h2>5. Who we share it with</h2>
+        <p>No one, for commercial purposes. Data is held by the email and hosting providers colimanlab uses, acting as processors.</p>
+        <h2>6. Your rights</h2>
+        <p>You can request access, correction, portability or deletion of your data at any time, and withdraw consent (LGPD, art. 18). Just write to <a href="mailto:privacidade@colimanlab.com">privacidade@colimanlab.com</a>.</p>
+        <h2>7. Data protection officer</h2>
+        <p>Data protection officer: Luan Coli, <a href="mailto:privacidade@colimanlab.com">privacidade@colimanlab.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="rodape">
+      <div class="sobre-marca">
+        <a class="marca" href="index.html" aria-label="colimanlab"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span></a>
+        <p lang="pt-BR">Engenharia de dados e IA na AWS para organizações que querem confiar nos próprios dados. effort &gt; talent.</p>
+        <p lang="en">Data engineering and AI on AWS for organizations that want to trust their own data. effort &gt; talent.</p>
+      </div>
+      <div>
+        <h4><span lang="pt-BR">Serviços</span><span lang="en">Services</span></h4>
+        <ul>
+          <li><a href="index.html#servicos"><span lang="pt-BR">Plataforma de dados</span><span lang="en">Data platform</span></a></li>
+          <li><a href="index.html#servicos"><span lang="pt-BR">IA sobre os seus dados</span><span lang="en">AI on your data</span></a></li>
+          <li><a href="index.html#servicos"><span lang="pt-BR">Governança e custo</span><span lang="en">Governance &amp; cost</span></a></li>
+          <li><a href="index.html#diagnostico"><span lang="pt-BR">Diagnóstico de dados</span><span lang="en">Data assessment</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>colimanlab</h4>
+        <ul>
+          <li><a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
+          <li><a href="aws.html"><span lang="pt-BR">Dados na AWS</span><span lang="en">Data on AWS</span></a></li>
+          <li><a href="index.html#casos"><span lang="pt-BR">Casos de uso</span><span lang="en">Use cases</span></a></li>
+          <li><a href="privacidade.html"><span lang="pt-BR">Privacidade</span><span lang="en">Privacy</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span lang="pt-BR">Contato</span><span lang="en">Contact</span></h4>
+        <ul>
+          <li><a href="mailto:contato@colimanlab.com">contato@colimanlab.com</a></li>
+          <li><a href="#" aria-disabled="true">LinkedIn</a></li>
+          <li><a href="#" aria-disabled="true">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span class="ano">2026</span> colimanlab · Luan Coli · CNPJ 00.000.000/0001-00</span>
+      <span><span lang="pt-BR">Brasília, Brasil · atendimento remoto</span><span lang="en">Brasília, Brazil · working remotely</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var titulos = { pt: "Privacidade — colimanlab", en: "Privacy — colimanlab" };
+    function aplicar(l) {
+      root.dataset.lang = l;
+      root.lang = l === "en" ? "en" : "pt-BR";
+      document.title = titulos[l];
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.setLang === l); });
+      var alvo = l === "en" ? "en" : "pt-BR";
+      document.querySelectorAll("select").forEach(function (s) {
+        var primeira = null;
+        Array.prototype.forEach.call(s.options, function (o) { var ok = o.lang === alvo; o.hidden = !ok; o.disabled = !ok; if (ok && !primeira) primeira = o; });
+        if (s.selectedOptions[0] && s.selectedOptions[0].disabled && primeira) primeira.selected = true;
+      });
+      try { localStorage.setItem("colimanlab-lang", l); } catch (e) {}
+    }
+    var salvo = null;
+    try { salvo = localStorage.getItem("colimanlab-lang"); } catch (e) {}
+    var url = new URLSearchParams(location.search).get("lang");
+    aplicar(url === "en" || url === "pt" ? url : salvo || "en");
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
+    document.querySelectorAll(".ano").forEach(function (e) { e.textContent = new Date().getFullYear(); });
+    var form = document.getElementById("form-contato");
+    if (form) form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (!form.reportValidity()) return;
+      form.classList.add("enviado");
+    });
+  })();
+</script>
+</body>
+</html>
