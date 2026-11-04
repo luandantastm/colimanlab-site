@@ -208,6 +208,35 @@
   .form.enviado .ok { display: block; }
   .form a { color: var(--sinal); }
 
+  .cursos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .curso { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--sombra); }
+  .curso-capa { aspect-ratio: 16 / 8; position: relative; display: flex; align-items: flex-end; padding: 14px 16px; color: #fff; font: 500 12px/1 var(--mono); letter-spacing: .04em;
+    background-image: linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px); background-size: 16px 16px; }
+  .curso-capa::after { content: ""; position: absolute; right: 18px; top: 18px; width: 34px; height: 34px; border-radius: 50%; background: var(--shu); }
+  .curso-capa.c1 { background-color: #0f5a47; } .curso-capa.c2 { background-color: #1c2a3a; } .curso-capa.c3 { background-color: #3a2a1c; }
+  .curso-corpo { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .curso h3 { font: 600 19px/1.3 var(--sans); margin: 0; }
+  .curso p { margin: 0; color: var(--tinta-2); font-size: 15.5px; }
+  .curso .meta { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--linha); font-size: 13.5px; color: var(--tinta-2); }
+  .selo { align-self: flex-start; font: 600 11px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--shu); border: 1px solid currentColor; border-radius: 999px; padding: 5px 9px; }
+  @media (max-width: 960px) { .cursos { grid-template-columns: 1fr; } }
+  .lista-espera { margin-top: 20px; display: grid; grid-template-columns: 1fr minmax(220px, 300px) auto; gap: 14px; align-items: center; padding: 22px 24px; border: 1px dashed var(--tinta-2); border-radius: 10px; }
+  .lista-espera strong { display: block; font-size: 17px; }
+  .lista-espera > div span { color: var(--tinta-2); font-size: 15px; }
+  .lista-espera input { font: 400 16px/1.4 var(--sans); color: var(--tinta); background: var(--cartao); border: 1px solid var(--linha); border-radius: 6px; padding: 12px 14px; width: 100%; }
+  .lista-espera .ok { grid-column: 1 / -1; display: none; margin: 0; color: var(--sinal); }
+  .lista-espera.enviado .ok { display: block; }
+  @media (max-width: 760px) { .lista-espera { grid-template-columns: 1fr; } }
+  .redes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .rede { background: var(--cartao); border: 1px solid var(--linha); border-radius: 10px; padding: 22px; text-decoration: none; display: flex; flex-direction: column; gap: 6px; transition: border-color .15s, transform .15s; }
+  .rede:hover { border-color: var(--sinal); transform: translateY(-2px); }
+  .rede svg { width: 28px; height: 28px; color: var(--sinal); margin-bottom: 8px; }
+  .rede strong { font-size: 17px; }
+  .rede .handle { font: 400 13px/1.2 var(--mono); color: var(--sinal); }
+  .rede span:not(.handle) { color: var(--tinta-2); font-size: 14.5px; }
+  @media (max-width: 960px) { .redes { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .redes { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
@@ -219,7 +248,7 @@
     <nav aria-label="Principal">
       <a href="index.html#servicos" aria-current="page"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
-      <a href="index.html#casos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
+      <a href="index.html#cursos"><span lang="pt-BR">Cursos</span><span lang="en">Courses</span></a>
       <a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
       <a class="btn-topo" href="#contato"><span lang="pt-BR">Fale comigo</span><span lang="en">Get in touch</span></a>
     </nav>
@@ -246,7 +275,7 @@
           </div>
           <ul class="credenciais">
             <li><span><strong>AWS Certified</strong> Solutions Architect – Professional</span></li>
-            <li class="andamento"><span><strong>AWS Certified</strong> Data Engineer – Associate <span lang="pt-BR">(em andamento)</span><span lang="en">(in progress)</span></span></li>
+            <li><span><strong>AWS Certified</strong> Data Engineer – Associate</span></li>
             <li><span lang="pt-BR"><strong>Mestrado</strong> em IA segura · IDP</span><span lang="en"><strong>MSc</strong> research on safe AI · IDP</span></li>
           </ul>
         </div>
@@ -378,6 +407,58 @@
     </div>
   </section>
 
+  <section id="cursos">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo"><span lang="pt-BR">Cursos</span><span lang="en">Courses</span></span>
+        <h2><span lang="pt-BR">Aprenda a fazer você mesmo</span><span lang="en">Learn to build it yourself</span></h2>
+        <p lang="pt-BR">Cursos práticos, direto ao ponto, com o mesmo método dos projetos: construir, medir e documentar.</p>
+        <p lang="en">Hands-on, no-fluff courses using the same method as the projects: build, measure, document.</p>
+      </div>
+      <div class="cursos">
+        <article class="curso">
+          <div class="curso-capa c1" aria-hidden="true"><span>S3 · Glue · Athena</span></div>
+          <div class="curso-corpo">
+            <span class="selo"><span lang="pt-BR">Em breve</span><span lang="en">Coming soon</span></span>
+            <h3><span lang="pt-BR">Data lake na AWS do zero</span><span lang="en">AWS data lake from scratch</span></h3>
+            <p lang="pt-BR">Do primeiro bucket às consultas consolidadas no Athena, com um projeto real do começo ao fim.</p>
+            <p lang="en">From your first bucket to consolidated Athena queries, with one real project end to end.</p>
+            <span class="meta"><span lang="pt-BR">Iniciante a intermediário</span><span lang="en">Beginner to intermediate</span></span>
+          </div>
+        </article>
+        <article class="curso">
+          <div class="curso-capa c2" aria-hidden="true"><span>Bedrock · RAG</span></div>
+          <div class="curso-corpo">
+            <span class="selo"><span lang="pt-BR">Em breve</span><span lang="en">Coming soon</span></span>
+            <h3><span lang="pt-BR">RAG sobre os seus próprios dados</span><span lang="en">RAG on your own data</span></h3>
+            <p lang="pt-BR">Monte um assistente que responde com os seus documentos e o seu banco de dados, citando a fonte.</p>
+            <p lang="en">Build an assistant that answers from your documents and database, citing its sources.</p>
+            <span class="meta"><span lang="pt-BR">Intermediário</span><span lang="en">Intermediate</span></span>
+          </div>
+        </article>
+        <article class="curso">
+          <div class="curso-capa c3" aria-hidden="true"><span>AWS Certified</span></div>
+          <div class="curso-corpo">
+            <span class="selo"><span lang="pt-BR">Em breve</span><span lang="en">Coming soon</span></span>
+            <h3><span lang="pt-BR">Preparação para certificação AWS</span><span lang="en">AWS certification prep</span></h3>
+            <p lang="pt-BR">Plano de estudo, laboratórios e simulados para quem quer passar com método, não com sorte.</p>
+            <p lang="en">Study plan, labs and practice exams for passing with method, not luck.</p>
+            <span class="meta"><span lang="pt-BR">Todos os níveis</span><span lang="en">All levels</span></span>
+          </div>
+        </article>
+      </div>
+      <form class="lista-espera" id="form-espera" novalidate>
+        <div>
+          <strong><span lang="pt-BR">Entre na lista de espera</span><span lang="en">Join the waitlist</span></strong>
+          <span lang="pt-BR">Aviso quando a primeira turma abrir.</span><span lang="en">I'll let you know when the first cohort opens.</span>
+        </div>
+        <input type="email" name="email" required autocomplete="email" aria-label="E-mail" placeholder="voce@empresa.com">
+        <button class="btn cheio" type="submit"><span lang="pt-BR">Quero ser avisado</span><span lang="en">Notify me</span></button>
+        <p class="ok" role="status"><span lang="pt-BR">Anotado! Protótipo: a lista ainda não está ligada.</span><span lang="en">Got it! Prototype: the list is not wired up yet.</span></p>
+      </form>
+    </div>
+  </section>
+
   <section id="sobre">
     <div class="wrap">
       <div class="sobre-grid">
@@ -386,18 +467,51 @@
           <span class="rotulo"><span lang="pt-BR">Sobre</span><span lang="en">About</span></span>
           <div class="sobre-texto" style="margin-top:18px">
             <div lang="pt-BR">
-              <p>Sou Luan Coli, arquiteto de soluções certificado AWS (Professional) e mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
+              <p>Sou Luan Coli, certificado AWS Solutions Architect – Professional e Data Engineer – Associate, e mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
               <p>O colimanlab é onde isso encontra problemas do dia a dia: dados espalhados em sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis.</p>
               <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
             </div>
             <div lang="en">
-              <p>I'm Luan Coli, an AWS Certified Solutions Architect – Professional and a master's researcher at IDP, studying how organizations can use language models without exposing personal data.</p>
+              <p>I'm Luan Coli, AWS Certified Solutions Architect – Professional and Data Engineer – Associate, and a master's researcher at IDP, studying how organizations can use language models without exposing personal data.</p>
               <p>colimanlab is where that meets everyday problems: data scattered across systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data.</p>
               <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
             </div>
             <span class="lema-sobre">effort <b>&gt;</b> talent</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="redes">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo"><span lang="pt-BR">Redes</span><span lang="en">Social</span></span>
+        <h2><span lang="pt-BR">Acompanhe o laboratório</span><span lang="en">Follow the lab</span></h2>
+        <p lang="pt-BR">Experimentos, bastidores e dicas de dados e IA na AWS, toda semana.</p>
+        <p lang="en">Experiments, behind the scenes and data &amp; AI on AWS tips, every week.</p>
+      </div>
+      <div class="redes">
+        <a class="rede" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10v6M8 7.5v.01M12 16v-3.5a2 2 0 0 1 4 0V16M12 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <strong>LinkedIn</strong><span class="handle">/in/luancoli</span>
+          <span lang="pt-BR">Artigos sobre arquitetura de dados e casos práticos.</span><span lang="en">Articles on data architecture and practical cases.</span>
+        </a>
+        <a class="rede" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg>
+          <strong>YouTube</strong><span class="handle">@colimanlab</span>
+          <span lang="pt-BR">Tutoriais passo a passo, gravados na bancada.</span><span lang="en">Step-by-step tutorials, recorded at the bench.</span>
+        </a>
+        <a class="rede" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+          <strong>Instagram</strong><span class="handle">@colimanlab</span>
+          <span lang="pt-BR">Dicas rápidas e bastidores dos experimentos.</span><span lang="en">Quick tips and behind-the-scenes experiments.</span>
+        </a>
+        <a class="rede" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <strong>GitHub</strong><span class="handle">@colimanlab</span>
+          <span lang="pt-BR">Código dos tutoriais e arquiteturas de referência.</span><span lang="en">Tutorial code and reference architectures.</span>
+        </a>
       </div>
     </div>
   </section>
@@ -460,6 +574,7 @@
         <ul>
           <li><a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
           <li><a href="aws.html"><span lang="pt-BR">Dados na AWS</span><span lang="en">Data on AWS</span></a></li>
+          <li><a href="index.html#cursos"><span lang="pt-BR">Cursos</span><span lang="en">Courses</span></a></li>
           <li><a href="index.html#casos"><span lang="pt-BR">Casos de uso</span><span lang="en">Use cases</span></a></li>
           <li><a href="privacidade.html"><span lang="pt-BR">Privacidade</span><span lang="en">Privacy</span></a></li>
         </ul>
@@ -469,6 +584,8 @@
         <ul>
           <li><a href="mailto:contato@colimanlab.com">contato@colimanlab.com</a></li>
           <li><a href="#" aria-disabled="true">LinkedIn</a></li>
+          <li><a href="#" aria-disabled="true">YouTube</a></li>
+          <li><a href="#" aria-disabled="true">Instagram</a></li>
           <li><a href="#" aria-disabled="true">GitHub</a></li>
         </ul>
       </div>
@@ -503,11 +620,13 @@
     aplicar(url === "en" || url === "pt" ? url : salvo || "en");
     document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
     document.querySelectorAll(".ano").forEach(function (e) { e.textContent = new Date().getFullYear(); });
-    var form = document.getElementById("form-contato");
-    if (form) form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      if (!form.reportValidity()) return;
-      form.classList.add("enviado");
+    ["form-contato", "form-espera"].forEach(function (id) {
+      var form = document.getElementById(id);
+      if (form) form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        if (!form.reportValidity()) return;
+        form.classList.add("enviado");
+      });
     });
   })();
 </script>

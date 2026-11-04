@@ -175,7 +175,7 @@
     <nav aria-label="Principal">
       <a href="index.html#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="aws.html" aria-current="page"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
-      <a href="index.html#casos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
+      <a href="index.html#cursos"><span lang="pt-BR">Cursos</span><span lang="en">Courses</span></a>
       <a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
       <a class="btn-topo" href="#contato"><span lang="pt-BR">Fale comigo</span><span lang="en">Get in touch</span></a>
     </nav>
@@ -382,6 +382,7 @@
         <ul>
           <li><a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
           <li><a href="aws.html"><span lang="pt-BR">Dados na AWS</span><span lang="en">Data on AWS</span></a></li>
+          <li><a href="index.html#cursos"><span lang="pt-BR">Cursos</span><span lang="en">Courses</span></a></li>
           <li><a href="index.html#casos"><span lang="pt-BR">Casos de uso</span><span lang="en">Use cases</span></a></li>
           <li><a href="privacidade.html"><span lang="pt-BR">Privacidade</span><span lang="en">Privacy</span></a></li>
         </ul>
@@ -391,6 +392,8 @@
         <ul>
           <li><a href="mailto:contato@colimanlab.com">contato@colimanlab.com</a></li>
           <li><a href="#" aria-disabled="true">LinkedIn</a></li>
+          <li><a href="#" aria-disabled="true">YouTube</a></li>
+          <li><a href="#" aria-disabled="true">Instagram</a></li>
           <li><a href="#" aria-disabled="true">GitHub</a></li>
         </ul>
       </div>
@@ -425,11 +428,13 @@
     aplicar(url === "en" || url === "pt" ? url : salvo || "en");
     document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
     document.querySelectorAll(".ano").forEach(function (e) { e.textContent = new Date().getFullYear(); });
-    var form = document.getElementById("form-contato");
-    if (form) form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      if (!form.reportValidity()) return;
-      form.classList.add("enviado");
+    ["form-contato", "form-espera"].forEach(function (id) {
+      var form = document.getElementById(id);
+      if (form) form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        if (!form.reportValidity()) return;
+        form.classList.add("enviado");
+      });
     });
   })();
 </script>

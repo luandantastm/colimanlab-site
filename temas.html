@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Temas colimanlab — opções</title>
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root { --papel: #f6f5f1; --tinta: #15171a; --tinta-2: #50555d; --linha: #e0ddd5; --sinal: #0f7b5f; --shu: #c8442f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 16px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 56px 24px 80px; }
+  .rotulo { font: 600 12px/1 "IBM Plex Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--sinal); }
+  h1 { font: 400 clamp(40px, 6vw, 64px)/1.02 "Instrument Serif", serif; margin: 14px 0 12px; }
+  .intro { color: var(--tinta-2); max-width: 68ch; margin: 0 0 40px; }
+  .opcao { border-top: 1px solid var(--linha); padding: 40px 0; display: grid; grid-template-columns: 280px 1fr; gap: 36px; }
+  @media (max-width: 900px) { .opcao { grid-template-columns: 1fr; gap: 20px; } }
+  .opcao h2 { font: 400 34px/1.1 "Instrument Serif", serif; margin: 10px 0 8px; }
+  .opcao p, .opcao li { color: var(--tinta-2); }
+  .opcao ul { padding-left: 18px; margin: 10px 0 0; }
+  footer { border-top: 1px solid var(--linha); padding-top: 24px; color: var(--tinta-2); font-size: 15px; }
+  footer a { color: var(--sinal); }
+
+  /* ===== maquete comum ===== */
+  .mock { border-radius: 12px; overflow: hidden; border: 1px solid var(--m-linha); background: var(--m-fundo); color: var(--m-tinta); font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.07); }
+  .m-top { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--m-linha); font: 500 14px/1 "IBM Plex Mono", monospace; background: var(--m-topo, transparent); }
+  .m-top b { color: var(--m-sinal); font-weight: 500; }
+  .m-top .lema { font-size: 10.5px; color: var(--m-tinta-2); border-left: 1px solid var(--m-linha); padding-left: 10px; }
+  .m-top .nav { margin-left: auto; display: flex; gap: 14px; font: 400 12px/1 "IBM Plex Sans", sans-serif; color: var(--m-tinta-2); }
+  .m-top .cta { background: var(--m-tinta); color: var(--m-fundo); padding: 6px 10px; border-radius: 5px; }
+  .m-hero { padding: 34px 28px 26px; position: relative; }
+  .m-tag { font: 600 10.5px/1 "IBM Plex Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--m-sinal); }
+  .m-hero h3 { font: 400 40px/1 "Instrument Serif", serif; margin: 12px 0 12px; max-width: 13ch; letter-spacing: -.01em; }
+  .m-hero h3 em { color: var(--m-sinal); }
+  .m-hero p { color: var(--m-tinta-2); margin: 0 0 16px; max-width: 46ch; }
+  .m-btns { display: flex; gap: 8px; }
+  .m-btn { padding: 9px 14px; border-radius: 6px; font-weight: 500; font-size: 13px; border: 1px solid var(--m-tinta); }
+  .m-btn.cheio { background: var(--m-tinta); color: var(--m-fundo); }
+  .m-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 4px 28px 26px; }
+  .m-card { background: var(--m-cartao); border: 1px solid var(--m-linha); border-radius: 8px; padding: 16px; position: relative; }
+  .m-card h4 { margin: 6px 0 4px; font: 600 15px/1.3 "IBM Plex Sans", sans-serif; }
+  .m-card p { margin: 0; color: var(--m-tinta-2); font-size: 13px; }
+  .m-card .cod { font: 500 10.5px/1 "IBM Plex Mono", monospace; color: var(--m-tinta-2); }
+  .m-contato { margin: 0 28px 28px; padding: 22px; border-radius: 8px; background: var(--m-contato); color: var(--m-contato-tinta, var(--m-tinta)); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .m-contato strong { font: 400 26px/1.05 "Instrument Serif", serif; }
+  .m-contato .campo { flex: none; width: 160px; height: 34px; border-radius: 6px; border: 1px solid var(--m-linha); background: var(--m-cartao); }
+  @media (max-width: 600px) { .m-cards { grid-template-columns: 1fr; } .m-top .nav { display: none; } .m-contato { flex-direction: column; align-items: flex-start; } }
+
+  /* ===== atual ===== */
+  .t0 { --m-fundo: #f6f5f1; --m-tinta: #15171a; --m-tinta-2: #50555d; --m-linha: #e0ddd5; --m-sinal: #0f7b5f; --m-cartao: #fff; --m-contato: #121416; --m-contato-tinta: #ecebe6; }
+
+  /* ===== A · Bancada (papel milimetrado) ===== */
+  .ta { --m-fundo: #f2f5f1; --m-tinta: #14201b; --m-tinta-2: #4c5a53; --m-linha: #cfdad3; --m-sinal: #0f7b5f; --m-cartao: #ffffff; --m-contato: #e4ede7;
+    background-image:
+      linear-gradient(rgba(15,123,95,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(15,123,95,.13) 1px, transparent 1px),
+      linear-gradient(rgba(15,123,95,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,123,95,.06) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px; }
+  .ta .m-top { background: rgba(242,245,241,.92); }
+  .ta .m-card { padding-left: 34px; }
+  .ta .m-card::before { content: ""; position: absolute; left: 12px; top: 18px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--m-linha); background: var(--m-fundo); }
+  .ta .m-card .cod { color: var(--m-sinal); }
+  .ta .m-contato { border: 1px dashed var(--m-sinal); }
+  .ta .regua { position: absolute; left: 28px; right: 28px; top: 12px; height: 8px; background: repeating-linear-gradient(90deg, rgba(20,32,27,.35) 0 1px, transparent 1px 8px); }
+  .ta .regua::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(20,32,27,.55) 0 1px, transparent 1px 40px); height: 12px; top: -4px; }
+
+  /* ===== B · Caderno de laboratório ===== */
+  .tb { --m-fundo: #fbf8ef; --m-tinta: #1d1b16; --m-tinta-2: #5b574c; --m-linha: #e6dfcc; --m-sinal: #0f7b5f; --m-cartao: #fffdf6; --m-contato: #fff7de;
+    background-image: linear-gradient(90deg, transparent 54px, rgba(200,68,47,.45) 54px, rgba(200,68,47,.45) 55.5px, transparent 55.5px),
+      linear-gradient(rgba(70,110,160,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(70,110,160,.13) 1px, transparent 1px);
+    background-size: 100% 100%, 18px 18px, 18px 18px; }
+  .tb .m-top { background: rgba(251,248,239,.94); }
+  .tb .m-hero, .tb .m-cards { padding-left: 74px; }
+  .tb .m-contato { margin-left: 74px; }
+  .tb .nota { position: absolute; right: 26px; top: 40px; font: 600 22px/1 "Caveat", cursive; color: var(--shu); transform: rotate(-4deg); }
+  .tb .nota::before { content: "↙"; display: block; font-size: 26px; margin: 0 0 2px 6px; }
+  .tb .m-card { box-shadow: 1px 2px 0 rgba(0,0,0,.05); }
+  .tb .m-card:nth-child(1) { transform: rotate(-.6deg); } .tb .m-card:nth-child(2) { transform: rotate(.5deg); }
+  .tb .m-card::before { content: ""; position: absolute; top: -9px; left: 50%; width: 64px; height: 18px; transform: translateX(-50%) rotate(-2deg); background: rgba(240,214,140,.75); }
+  .tb .m-contato { border: 1px solid var(--m-linha); }
+  @media (max-width: 600px) { .tb .m-hero, .tb .m-cards { padding-left: 64px; } .tb .m-contato { margin-left: 64px; } .tb .nota { display: none; } }
+
+  /* ===== C · Instrumento (laboratório limpo) ===== */
+  .tc { --m-fundo: #fbfcfd; --m-tinta: #121821; --m-tinta-2: #556070; --m-linha: #dde3ea; --m-sinal: #0f7b5f; --m-cartao: #ffffff; --m-contato: #eef2f6;
+    background-image: radial-gradient(rgba(18,24,33,.16) 1px, transparent 1.3px); background-size: 18px 18px; }
+  .tc .m-top { background: rgba(251,252,253,.94); }
+  .tc .m-hero::before, .tc .m-hero::after { content: "+"; position: absolute; font: 400 18px/1 "IBM Plex Mono", monospace; color: var(--m-tinta-2); }
+  .tc .m-hero::before { left: 10px; top: 8px; } .tc .m-hero::after { right: 10px; top: 8px; }
+  .tc .leitura { display: inline-flex; align-items: center; gap: 8px; font: 500 10.5px/1 "IBM Plex Mono", monospace; color: var(--m-tinta-2); border: 1px solid var(--m-linha); background: var(--m-cartao); border-radius: 999px; padding: 6px 10px; margin-bottom: 14px; }
+  .tc .leitura i { width: 7px; height: 7px; border-radius: 50%; background: #20c58a; box-shadow: 0 0 0 3px rgba(32,197,138,.18); }
+  .tc .m-card { padding-top: 38px; }
+  .tc .m-card .cod { position: absolute; left: 0; right: 0; top: 0; padding: 8px 16px; border-bottom: 1px solid var(--m-linha); display: flex; justify-content: space-between; background: #f6f8fa; border-radius: 8px 8px 0 0; }
+  .tc .m-card .cod::after { content: "● ONLINE"; color: #13a874; }
+  .tc .m-contato { border: 1px solid var(--m-linha); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="rotulo">colimanlab · temas</span>
+  <h1>Três caras de laboratório</h1>
+  <p class="intro">O mesmo conteúdo em três temas, comparados com o atual. Todos são claros, e o bloco de contato deixa de ser preto. O modo escuro continua existindo para quem usa o sistema no escuro, mas pode ser desligado se você preferir o site sempre claro.</p>
+
+  <section class="opcao">
+    <div>
+      <span class="rotulo">Atual</span>
+      <h2>Limpo</h2>
+      <p>A rodada de acabamento: sem quadriculado e com o contato num bloco escuro. É o mais corporativo, mas tem pouca cara de laboratório.</p>
+    </div>
+    <div class="mock t0">
+      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+      <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
+    </div>
+  </section>
+
+  <section class="opcao">
+    <div>
+      <span class="rotulo">A</span>
+      <h2>Bancada</h2>
+      <p>Papel milimetrado de engenharia, com grade fina e grossa e uma régua no topo. Os cartões viram etiquetas de amostra (EXP-01, EXP-02) com furinho de etiqueta.</p>
+      <ul><li>A mesa de experimentos que você descreveu</li><li>Técnico e sério, ainda bem corporativo</li></ul>
+    </div>
+    <div class="mock ta">
+      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="regua" aria-hidden="true"></span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><span class="cod">EXP-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">EXP-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+      <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
+    </div>
+  </section>
+
+  <section class="opcao">
+    <div>
+      <span class="rotulo">B</span>
+      <h2>Caderno de laboratório</h2>
+      <p>Folha quadriculada com a margem vermelha de caderno, anotações à mão em vermelho e cartões presos com fita, como no caderno de um pesquisador.</p>
+      <ul><li>O mais pessoal e com mais personalidade</li><li>Menos "empresa", mais "autor e professor", o que combina com cursos</li></ul>
+    </div>
+    <div class="mock tb">
+      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="nota" aria-hidden="true">start here</span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><span class="cod">p. 01</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">p. 02</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+      <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
+    </div>
+  </section>
+
+  <section class="opcao">
+    <div>
+      <span class="rotulo">C</span>
+      <h2>Instrumento</h2>
+      <p>Laboratório limpo e moderno: grade de pontos, marcas de registro nos cantos, um indicador "online" piscando de status e cartões com cabeçalho de painel de instrumento.</p>
+      <ul><li>O mais "tech" e premium dos três</li><li>Combina com a página de arquitetura AWS</li></ul>
+    </div>
+    <div class="mock tc">
+      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="leitura"><i></i>LAB STATUS · RUNNING</span><br><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><span class="cod">CH-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">CH-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+      <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
+    </div>
+  </section>
+
+  <footer>Escolha um tema (ou uma mistura, por exemplo a grade da A com os cartões da C) e ele é aplicado em todas as páginas. <a href="./">Voltar ao site</a></footer>
+</main>
+</body>
+</html>
