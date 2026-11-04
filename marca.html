@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Dela+Gothic+One&family=DotGothic16&text=%E7%A0%94%E7%A9%B6%E6%89%80%E5%8A%AA%E5%8A%9B%E3%81%AF%E6%89%8D%E8%83%BD%E3%81%AB%E5%8B%9D%E3%82%8B%E3%82%B3%E3%83%AA%E3%83%9E%E3%83%B3%E3%83%BB%E3%83%A9%E3%83%9C%E9%89%A2%E5%B7%BBEXP&display=block" rel="stylesheet">
 <style>
   :root {
     --papel: #f4f2ec; --tinta: #17191c; --tinta-2: #4a4f57; --linha: #d6d2c6; --sinal: #0f7b5f; --shu: #c8442f;
@@ -22,12 +21,10 @@
   .rotulo { font: 500 12px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--sinal); }
   h1 { font: 400 clamp(40px, 6vw, 68px)/1.02 "Instrument Serif", serif; margin: 14px 0 12px; }
   .intro { color: var(--tinta-2); max-width: 64ch; margin: 0 0 48px; }
-  .jp { font-family: "Yuji Syuku", serif; }
 
   .proposta { border-top: 1px solid var(--linha); padding: 40px 0; display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
   @media (max-width: 860px) { .proposta { grid-template-columns: 1fr; gap: 24px; } }
   .proposta h2 { font: 400 36px/1.1 "Instrument Serif", serif; margin: 10px 0 4px; }
-  .proposta h2 .jp { display: block; font-size: 22px; color: var(--tinta-2); margin-top: 6px; }
   .proposta p { color: var(--tinta-2); margin: 10px 0 0; }
   .proposta ul { color: var(--tinta-2); padding-left: 18px; margin: 10px 0 0; }
 
@@ -42,14 +39,13 @@
   .assinatura .nome { font: 600 28px/1 "IBM Plex Mono", monospace; letter-spacing: -.01em; }
   .assinatura .nome b { color: var(--sinal); font-weight: 600; }
   .assinatura .sub { display: block; font-size: 15px; margin-top: 9px; opacity: .75; }
-  .assinatura .sub .jp { font-size: 16px; margin-right: 8px; }
   .pequenos { display: flex; align-items: end; gap: 18px; }
   .pequenos svg { display: block; }
   .pequenos small { display: block; font: 400 11px/1 "IBM Plex Mono", monospace; opacity: .6; text-align: center; margin-top: 6px; }
   @media (max-width: 520px) { .wrap { padding: 40px 16px 64px; } .amostras { grid-template-columns: 1fr; } .assinatura { flex-direction: column; text-align: center; } .assinatura .nome { font-size: 22px; } }
 
   .lema { margin: 8px 0 48px; padding: 28px; border: 1px solid var(--linha); border-radius: 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 24px; }
-  .lema .jp { font-size: clamp(28px, 4vw, 40px); }
+  .lema .frase { font: 400 clamp(30px, 4vw, 44px)/1.1 "Instrument Serif", serif; }
   .lema span.tr { color: var(--tinta-2); font-style: italic; }
   footer { border-top: 1px solid var(--linha); padding-top: 24px; color: var(--tinta-2); font-size: 14px; }
   footer a { color: var(--sinal); }
@@ -65,7 +61,7 @@
   <defs>
     <clipPath id="quadro"><rect x="4" y="4" width="152" height="152" rx="14"/></clipPath>
 
-    <!-- A · Emblema 研 (kenkyūjo = laboratório; 研 = afiar, polir) -->
+    <!-- A · Emblema do laboratório (brasão de academia + monograma CL) -->
     <symbol id="m-emblema" viewBox="0 0 160 160">
       <polygon points="80,4 145.8,42 145.8,118 80,156 14.2,118 14.2,42" fill="var(--fundo)" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
       <polygon points="80,14 137.2,47 137.2,113 80,146 22.8,113 22.8,47" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -77,12 +73,12 @@
         <line x1="22.8" y1="47" x2="41" y2="57.5"/><circle cx="41" cy="57.5" r="3.2"/>
       </g>
       <circle cx="80" cy="76" r="38" fill="var(--shu)"/>
-      <text x="80" y="78" text-anchor="middle" dominant-baseline="central" font-family="Yuji Syuku, serif" font-size="50" fill="#f4f2ec">研</text>
+      <g transform="translate(80 76) scale(.56) translate(-62 -60)" fill="none" stroke="#f4f2ec" stroke-width="10"><path d="M80 33 H35 V87 H80"/><path d="M56 46 V72 H90"/></g>
       <polygon points="4,118 156,118 147,130 156,142 4,142 13,130" fill="currentColor"/>
       <text x="80" y="131" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="12.5" letter-spacing="3.2" fill="var(--fundo)">COLIMAN LAB</text>
     </symbol>
 
-    <!-- B · Terminal de hachimaki (faixa de treino com 努力) -->
+    <!-- B · Terminal de hachimaki (faixa de treino com o sol vermelho) -->
     <symbol id="m-hachimaki" viewBox="0 0 160 160">
       <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".55">
         <line x1="2" y1="92" x2="16" y2="92"/><line x1="6" y1="104" x2="16" y2="104"/><line x1="0" y1="116" x2="16" y2="116"/>
@@ -95,25 +91,23 @@
       <!-- faixa -->
       <path d="M14 58 L140 56 L140 76 L14 78 Z" fill="#f4f2ec" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
       <circle cx="77" cy="67" r="7" fill="var(--shu)"/>
-      <text x="48" y="68" text-anchor="middle" dominant-baseline="central" font-family="Dela Gothic One, sans-serif" font-size="17" fill="#17191c">努</text>
-      <text x="106" y="67" text-anchor="middle" dominant-baseline="central" font-family="Dela Gothic One, sans-serif" font-size="17" fill="#17191c">力</text>
       <rect x="134" y="60" width="10" height="14" rx="3" fill="var(--shu)" stroke="currentColor" stroke-width="2"/>
       <!-- prompt -->
       <path d="M38 96 L54 108 L38 120" fill="none" stroke="var(--sinal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
       <rect class="cursor" x="62" y="114" width="26" height="7" rx="1.5" fill="var(--sinal)"/>
     </symbol>
 
-    <!-- C · Cartão de título de mangá: 努力 + barra de EXP -->
+    <!-- C · Cartão de título de mangá: gráfico subindo + barra de EXP -->
     <symbol id="m-titulo" viewBox="0 0 160 160">
       <rect x="4" y="4" width="152" height="152" rx="14" fill="var(--fundo)"/>
       <g clip-path="url(#quadro)"><path d="M198.0 78.4L198.0 81.6L139.0 80.0ZM197.5 91.2L197.1 94.5L137.8 86.3ZM195.9 102.1L195.4 104.5L137.0 91.5ZM193.6 111.8L192.4 115.9L129.3 94.8ZM190.6 121.0L189.9 123.0L138.8 102.4ZM186.2 131.5L185.3 133.3L138.9 109.2ZM180.3 142.2L178.2 145.4L130.3 112.4ZM175.5 149.4L174.3 150.9L127.0 114.7ZM171.4 154.7L169.8 156.6L121.4 114.5ZM167.2 159.5L164.9 161.9L121.6 119.0ZM158.5 168.1L155.9 170.4L119.4 125.6ZM151.0 174.3L147.8 176.6L113.7 126.4ZM144.4 178.9L140.2 181.5L114.8 136.0ZM133.4 185.2L129.8 187.0L104.1 129.5ZM125.4 188.9L122.9 189.9L99.1 127.4ZM114.5 192.9L111.5 193.7L97.8 141.0ZM106.4 195.0L101.7 196.0L93.0 142.2ZM98.8 196.5L96.3 196.9L89.6 143.8ZM90.3 197.6L85.4 197.9L83.7 136.2ZM82.7 198.0L78.9 198.0L80.4 142.5ZM73.4 197.8L71.3 197.7L76.4 135.2ZM61.4 196.5L57.2 195.8L70.9 131.1ZM52.3 194.7L50.2 194.2L67.6 129.4ZM40.9 191.3L38.6 190.5L59.9 135.4ZM31.9 187.8L29.7 186.8L54.3 136.1ZM25.8 184.8L22.5 183.0L55.4 125.7ZM17.1 179.8L15.0 178.5L50.5 125.6ZM7.0 172.7L3.7 170.0L45.3 122.5ZM-3.1 163.8L-4.8 162.0L39.9 119.6ZM-11.0 155.1L-13.4 152.1L39.7 112.2ZM-19.2 143.8L-20.6 141.7L34.2 108.8ZM-25.0 133.7L-26.3 131.2L31.0 104.3ZM-28.2 127.0L-29.1 125.0L25.4 103.1ZM-31.0 120.1L-32.2 116.6L27.1 98.2ZM-33.7 111.4L-34.9 106.7L24.0 94.2ZM-36.1 101.0L-36.8 96.5L27.8 88.4ZM-37.2 93.5L-37.7 88.9L17.2 86.0ZM-37.9 84.2L-38.0 81.7L18.2 81.5ZM-37.7 71.2L-37.5 68.8L15.0 74.5ZM-36.2 59.3L-35.5 55.7L24.3 69.2ZM-34.5 51.4L-34.0 49.4L16.7 63.6ZM-32.5 44.4L-31.2 40.6L28.7 62.8ZM-28.2 32.9L-26.7 29.5L30.2 57.4ZM-24.9 26.0L-23.0 22.4L35.0 55.8ZM-20.8 18.7L-18.9 15.7L26.1 46.1ZM-14.6 9.4L-12.9 7.3L28.6 40.7ZM-9.3 2.9L-8.1 1.5L39.2 44.2ZM-2.8 -4.1L-1.3 -5.5L43.3 42.0ZM3.3 -9.7L6.1 -12.0L46.8 39.9ZM10.0 -15.0L13.8 -17.7L42.1 26.4ZM19.5 -21.3L22.9 -23.3L50.4 28.5ZM27.0 -25.4L28.7 -26.3L57.8 34.9ZM37.7 -30.2L41.5 -31.5L57.6 18.5ZM44.2 -32.4L47.8 -33.5L63.4 24.7ZM55.8 -35.5L58.6 -36.0L67.3 15.3ZM62.5 -36.7L66.0 -37.2L71.7 18.8ZM74.8 -37.9L78.9 -38.0L78.4 18.8ZM86.5 -37.8L91.2 -37.5L84.2 24.5ZM97.7 -36.7L102.3 -35.9L90.8 17.0ZM107.1 -34.8L111.3 -33.8L95.8 18.2ZM117.5 -31.9L121.0 -30.6L98.7 27.1ZM127.3 -28.1L130.7 -26.5L101.3 33.4ZM136.6 -23.5L140.9 -21.1L111.9 24.4ZM147.2 -17.0L149.7 -15.2L115.8 29.7ZM155.5 -10.7L158.0 -8.6L121.3 31.8ZM160.5 -6.2L163.5 -3.3L115.1 43.7ZM168.3 1.7L170.5 4.2L120.7 45.0ZM175.4 10.5L177.3 13.3L128.9 45.5ZM182.5 21.6L183.8 23.9L123.9 55.7ZM186.3 28.7L187.9 32.3L128.3 57.6ZM189.3 35.4L190.9 39.8L136.5 58.2ZM192.5 44.5L193.8 48.9L133.0 64.4ZM195.6 56.3L196.1 58.7L135.8 69.1ZM197.3 67.1L197.7 71.7L143.8 74.3ZM198.0 76.8L198.0 80.4L135.1 79.3Z" fill="currentColor"/></g>
       <rect x="4" y="4" width="152" height="152" rx="14" fill="none" stroke="currentColor" stroke-width="5"/>
       <circle cx="80" cy="74" r="44" fill="var(--fundo)"/>
-      <text x="80" y="54" text-anchor="middle" dominant-baseline="central" font-family="Yuji Syuku, serif" font-size="38" fill="currentColor">努</text>
-      <text x="80" y="92" text-anchor="middle" dominant-baseline="central" font-family="Yuji Syuku, serif" font-size="38" fill="currentColor">力</text>
-      <circle cx="113" cy="40" r="6" fill="var(--shu)"/>
+      <path d="M54 98 H108 M54 98 V48" fill="none" stroke="currentColor" stroke-width="2" opacity=".45"/>
+      <polyline points="56,92 68,80 78,86 92,64 104,54" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="104" cy="54" r="8" fill="var(--shu)"/>
       <rect x="26" y="124" width="108" height="20" rx="4" fill="var(--fundo)" stroke="currentColor" stroke-width="2.5"/>
-      <text x="33" y="134.5" dominant-baseline="central" font-family="DotGothic16, monospace" font-size="10" fill="currentColor">EXP</text>
+      <text x="33" y="134.5" dominant-baseline="central" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="10" fill="currentColor">EXP</text>
       <rect x="56" y="129" width="72" height="10" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
       <rect x="58" y="131" width="62" height="6" fill="var(--sinal)"/>
     </symbol>
@@ -121,27 +115,27 @@
 </svg>
 
 <main class="wrap">
-  <span class="rotulo">colimanlab · marca · rodada 2</span>
+  <span class="rotulo">colimanlab · marca · rodada 3</span>
   <h1>Esforço supera talento</h1>
-  <p class="intro">Três propostas no espírito dos animes shōnen: o personagem que vence porque treina mais que todo mundo. A estética é de tecnologia e de nerd com autoridade, sempre com elementos tradicionais do Japão. Nenhum símbolo, personagem ou marca de anime existente foi usado.</p>
+  <p class="intro">Três propostas no espírito dos animes shōnen: o personagem que vence porque treina mais que todo mundo. A estética é de tecnologia e de nerd com autoridade, com referências visuais japonesas e sem nenhuma letra em japonês. Nenhum símbolo, personagem ou marca de anime existente foi usado.</p>
 
   <div class="lema">
-    <span class="jp">努力は才能に勝る</span>
-    <span class="tr">doryoku wa sainō ni masaru · "o esforço supera o talento"</span>
+    <span class="frase">Effort beats talent.</span>
+    <span class="tr">o esforço supera o talento</span>
   </div>
 
   <section class="proposta">
     <div>
       <span class="rotulo">A · autoridade</span>
-      <h2>Emblema do laboratório <span class="jp">研究所</span></h2>
-      <p>O brasão de uma academia de anime. No centro está o kanji <span class="jp">研</span>, de <span class="jp">研究所</span> (kenkyūjo), que significa "laboratório". Sozinho, <span class="jp">研</span> quer dizer "afiar, polir": é o esforço que vira domínio. Os circuitos nos cantos do hexágono representam as fontes de dados.</p>
+      <h2>Emblema do laboratório</h2>
+      <p>O brasão de uma academia de anime: hexágono duplo, sol vermelho no centro com o monograma CL e a faixa com o nome. Os circuitos nos cantos representam as fontes de dados que chegam ao laboratório.</p>
       <ul><li>É o que mais transmite autoridade, como um selo de instituição</li><li>Fica bom em perfil, em proposta comercial e em cabeçalho</li></ul>
     </div>
     <div class="amostras">
       <div class="amostra claro"><svg class="grande" role="img" aria-label="Emblema colimanlab"><use href="#m-emblema"/></svg></div>
       <div class="amostra escuro"><svg class="grande" role="img" aria-label="Emblema colimanlab"><use href="#m-emblema"/></svg></div>
       <div class="amostra claro larga">
-        <div class="assinatura"><svg><use href="#m-emblema"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub"><span class="jp">コリマン研究所</span>data &amp; AI on AWS</span></div></div>
+        <div class="assinatura"><svg><use href="#m-emblema"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub">data &amp; AI on AWS</span></div></div>
       </div>
       <div class="amostra claro larga"><div class="pequenos">
         <div><svg width="64" height="64"><use href="#m-emblema"/></svg><small>64</small></div>
@@ -154,15 +148,15 @@
   <section class="proposta">
     <div>
       <span class="rotulo">B · nerd</span>
-      <h2>Terminal de hachimaki <span class="jp">鉢巻</span></h2>
-      <p>O terminal amarra o hachimaki, a faixa que no Japão se usa para estudar, treinar ou encarar um desafio, com <span class="jp">努力</span> (doryoku, "esforço") e o sol vermelho. As pontas voando e as linhas de velocidade são de cena de treino. O cursor pisca: o código está treinando.</p>
+      <h2>Terminal de hachimaki</h2>
+      <p>O terminal amarra o hachimaki, a faixa que no Japão se usa para estudar, treinar ou encarar um desafio, com o sol vermelho no centro. As pontas voando e as linhas de velocidade são de cena de treino. O cursor pisca: o código está treinando.</p>
       <ul><li>O mais divertido e memorável dos três</li><li>Funciona bem como avatar no GitHub, LinkedIn e em adesivo</li></ul>
     </div>
     <div class="amostras">
       <div class="amostra claro"><svg class="grande" role="img" aria-label="Terminal com hachimaki"><use href="#m-hachimaki"/></svg></div>
       <div class="amostra escuro"><svg class="grande" role="img" aria-label="Terminal com hachimaki"><use href="#m-hachimaki"/></svg></div>
       <div class="amostra claro larga">
-        <div class="assinatura"><svg><use href="#m-hachimaki"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub"><span class="jp">努力</span>effort &gt; talent</span></div></div>
+        <div class="assinatura"><svg><use href="#m-hachimaki"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub">effort &gt; talent</span></div></div>
       </div>
       <div class="amostra claro larga"><div class="pequenos">
         <div><svg width="64" height="64"><use href="#m-hachimaki"/></svg><small>64</small></div>
@@ -175,15 +169,15 @@
   <section class="proposta">
     <div>
       <span class="rotulo">C · mangá</span>
-      <h2>Cartão de título <span class="jp">努力</span></h2>
-      <p>Um quadro de mangá com as linhas concentradas do momento de virada e o <span class="jp">努力</span> pincelado no centro. Embaixo fica a barra de EXP quase cheia, de jogo: o nível sobe com treino, não com sorte.</p>
+      <h2>Cartão de título</h2>
+      <p>Um quadro de mangá com as linhas concentradas do momento de virada. No centro, um gráfico sobe até o sol vermelho e, embaixo, a barra de EXP está quase cheia: o nível sobe com treino, não com sorte.</p>
       <ul><li>O mais "anime" e expressivo dos três</li><li>Funciona melhor grande, em capa, slide ou camiseta</li></ul>
     </div>
     <div class="amostras">
-      <div class="amostra claro"><svg class="grande" role="img" aria-label="Cartão de título 努力"><use href="#m-titulo"/></svg></div>
-      <div class="amostra escuro"><svg class="grande" role="img" aria-label="Cartão de título 努力"><use href="#m-titulo"/></svg></div>
+      <div class="amostra claro"><svg class="grande" role="img" aria-label="Cartão de título"><use href="#m-titulo"/></svg></div>
+      <div class="amostra escuro"><svg class="grande" role="img" aria-label="Cartão de título"><use href="#m-titulo"/></svg></div>
       <div class="amostra claro larga">
-        <div class="assinatura"><svg><use href="#m-titulo"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub"><span class="jp">努力は才能に勝る</span></span></div></div>
+        <div class="assinatura"><svg><use href="#m-titulo"/></svg><div><span class="nome">coliman<b>lab</b></span><span class="sub">effort beats talent</span></div></div>
       </div>
       <div class="amostra claro larga"><div class="pequenos">
         <div><svg width="64" height="64"><use href="#m-titulo"/></svg><small>64</small></div>
@@ -193,7 +187,7 @@
     </div>
   </section>
 
-  <footer>Escolha uma ou peça uma mistura, por exemplo o emblema A com o lema <span class="jp">努力は才能に勝る</span> no site. A rodada 1 (hanko, asanoha, ensō) continua no histórico do git. <a href="./">Voltar ao site</a></footer>
+  <footer>Escolha uma ou peça uma mistura, por exemplo o emblema A como marca e o terminal B como avatar. As rodadas anteriores continuam no histórico do git. <a href="./">Voltar ao site</a></footer>
 </main>
 </body>
 </html>
