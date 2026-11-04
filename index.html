@@ -150,7 +150,7 @@
   /* página inicial */
   .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
   @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
-  .credenciais { list-style: none; margin: 40px 0 0; padding: 22px 0 0; border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 14.5px; color: var(--tinta-2); }
+  .credenciais { list-style: none; margin: 40px 0 0; padding: 22px 0 0; border-top: 1px solid var(--linha); display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; color: var(--tinta-2); }
   .credenciais li { display: flex; align-items: center; gap: 8px; }
   .credenciais li::before { content: ""; width: 16px; height: 16px; flex: none; border-radius: 50%; background: var(--sinal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
   .credenciais li.andamento::before { background: transparent; border: 1.5px dashed var(--sinal); }
@@ -292,7 +292,7 @@
             <li><span><strong>AWS Certified</strong> Solutions Architect – Professional</span></li>
             <li><span><strong>AWS Certified</strong> Data Engineer – Associate</span></li>
             <li><span><strong>CompTIA</strong> Security+</span></li>
-            <li><span lang="pt-BR"><strong>Mestrado</strong> em IA segura · IDP</span><span lang="en"><strong>MSc</strong> research on safe AI · IDP</span></li>
+            <li><span lang="pt-BR"><strong>Mestre</strong> pelo IDP · uso seguro de LLMs</span><span lang="en"><strong>Master of Science</strong> · IDP · safe use of LLMs</span></li>
           </ul>
         </div>
         <figure class="pipeline" aria-label="Pipeline de dados na AWS / Data pipeline on AWS">
@@ -414,7 +414,7 @@
           <p class="resultado" lang="en"><b>Outcome:</b> management visibility without exposing patients.</p>
         </article>
         <article class="caso-uso pesquisa">
-          <span class="tipo"><span lang="pt-BR">Pesquisa · Mestrado</span><span lang="en">Research · MSc</span></span>
+          <span class="tipo"><span lang="pt-BR">Pesquisa · Dissertação de mestrado</span><span lang="en">Research · Master's thesis</span></span>
           <h3>BOPPII</h3>
           <p lang="pt-BR">Proxy open source para uso seguro e auditável de LLMs em organizações que lidam com dados pessoais. Ele detecta dados pessoais, decide se o prompt pode sair da organização e pseudonimiza antes do envio.</p>
           <p lang="en">Open-source proxy for safe, auditable use of LLMs in organizations that handle personal data. It detects personal data, decides whether a prompt may leave the organization, and pseudonymizes it before sending.</p>
@@ -483,12 +483,12 @@
           <span class="rotulo"><span lang="pt-BR">Sobre</span><span lang="en">About</span></span>
           <div class="sobre-texto" style="margin-top:18px">
             <div lang="pt-BR">
-              <p>Sou Luan Coli, certificado AWS Solutions Architect – Professional, AWS Data Engineer – Associate e CompTIA Security+, e mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
+              <p>Sou Luan Coli. Tenho as certificações AWS Solutions Architect – Professional, AWS Data Engineer – Associate e CompTIA Security+, e sou mestre pelo IDP, onde pesquisei como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
               <p>O colimanlab é onde isso encontra problemas do dia a dia: dados espalhados em sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis.</p>
               <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
             </div>
             <div lang="en">
-              <p>I'm Luan Coli, AWS Certified Solutions Architect – Professional and Data Engineer – Associate, CompTIA Security+ certified, and a master's researcher at IDP, studying how organizations can use language models without exposing personal data.</p>
+              <p>I'm Luan Coli. I hold the AWS Certified Solutions Architect – Professional, AWS Certified Data Engineer – Associate and CompTIA Security+ certifications, and a Master of Science from IDP, where I researched how organizations can use language models without exposing personal data.</p>
               <p>colimanlab is where that meets everyday problems: data scattered across systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data.</p>
               <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
             </div>
