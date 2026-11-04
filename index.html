@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" data-lang="pt">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -161,8 +161,8 @@
       <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
     </nav>
     <div class="idiomas" role="group" aria-label="Idioma / Language">
-      <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
-      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
     </div>
   </div>
 </header>
@@ -371,7 +371,7 @@
     var salvo = null;
     try { salvo = localStorage.getItem("colimanlab-lang"); } catch (e) {}
     var url = new URLSearchParams(location.search).get("lang");
-    aplicar(url === "en" || url === "pt" ? url : salvo || ((navigator.language || "").slice(0, 2) === "pt" ? "pt" : "en"));
+    aplicar(url === "en" || url === "pt" ? url : salvo || "en");
     document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
     document.getElementById("ano").textContent = new Date().getFullYear();
   })();
