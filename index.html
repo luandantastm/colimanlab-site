@@ -170,7 +170,7 @@
       <a href="#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
       <a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
-      <a href="#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Work</span></a>
+      <a href="#projetos"><span lang="pt-BR">Casos</span><span lang="en">Use cases</span></a>
       <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
       <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
     </nav>
@@ -189,8 +189,8 @@
           <span class="rotulo"><span lang="pt-BR">Dados na AWS · Brasília</span><span lang="en">Data on AWS · Brasília, Brazil</span></span>
           <h1 lang="pt-BR">Seus dados na AWS, <em>organizados</em> e prontos para IA.</h1>
           <h1 lang="en">Your data on AWS, <em>organized</em> and ready for AI.</h1>
-          <p class="lead" lang="pt-BR">Eu sou Luan Coli. No colimanlab, construo pipelines, data lakes e análises na AWS para empresas e órgãos públicos que precisam confiar nos próprios dados, com custo previsível, LGPD desde o início e cada decisão documentada.</p>
-          <p class="lead" lang="en">I'm Luan Coli. At colimanlab I build pipelines, data lakes and analytics on AWS for companies and public institutions that need to trust their own data, with predictable cost, privacy by design and every decision documented.</p>
+          <p class="lead" lang="pt-BR">Eu sou Luan Coli. No colimanlab, construo pipelines, data lakes e análises na AWS para empresas e organizações que precisam confiar nos próprios dados, com custo previsível, LGPD desde o início e cada decisão documentada.</p>
+          <p class="lead" lang="en">I'm Luan Coli. At colimanlab I build pipelines, data lakes and analytics on AWS for companies and organizations that need to trust their own data, with predictable cost, privacy by design and every decision documented.</p>
           <div class="acoes">
             <a class="btn cheio" href="#contato"><span lang="pt-BR">Conversar sobre seus dados</span><span lang="en">Talk about your data</span> →</a>
             <a class="btn vazio" href="#servicos"><span lang="pt-BR">Ver serviços</span><span lang="en">See services</span></a>
@@ -296,38 +296,58 @@
   <section id="projetos">
     <div class="wrap">
       <div class="cab">
-        <span class="rotulo"><span lang="pt-BR">03 — Projetos</span><span lang="en">03 — Work</span></span>
+        <span class="rotulo"><span lang="pt-BR">03 — Casos de uso</span><span lang="en">03 — Use cases</span></span>
         <div>
-          <h2><span lang="pt-BR">Trabalhos recentes</span><span lang="en">Recent work</span></h2>
+          <h2><span lang="pt-BR">O que isso vira na prática</span><span lang="en">What it looks like in practice</span></h2>
+          <p lang="pt-BR">Cenários típicos de projetos de dados com AWS e IA. Cada organização tem os seus dados, mas os problemas se repetem.</p>
+          <p lang="en">Typical data projects with AWS and AI. Every organization has its own data, but the problems repeat.</p>
         </div>
       </div>
       <div class="projetos">
         <article class="projeto">
+          <span class="tipo"><span lang="pt-BR">Varejo · Previsão</span><span lang="en">Retail · Forecasting</span></span>
+          <div>
+            <h3><span lang="pt-BR">Data lake de vendas com previsão de demanda</span><span lang="en">Sales data lake with demand forecasting</span></h3>
+            <p lang="pt-BR">O banco do ERP é replicado para o S3 sem pesar o sistema. As vendas de todas as lojas ficam consultáveis no Athena, e um modelo no SageMaker prevê a demanda por produto para orientar a reposição.</p>
+            <p lang="en">The ERP database is replicated to S3 without loading the system. Sales from every store become queryable in Athena, and a SageMaker model forecasts demand per product to guide restocking.</p>
+          </div>
+          <span class="stack">DMS · S3 · Athena · SageMaker</span>
+        </article>
+        <article class="projeto">
+          <span class="tipo"><span lang="pt-BR">Serviços · RAG</span><span lang="en">Services · RAG</span></span>
+          <div>
+            <h3><span lang="pt-BR">Assistente para contratos e normas internas</span><span lang="en">Assistant for contracts and internal policies</span></h3>
+            <p lang="pt-BR">Milhares de PDFs viram uma base de conhecimento. A equipe pergunta em linguagem natural e recebe a resposta com o trecho e o documento de origem, e cada pessoa só vê o que tem permissão para ver.</p>
+            <p lang="en">Thousands of PDFs become a knowledge base. The team asks in plain language and gets the answer with the source passage and document, and each person only sees what they're allowed to see.</p>
+          </div>
+          <span class="stack">S3 · Bedrock · Knowledge Bases</span>
+        </article>
+        <article class="projeto">
+          <span class="tipo"><span lang="pt-BR">Operações · Text-to-SQL</span><span lang="en">Operations · Text-to-SQL</span></span>
+          <div>
+            <h3><span lang="pt-BR">"Pergunte ao sistema"</span><span lang="en">"Ask the system"</span></h3>
+            <p lang="pt-BR">Gestores fazem perguntas sobre pedidos, estoque e clientes sem depender da TI. A pergunta vira SQL sobre o data lake e a resposta volta explicada, com a consulta usada à mostra para conferência.</p>
+            <p lang="en">Managers ask about orders, stock and customers without waiting on IT. The question becomes SQL over the data lake and the answer comes back explained, with the query shown for review.</p>
+          </div>
+          <span class="stack">Bedrock · Athena · Glue Catalog</span>
+        </article>
+        <article class="projeto">
+          <span class="tipo"><span lang="pt-BR">Saúde · LGPD</span><span lang="en">Healthcare · Privacy</span></span>
+          <div>
+            <h3><span lang="pt-BR">Indicadores com dados sensíveis protegidos</span><span lang="en">KPIs with sensitive data protected</span></h3>
+            <p lang="pt-BR">Dados de atendimento consolidados em painéis, com os dados pessoais encontrados automaticamente, mascarados por coluna e com cada acesso registrado para auditoria.</p>
+            <p lang="en">Care data consolidated into dashboards, with personal data discovered automatically, masked per column, and every access logged for audit.</p>
+          </div>
+          <span class="stack">Macie · Lake Formation · QuickSight</span>
+        </article>
+        <article class="projeto">
           <span class="tipo"><span lang="pt-BR">Pesquisa · Mestrado</span><span lang="en">Research · MSc</span></span>
           <div>
             <h3>BOPPII</h3>
-            <p lang="pt-BR">Proxy open source para uso seguro e auditável de LLMs no setor público brasileiro. Detecta dados pessoais, decide se o prompt pode sair da instituição e pseudonimiza antes do envio.</p>
-            <p lang="en">Open-source proxy for safe, auditable use of LLMs in the Brazilian public sector. It detects personal data, decides whether a prompt may leave the institution, and pseudonymizes it before sending.</p>
+            <p lang="pt-BR">Proxy open source para uso seguro e auditável de LLMs em organizações que lidam com dados pessoais. Detecta dados pessoais, decide se o prompt pode sair da organização e pseudonimiza antes do envio.</p>
+            <p lang="en">Open-source proxy for safe, auditable use of LLMs in organizations that handle personal data. It detects personal data, decides whether a prompt may leave the organization, and pseudonymizes it before sending.</p>
           </div>
           <span class="stack">Python · Ollama · Qwen3 · LGPD</span>
-        </article>
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Dados · Jurídico</span><span lang="en">Data · Legal</span></span>
-          <div>
-            <h3><span lang="pt-BR">Análise de processos judiciais</span><span lang="en">Court case analytics</span></h3>
-            <p lang="pt-BR">Coleta de dados públicos do CNJ, limpeza de textos de processos e análise com NLP: classificação, sentimento e padrões nos dados.</p>
-            <p lang="en">Public court data collected from Brazil's CNJ, cleaned and analyzed with NLP: classification, sentiment and patterns.</p>
-          </div>
-          <span class="stack">Python · scraping · NLP</span>
-        </article>
-        <article class="projeto">
-          <span class="tipo"><span lang="pt-BR">Agentes · Ferramentas</span><span lang="en">Agents · Tooling</span></span>
-          <div>
-            <h3><span lang="pt-BR">Agentes autônomos com guarda-corpos</span><span lang="en">Autonomous agents with guardrails</span></h3>
-            <p lang="pt-BR">Laços de agentes que transformam requisitos em entregas, com hooks que bloqueiam ações perigosas e registro de cada passo.</p>
-            <p lang="en">Agent loops that turn requirements into shipped work, with hooks that block risky actions and a log of every step.</p>
-          </div>
-          <span class="stack">Claude Code · MCP · bash</span>
         </article>
       </div>
     </div>
@@ -338,13 +358,13 @@
       <span class="rotulo"><span lang="pt-BR">04 — Sobre</span><span lang="en">04 — About</span></span>
       <div class="texto">
         <div lang="pt-BR">
-          <p>Sou Luan Coli, mestrando no IDP, onde pesquiso como órgãos públicos podem usar modelos de linguagem sem expor dados pessoais.</p>
+          <p>Sou Luan Coli, mestrando no IDP, onde pesquiso como organizações podem usar modelos de linguagem sem expor dados pessoais.</p>
           <p>O colimanlab é onde essa pesquisa encontra problemas do dia a dia: dados espalhados em planilhas e sistemas que não conversam, relatórios montados à mão e IA que ninguém sabe se pode usar com dados sensíveis. Eu levo isso para a AWS de forma organizada, segura e com custo que você entende.</p>
           <p>Meu lema é simples: cada projeto recebe a disciplina de uma pesquisa, porque constância vence atalho.</p>
           <span class="lema-sobre">effort <b>&gt;</b> talent</span>
         </div>
         <div lang="en">
-          <p>I'm Luan Coli, a master's researcher at IDP (Brasília), studying how public institutions can use language models without exposing personal data.</p>
+          <p>I'm Luan Coli, a master's researcher at IDP (Brasília), studying how organizations can use language models without exposing personal data.</p>
           <p>colimanlab is where that research meets everyday problems: data scattered across spreadsheets and systems that don't talk, hand-built reports, and AI nobody is sure is safe to use with sensitive data. I bring it to AWS in an organized, secure way, at a cost you understand.</p>
           <p>My motto is simple: every project gets the discipline of research, because consistency beats shortcuts.</p>
           <span class="lema-sobre">effort <b>&gt;</b> talent</span>
