@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
-  :root { --papel: #f6f5f1; --tinta: #15171a; --tinta-2: #50555d; --linha: #e0ddd5; --sinal: #0f7b5f; --shu: #c8442f; }
+  :root { --papel: #f6f5f1; --tinta: #15171a; --tinta-2: #50555d; --linha: #e0ddd5; --sinal: #55585e; --shu: #c8442f; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 16px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 56px 24px 80px; }
@@ -95,37 +95,41 @@
   .tc .m-card .cod { position: absolute; left: 0; right: 0; top: 0; padding: 8px 16px; border-bottom: 1px solid var(--m-linha); display: flex; justify-content: space-between; background: #f6f8fa; border-radius: 8px 8px 0 0; }
   .tc .m-card .cod::after { content: "● ONLINE"; color: #13a874; }
   .tc .m-contato { border: 1px solid var(--m-linha); }
+
+  /* ===== Bancada · variações de cor ===== */
+  .bx { background-image:
+      linear-gradient(var(--g1) 1px, transparent 1px), linear-gradient(90deg, var(--g1) 1px, transparent 1px),
+      linear-gradient(var(--g2) 1px, transparent 1px), linear-gradient(90deg, var(--g2) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px; }
+  .bx .m-top { background: color-mix(in srgb, var(--m-fundo) 92%, transparent); }
+  .bx .m-card { padding-left: 34px; }
+  .bx .m-card::before { content: ""; position: absolute; left: 12px; top: 18px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--m-linha); background: var(--m-fundo); }
+  .bx .m-card .cod { color: var(--m-sinal); }
+  .bx .m-contato { border: 1px dashed var(--m-sinal); }
+  .bx .m-btn.cheio { background: var(--m-tinta); }
+  .bx .regua { position: absolute; left: 28px; right: 28px; top: 12px; height: 8px; background: repeating-linear-gradient(90deg, var(--regua) 0 1px, transparent 1px 8px); }
+  .bx .regua::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, var(--regua) 0 1.5px, transparent 1.5px 40px); height: 12px; top: -4px; }
+  .bx .logo-mini { width: 18px; height: 18px; }
+  .a1 { --m-fundo: #f4f4f2; --m-tinta: #18191b; --m-tinta-2: #55585e; --m-linha: #d9d9d5; --m-sinal: #c8442f; --m-cartao: #fff; --m-contato: #ececea; --g1: rgba(24,25,27,.10); --g2: rgba(24,25,27,.045); --regua: rgba(24,25,27,.45); }
+  .a2 { --m-fundo: #f3f6fa; --m-tinta: #131a26; --m-tinta-2: #4f5b6e; --m-linha: #d3dceb; --m-sinal: #1f5fbf; --m-cartao: #fff; --m-contato: #e6edf7; --g1: rgba(31,95,191,.14); --g2: rgba(31,95,191,.06); --regua: rgba(19,26,38,.45); }
+  .a3 { --m-fundo: #f7f5f0; --m-tinta: #1c1a16; --m-tinta-2: #5a554b; --m-linha: #e2ddd1; --m-sinal: #b86a00; --m-cartao: #fff; --m-contato: #f1ece1; --g1: rgba(28,26,22,.09); --g2: rgba(28,26,22,.04); --regua: rgba(28,26,22,.45); }
 </style>
 </head>
 <body>
 <main class="wrap">
-  <span class="rotulo">colimanlab · temas</span>
-  <h1>Três caras de laboratório</h1>
-  <p class="intro">O mesmo conteúdo em três temas, comparados com o atual. Todos são claros, e o bloco de contato deixa de ser preto. O modo escuro continua existindo para quem usa o sistema no escuro, mas pode ser desligado se você preferir o site sempre claro.</p>
+  <span class="rotulo">colimanlab · temas · rodada 2</span>
+  <h1>Bancada, sem o verde</h1>
+  <p class="intro">O tema Bancada (papel milimetrado, régua e etiquetas de amostra) em três cores. A cor de destaque também muda no logo, nos links e nos botões. O vermelho do sol do hachimaki continua em todas.</p>
 
   <section class="opcao">
     <div>
-      <span class="rotulo">Atual</span>
-      <h2>Limpo</h2>
-      <p>A rodada de acabamento: sem quadriculado e com o contato num bloco escuro. É o mais corporativo, mas tem pouca cara de laboratório.</p>
+      <span class="rotulo">A1</span>
+      <h2>Grafite e vermelho</h2>
+      <p>Grade cinza neutra, como papel de engenharia impresso. O destaque passa a ser o vermelho do logo, e a marca fica com uma cor só.</p>
+      <ul><li>O mais sóbrio e elegante</li><li>O vermelho amarra o site ao ícone</li></ul>
     </div>
-    <div class="mock t0">
-      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
-      <div class="m-hero"><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
-      <div class="m-cards"><div class="m-card"><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
-      <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
-    </div>
-  </section>
-
-  <section class="opcao">
-    <div>
-      <span class="rotulo">A</span>
-      <h2>Bancada</h2>
-      <p>Papel milimetrado de engenharia, com grade fina e grossa e uma régua no topo. Os cartões viram etiquetas de amostra (EXP-01, EXP-02) com furinho de etiqueta.</p>
-      <ul><li>A mesa de experimentos que você descreveu</li><li>Técnico e sério, ainda bem corporativo</li></ul>
-    </div>
-    <div class="mock ta">
-      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+    <div class="mock bx a1">
+      <div class="m-top"><svg class="logo-mini" viewBox="0 0 64 64" aria-hidden="true"><path d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z" fill="#c8442f"/><rect x="6" y="12" width="50" height="46" rx="8" fill="var(--m-fundo)" stroke="var(--m-tinta)" stroke-width="4.5"/><path d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke="var(--m-tinta)" stroke-width="3"/><circle cx="30" cy="26" r="4.2" fill="#c8442f"/><path d="M16 38 L24 44 L16 50" fill="none" stroke="var(--m-sinal)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="46" width="14" height="5" rx="1" fill="var(--m-sinal)"/></svg><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
       <div class="m-hero"><span class="regua" aria-hidden="true"></span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
       <div class="m-cards"><div class="m-card"><span class="cod">EXP-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">EXP-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
       <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
@@ -134,35 +138,35 @@
 
   <section class="opcao">
     <div>
-      <span class="rotulo">B</span>
-      <h2>Caderno de laboratório</h2>
-      <p>Folha quadriculada com a margem vermelha de caderno, anotações à mão em vermelho e cartões presos com fita, como no caderno de um pesquisador.</p>
-      <ul><li>O mais pessoal e com mais personalidade</li><li>Menos "empresa", mais "autor e professor", o que combina com cursos</li></ul>
+      <span class="rotulo">A2</span>
+      <h2>Azul de engenharia</h2>
+      <p>O papel milimetrado azul clássico, de projeto técnico, com destaque em azul.</p>
+      <ul><li>O que mais lembra laboratório e engenharia</li><li>Azul transmite confiança, mas é a cor mais comum em sites de tecnologia</li></ul>
     </div>
-    <div class="mock tb">
-      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
-      <div class="m-hero"><span class="nota" aria-hidden="true">start here</span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
-      <div class="m-cards"><div class="m-card"><span class="cod">p. 01</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">p. 02</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+    <div class="mock bx a2">
+      <div class="m-top"><svg class="logo-mini" viewBox="0 0 64 64" aria-hidden="true"><path d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z" fill="#c8442f"/><rect x="6" y="12" width="50" height="46" rx="8" fill="var(--m-fundo)" stroke="var(--m-tinta)" stroke-width="4.5"/><path d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke="var(--m-tinta)" stroke-width="3"/><circle cx="30" cy="26" r="4.2" fill="#c8442f"/><path d="M16 38 L24 44 L16 50" fill="none" stroke="var(--m-sinal)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="46" width="14" height="5" rx="1" fill="var(--m-sinal)"/></svg><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="regua" aria-hidden="true"></span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><span class="cod">EXP-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">EXP-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
       <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
     </div>
   </section>
 
   <section class="opcao">
     <div>
-      <span class="rotulo">C</span>
-      <h2>Instrumento</h2>
-      <p>Laboratório limpo e moderno: grade de pontos, marcas de registro nos cantos, um indicador "online" piscando de status e cartões com cabeçalho de painel de instrumento.</p>
-      <ul><li>O mais "tech" e premium dos três</li><li>Combina com a página de arquitetura AWS</li></ul>
+      <span class="rotulo">A3</span>
+      <h2>Papel e âmbar</h2>
+      <p>Grade quente sobre papel creme, com destaque em âmbar, a cor dos frascos e das etiquetas de laboratório.</p>
+      <ul><li>Quente e diferente dos sites de tecnologia comuns</li><li>Combina com o vermelho do logo</li></ul>
     </div>
-    <div class="mock tc">
-      <div class="m-top"><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
-      <div class="m-hero"><span class="leitura"><i></i>LAB STATUS · RUNNING</span><br><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
-      <div class="m-cards"><div class="m-card"><span class="cod">CH-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">CH-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
+    <div class="mock bx a3">
+      <div class="m-top"><svg class="logo-mini" viewBox="0 0 64 64" aria-hidden="true"><path d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z" fill="#c8442f"/><rect x="6" y="12" width="50" height="46" rx="8" fill="var(--m-fundo)" stroke="var(--m-tinta)" stroke-width="4.5"/><path d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke="var(--m-tinta)" stroke-width="3"/><circle cx="30" cy="26" r="4.2" fill="#c8442f"/><path d="M16 38 L24 44 L16 50" fill="none" stroke="var(--m-sinal)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="46" width="14" height="5" rx="1" fill="var(--m-sinal)"/></svg><span>coliman<b>lab</b></span><span class="lema">effort &gt; talent</span><span class="nav"><span>Services</span><span>On AWS</span><span>Courses</span><span class="cta">Get in touch</span></span></div>
+      <div class="m-hero"><span class="regua" aria-hidden="true"></span><span class="m-tag">Data &amp; AI on AWS</span><h3>Your data on AWS, <em>organized</em> and ready for AI.</h3><p>I help organizations bring scattered data into one secure place on AWS.</p><div class="m-btns"><span class="m-btn cheio">Book a call →</span><span class="m-btn">What's possible</span></div></div>
+      <div class="m-cards"><div class="m-card"><span class="cod">EXP-01 · PLATFORM</span><h4>Data platform on AWS</h4><p>Databases and spreadsheets flowing into one data lake.</p></div><div class="m-card"><span class="cod">EXP-02 · AI</span><h4>AI on your data</h4><p>Plain-language answers from your documents.</p></div></div>
       <div class="m-contato"><strong>Shall we look at your data?</strong><span class="campo"></span></div>
     </div>
   </section>
 
-  <footer>Escolha um tema (ou uma mistura, por exemplo a grade da A com os cartões da C) e ele é aplicado em todas as páginas. <a href="./">Voltar ao site</a></footer>
+  <footer>Escolha uma das três e ela é aplicada em todas as páginas, junto com a grade e as etiquetas da Bancada. A rodada 1 de temas continua no histórico do git. <a href="./">Voltar ao site</a></footer>
 </main>
 </body>
 </html>
