@@ -64,11 +64,15 @@
   header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
   .topo { display: flex; align-items: center; gap: 24px; height: 64px; }
   .marca { display: flex; align-items: center; gap: 10px; font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
-  .marca img { width: 30px; height: 30px; display: block; }
+  .marca .logo { width: 30px; height: 30px; display: block; flex: none; }
+  .logo .t { stroke: var(--tinta); } .logo .f { fill: var(--papel); } .logo .g { stroke: var(--sinal); } .logo .gf { fill: var(--sinal); } .logo .r { fill: #c8442f; }
+  .logo .cursor { animation: pisca 1.1s steps(1) infinite; }
+  @keyframes pisca { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .logo .cursor { animation: none; } }
   .marca b { color: var(--sinal); font-weight: 500; }
   .marca .lema-topo { font: 500 12px/1 var(--mono); color: var(--tinta-2); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--linha); letter-spacing: 0; white-space: nowrap; }
   .marca .lema-topo b { color: var(--sinal); }
-  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca img { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
+  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca .logo { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
   @media (max-width: 359px) { .marca .lema-topo { display: none; } }
   nav { display: flex; gap: 22px; margin-left: auto; }
   nav a { text-decoration: none; font-size: 15px; color: var(--tinta-2); }
@@ -166,7 +170,7 @@
 
 <header>
   <div class="wrap topo">
-    <a class="marca" href="#" aria-label="colimanlab, effort > talent"><img src="favicon.svg" alt=""><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
+    <a class="marca" href="#" aria-label="colimanlab, effort > talent"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path class="r" d="M55 22 L63 11 L60 24 Z M55 28 L63 37 L58 26 Z"/><rect class="t f" x="6" y="12" width="50" height="46" rx="8" stroke-width="4.5"/><path class="t" d="M3 21.5 L57 20.5 L57 30.5 L3 31.5 Z" fill="#f4f2ec" stroke-width="3" stroke-linejoin="round"/><circle class="r" cx="30" cy="26" r="4.2"/><path class="g" d="M16 38 L24 44 L16 50" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect class="gf cursor" x="29" y="46" width="14" height="5" rx="1"/></svg><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
     <nav aria-label="Principal">
       <a href="#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
