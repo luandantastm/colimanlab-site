@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>colimanlab — Luan Coli</title>
 <meta name="description" content="colimanlab: engenharia de dados e IA na AWS, por Luan Coli. Data engineering and AI on AWS.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -58,8 +62,13 @@
   /* topo */
   header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
   .topo { display: flex; align-items: center; gap: 24px; height: 64px; }
-  .marca { font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
+  .marca { display: flex; align-items: center; gap: 10px; font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
+  .marca img { width: 30px; height: 30px; display: block; }
   .marca b { color: var(--sinal); font-weight: 500; }
+  .marca .lema-topo { font: 500 12px/1 var(--mono); color: var(--tinta-2); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--linha); letter-spacing: 0; white-space: nowrap; }
+  .marca .lema-topo b { color: var(--sinal); }
+  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca img { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
+  @media (max-width: 359px) { .marca .lema-topo { display: none; } }
   nav { display: flex; gap: 22px; margin-left: auto; }
   nav a { text-decoration: none; font-size: 15px; color: var(--tinta-2); }
   nav a:hover { color: var(--tinta); }
@@ -154,7 +163,7 @@
 
 <header>
   <div class="wrap topo">
-    <a class="marca" href="#">coliman<b>lab</b></a>
+    <a class="marca" href="#" aria-label="colimanlab, effort > talent"><img src="favicon.svg" alt=""><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
     <nav aria-label="Principal">
       <a href="#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
       <a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
