@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data on AWS — colimanlab</title>
+<meta name="description" content="What you can do with your data on AWS: S3 data lake, Athena, RAG on your databases, SageMaker. O que dá para fazer com os seus dados na AWS.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papel: #f4f2ec;
+    --papel-2: #ebe8df;
+    --tinta: #17191c;
+    --tinta-2: #4a4f57;
+    --linha: #d6d2c6;
+    --sinal: #0f7b5f;
+    --sinal-suave: #d9ece5;
+    --grade: rgba(23, 25, 28, .045);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel: #121416; --papel-2: #1a1d20; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+      --linha: #2c3035; --sinal: #4fd1a5; --sinal-suave: #16302a; --grade: rgba(236, 235, 230, .035);
+    }
+  }
+  :root[data-theme="dark"] {
+    --papel: #121416; --papel-2: #1a1d20; --tinta: #ecebe6; --tinta-2: #a3a7ad;
+    --linha: #2c3035; --sinal: #4fd1a5; --sinal-suave: #16302a; --grade: rgba(236, 235, 230, .035);
+  }
+
+  /* idioma: mostra só o bloco do idioma ativo */
+  html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt-BR"] { display: none !important; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body {
+    margin: 0; background: var(--papel); color: var(--tinta);
+    font: 400 17px/1.6 var(--sans);
+    background-image:
+      linear-gradient(var(--grade) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--sinal); outline-offset: 3px; }
+  .pular { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: var(--papel); padding: 8px 12px; z-index: 10; }
+  .pular:focus { left: 16px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .rotulo { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--sinal); }
+
+  /* topo */
+  header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
+  .topo { display: flex; align-items: center; gap: 24px; height: 64px; }
+  .marca { display: flex; align-items: center; gap: 10px; font: 500 18px/1 var(--mono); text-decoration: none; letter-spacing: -.01em; }
+  .marca img { width: 30px; height: 30px; display: block; }
+  .marca b { color: var(--sinal); font-weight: 500; }
+  .marca .lema-topo { font: 500 12px/1 var(--mono); color: var(--tinta-2); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--linha); letter-spacing: 0; white-space: nowrap; }
+  .marca .lema-topo b { color: var(--sinal); }
+  @media (max-width: 520px) { .marca { gap: 8px; font-size: 16px; } .marca img { width: 26px; height: 26px; } .marca .lema-topo { font-size: 10.5px; padding-left: 8px; } }
+  @media (max-width: 359px) { .marca .lema-topo { display: none; } }
+  nav { display: flex; gap: 22px; margin-left: auto; }
+  nav a { text-decoration: none; font-size: 15px; color: var(--tinta-2); }
+  nav a:hover { color: var(--tinta); }
+  .idiomas { display: flex; border: 1px solid var(--linha); border-radius: 999px; overflow: hidden; }
+  .idiomas button { font: 500 12px/1 var(--mono); background: none; color: var(--tinta-2); border: 0; padding: 8px 11px; cursor: pointer; }
+  .idiomas button[aria-pressed="true"] { background: var(--tinta); color: var(--papel); }
+  @media (max-width: 760px) { nav { display: none; } .idiomas { margin-left: auto; } }
+
+  /* hero */
+  .hero { padding: 96px 0 80px; border-bottom: 1px solid var(--linha); }
+  .hero h1 { font: 400 clamp(44px, 7.4vw, 92px)/1 var(--serif); letter-spacing: -.02em; margin: 20px 0 28px; max-width: 14ch; }
+  .hero h1 em { color: var(--sinal); }
+  .hero p.lead { font-size: clamp(18px, 2vw, 21px); color: var(--tinta-2); max-width: 58ch; margin: 0 0 36px; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 4px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--tinta); }
+  .btn.cheio { background: var(--tinta); color: var(--papel); }
+  .btn.cheio:hover { background: var(--sinal); border-color: var(--sinal); }
+  .btn.vazio:hover { background: var(--papel-2); }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .pipeline { margin: 0; border: 1px solid var(--linha); background: var(--papel); border-radius: 6px; padding: 8px 20px; }
+  .pipeline figcaption { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); padding: 14px 0 10px; border-bottom: 1px solid var(--linha); }
+  .pipeline ol { list-style: none; margin: 0; padding: 6px 0; position: relative; }
+  .pipeline ol::before { content: ""; position: absolute; left: 11px; top: 26px; bottom: 26px; width: 1px; background: var(--sinal); opacity: .5; }
+  .pipeline li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; padding: 12px 0; position: relative; }
+  .pipeline .no { width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--sinal); background: var(--papel); color: var(--sinal); font: 500 11px/21px var(--mono); text-align: center; position: relative; }
+  .pipeline li:last-child .no { background: var(--sinal); color: var(--papel); }
+  .pipeline strong { display: block; font-weight: 600; font-size: 15px; }
+  .pipeline span.svc { font: 400 13px/1.5 var(--mono); color: var(--tinta-2); }
+  .ficha { margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--linha); }
+  .ficha div { padding: 18px 18px 0 0; }
+  .ficha dt { font: 500 11px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); margin-bottom: 6px; }
+  .ficha dd { margin: 0; font-size: 15px; }
+  @media (max-width: 760px) { .ficha { grid-template-columns: 1fr 1fr; row-gap: 8px; } }
+
+  /* seções */
+  section { padding: 88px 0; border-bottom: 1px solid var(--linha); }
+  .cab { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 48px; }
+  .cab h2 { font: 400 clamp(34px, 4.4vw, 52px)/1.05 var(--serif); margin: 0; letter-spacing: -.01em; }
+  .cab p { color: var(--tinta-2); max-width: 60ch; margin: 14px 0 0; }
+  .link-seta { color: var(--sinal); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+  .link-seta:hover { border-bottom-width: 2px; }
+  @media (max-width: 760px) { .cab { grid-template-columns: 1fr; gap: 12px; } }
+
+  .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linha); border: 1px solid var(--linha); }
+  .servico { background: var(--papel); padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+  .servico:hover { background: var(--papel-2); }
+  .servico .num { font: 500 12px/1 var(--mono); color: var(--tinta-2); }
+  .servico h3 { font: 600 21px/1.25 var(--sans); margin: 0; }
+  .servico p { margin: 0; color: var(--tinta-2); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .tags span { font: 400 12px/1 var(--mono); padding: 6px 8px; background: var(--sinal-suave); color: var(--sinal); border-radius: 3px; }
+  @media (max-width: 960px) { .servicos { grid-template-columns: 1fr 1fr; } } @media (max-width: 640px) { .servicos { grid-template-columns: 1fr; } .servico { padding: 24px; } }
+
+  .etapas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: e; }
+  .etapas li { border-top: 2px solid var(--tinta); padding-top: 18px; counter-increment: e; }
+  .etapas li::before { content: "0" counter(e); font: 500 12px/1 var(--mono); color: var(--sinal); display: block; margin-bottom: 12px; }
+  .etapas h3 { font: 600 18px/1.3 var(--sans); margin: 0 0 8px; }
+  .etapas p { margin: 0; color: var(--tinta-2); font-size: 15px; }
+  @media (max-width: 900px) { .etapas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .etapas { grid-template-columns: 1fr; } }
+
+  .projetos { display: grid; gap: 0; border-top: 1px solid var(--linha); }
+  .projeto { display: grid; grid-template-columns: 160px 1fr 200px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--linha); align-items: baseline; }
+  .projeto .tipo { font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--tinta-2); }
+  .projeto h3 { font: 400 28px/1.15 var(--serif); margin: 0 0 8px; }
+  .projeto p { margin: 0; color: var(--tinta-2); }
+  .projeto .stack { font: 400 13px/1.6 var(--mono); color: var(--tinta-2); }
+  @media (max-width: 760px) { .projeto { grid-template-columns: 1fr; gap: 8px; } }
+
+  .sobre { display: grid; grid-template-columns: 220px 1fr; gap: 32px; }
+  .sobre .texto { font-size: 19px; max-width: 62ch; }
+  .sobre .texto p:first-child { margin-top: 0; }
+  .lema-sobre { display: inline-block; margin-top: 8px; font: 600 clamp(22px, 3vw, 30px)/1 var(--mono); letter-spacing: -.01em; }
+  .lema-sobre b { color: var(--sinal); font-weight: 600; }
+  @media (max-width: 760px) { .sobre { grid-template-columns: 1fr; gap: 12px; } }
+
+  .contato { background: var(--tinta); color: var(--papel); border-bottom: 0; }
+  .contato .rotulo { color: var(--sinal); }
+  .contato h2 { font: 400 clamp(40px, 6vw, 72px)/1.02 var(--serif); margin: 18px 0 24px; max-width: 16ch; }
+  .contato p { color: color-mix(in srgb, var(--papel) 70%, transparent); max-width: 52ch; }
+  .canais { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .canais a { font: 500 15px/1 var(--mono); padding: 14px 18px; border: 1px solid color-mix(in srgb, var(--papel) 30%, transparent); border-radius: 4px; text-decoration: none; }
+  .canais a:hover { border-color: var(--sinal); color: var(--sinal); }
+
+  footer { padding: 28px 0; font: 400 13px/1.5 var(--mono); color: var(--tinta-2); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 520px) { .wrap { padding: 0 16px; } .hero { padding: 64px 0 56px; } section { padding: 64px 0; } }
+
+  /* página AWS */
+  .hero-aws { padding-bottom: 72px; }
+  .hero-aws h1 { max-width: 18ch; }
+  .fluxo { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; align-items: stretch; }
+  .fluxo .seta { display: none; }
+  .etapa { display: flex; flex-direction: column; gap: 8px; padding: 0 8px; position: relative; }
+  .etapa + .seta + .etapa::before { content: "→"; position: absolute; left: -9px; top: 38%; color: var(--sinal); font: 500 18px/1 var(--mono); }
+  .etq { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); padding: 0 2px 6px; border-bottom: 2px solid var(--tinta); margin-bottom: 4px; }
+  .caixa { background: var(--papel); border: 1px solid var(--linha); border-radius: 5px; padding: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; color: var(--tinta-2); line-height: 1.4; }
+  .caixa strong { color: var(--tinta); font-size: 14.5px; font-weight: 600; }
+  .etapa.destaque .caixa { border-color: var(--sinal); background: var(--sinal-suave); }
+  .etapa.destaque .etq { border-color: var(--sinal); color: var(--sinal); }
+  .governanca { margin-top: 20px; border: 1px dashed var(--tinta-2); border-radius: 5px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; font-size: 14px; }
+  .governanca span { font-family: var(--mono); font-size: 13px; }
+  .governanca .nota { font-family: var(--sans); color: var(--tinta-2); }
+  @media (max-width: 960px) {
+    .fluxo { grid-template-columns: 1fr; gap: 0; }
+    .etapa { padding: 0; }
+    .fluxo .seta { display: block; height: 28px; position: relative; }
+    .fluxo .seta::after { content: "↓"; position: absolute; left: 50%; top: 4px; transform: translateX(-50%); color: var(--sinal); font: 500 18px/1 var(--mono); }
+    .etapa + .seta + .etapa::before { content: none; }
+  }
+  .casos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--linha); border: 1px solid var(--linha); }
+  .caso { background: var(--papel); padding: 30px; display: flex; flex-direction: column; gap: 12px; }
+  .caso .num { font: 500 12px/1 var(--mono); color: var(--tinta-2); }
+  .caso h3 { font: 600 20px/1.25 var(--sans); margin: 0; }
+  .caso p { margin: 0; color: var(--tinta-2); }
+  .caso p.ex { font-size: 14.5px; color: var(--tinta); border-left: 2px solid var(--sinal); padding-left: 12px; }
+  @media (max-width: 760px) { .casos { grid-template-columns: 1fr; } .caso { padding: 24px; } }
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo"><span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap topo">
+    <a class="marca" href="index.html" aria-label="colimanlab, effort > talent"><img src="favicon.svg" alt=""><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
+    <nav aria-label="Principal">
+      <a href="index.html#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
+      <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
+      <a href="index.html#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
+      <a href="index.html#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Work</span></a>
+      <a href="index.html#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+      <a href="index.html#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="idiomas" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="hero hero-aws">
+    <div class="wrap">
+      <span class="rotulo"><span lang="pt-BR">Guia · Dados na AWS</span><span lang="en">Guide · Data on AWS</span></span>
+      <h1 lang="pt-BR">O que dá para fazer com os seus dados na <em>AWS</em>.</h1>
+      <h1 lang="en">What you can do with your data on <em>AWS</em>.</h1>
+      <p class="lead" lang="pt-BR">Os seus dados já existem: no banco do sistema, em planilhas, em PDFs, em APIs de fornecedores. Este guia mostra o que acontece quando eles passam a morar num só lugar, consultável e seguro, dentro da sua própria conta AWS.</p>
+      <p class="lead" lang="en">Your data already exists: in your system's database, in spreadsheets, PDFs and vendor APIs. This guide shows what happens when it all lives in one queryable, secure place, inside your own AWS account.</p>
+    </div>
+  </div>
+
+  <section id="arquitetura">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo"><span lang="pt-BR">01 — Arquitetura</span><span lang="en">01 — Architecture</span></span>
+        <div>
+          <h2><span lang="pt-BR">O caminho dos dados</span><span lang="en">How the data flows</span></h2>
+          <p lang="pt-BR">Uma arquitetura de referência. Cada projeto usa só as peças que fazem sentido para o seu caso.</p>
+          <p lang="en">A reference architecture. Each project uses only the pieces that make sense for your case.</p>
+        </div>
+      </div>
+      <div class="fluxo" role="img" aria-label="Fontes, ingestão, data lake no S3, consulta com Athena e uso em painéis, RAG e modelos / Sources, ingestion, S3 data lake, Athena queries and use in dashboards, RAG and models">
+        <div class="etapa">
+          <span class="etq"><span lang="pt-BR">Fontes</span><span lang="en">Sources</span></span>
+          <div class="caixa"><strong><span lang="pt-BR">Bancos de dados</span><span lang="en">Databases</span></strong><span>PostgreSQL · MySQL · SQL Server · Oracle</span></div>
+          <div class="caixa"><strong><span lang="pt-BR">Sistemas</span><span lang="en">Systems</span></strong><span>ERP · CRM · <span lang="pt-BR">sistemas internos</span><span lang="en">in-house apps</span></span></div>
+          <div class="caixa"><strong><span lang="pt-BR">Arquivos e APIs</span><span lang="en">Files &amp; APIs</span></strong><span>CSV · Excel · PDF · REST</span></div>
+        </div>
+        <div class="seta" aria-hidden="true"></div>
+        <div class="etapa">
+          <span class="etq"><span lang="pt-BR">Ingestão</span><span lang="en">Ingestion</span></span>
+          <div class="caixa"><strong>DMS</strong><span lang="pt-BR">replica o banco, inclusive as mudanças contínuas</span><span lang="en">replicates databases, including ongoing changes</span></div>
+          <div class="caixa"><strong>Glue · Lambda</strong><span lang="pt-BR">limpa, padroniza e agenda cargas</span><span lang="en">cleans, standardizes, schedules loads</span></div>
+        </div>
+        <div class="seta" aria-hidden="true"></div>
+        <div class="etapa destaque">
+          <span class="etq"><span lang="pt-BR">Repositório</span><span lang="en">Repository</span></span>
+          <div class="caixa"><strong><span lang="pt-BR">S3 · data lake</span><span lang="en">S3 · data lake</span></strong><span lang="pt-BR">bruto → tratado → pronto para análise</span><span lang="en">raw → cleaned → analysis-ready</span></div>
+          <div class="caixa"><strong>Glue Data Catalog</strong><span lang="pt-BR">o "índice" de todas as tabelas</span><span lang="en">the "index" of every table</span></div>
+        </div>
+        <div class="seta" aria-hidden="true"></div>
+        <div class="etapa">
+          <span class="etq"><span lang="pt-BR">Consulta</span><span lang="en">Query</span></span>
+          <div class="caixa"><strong>Athena</strong><span lang="pt-BR">SQL sobre o S3 e sobre os bancos, numa consulta só</span><span lang="en">SQL over S3 and databases in a single query</span></div>
+          <div class="caixa"><strong>Redshift</strong><span lang="pt-BR">quando o volume pede um data warehouse</span><span lang="en">when volume calls for a warehouse</span></div>
+        </div>
+        <div class="seta" aria-hidden="true"></div>
+        <div class="etapa">
+          <span class="etq"><span lang="pt-BR">Uso</span><span lang="en">Use</span></span>
+          <div class="caixa"><strong>QuickSight</strong><span lang="pt-BR">painéis</span><span lang="en">dashboards</span></div>
+          <div class="caixa"><strong>Bedrock</strong><span lang="pt-BR">RAG e perguntas em linguagem natural</span><span lang="en">RAG &amp; plain-language questions</span></div>
+          <div class="caixa"><strong>SageMaker</strong><span lang="pt-BR">modelos preditivos</span><span lang="en">predictive models</span></div>
+        </div>
+      </div>
+      <div class="governanca">
+        <strong><span lang="pt-BR">Em todas as etapas</span><span lang="en">Across every step</span></strong>
+        <span>Lake Formation · IAM · KMS · Macie · CloudTrail</span>
+        <span class="nota" lang="pt-BR">quem acessa o quê, criptografia, dados pessoais encontrados e registro de cada acesso</span>
+        <span class="nota" lang="en">who accesses what, encryption, personal data discovered, and a log of every access</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="possibilidades">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo"><span lang="pt-BR">02 — Possibilidades</span><span lang="en">02 — Possibilities</span></span>
+        <div>
+          <h2><span lang="pt-BR">Oito coisas que você passa a conseguir</span><span lang="en">Eight things you can start doing</span></h2>
+        </div>
+      </div>
+      <div class="casos">
+        <article class="caso">
+          <span class="num">/01</span>
+          <h3><span lang="pt-BR">O S3 como repositório consultável</span><span lang="en">S3 as a queryable repository</span></h3>
+          <p lang="pt-BR">Todos os arquivos e exportações num só lugar, organizados em camadas (bruto, tratado, pronto) e catalogados. Não é um "drive": cada pasta vira uma tabela que dá para consultar em SQL, e o armazenamento custa uma fração de um banco tradicional.</p>
+          <p lang="en">Every file and export in one place, organized in layers (raw, cleaned, ready) and catalogued. It's not a "drive": every folder becomes a table you can query in SQL, and storage costs a fraction of a traditional database.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: 10 anos de planilhas de vendas viram uma tabela única.</span><span lang="en">Example: 10 years of sales spreadsheets become a single table.</span></p>
+          <div class="tags"><span>S3</span><span>Glue Catalog</span><span>Parquet</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/02</span>
+          <h3><span lang="pt-BR">Consultas consolidadas com o Athena</span><span lang="en">Consolidated queries with Athena</span></h3>
+          <p lang="pt-BR">Um SQL só que cruza o data lake com os bancos de dados do sistema, sem copiar tudo antes. Você paga pelo volume de dados lido em cada consulta, não por servidor ligado.</p>
+          <p lang="en">One SQL query that joins the data lake with your system's databases, without copying everything first. You pay for the data each query reads, not for servers left running.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: pedidos do banco do sistema + metas da planilha do comercial, num relatório só.</span><span lang="en">Example: orders from the system database + targets from the sales spreadsheet, in one report.</span></p>
+          <div class="tags"><span>Athena</span><span>Federated Query</span><span>SQL</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/03</span>
+          <h3><span lang="pt-BR">Banco replicado sem pesar a produção</span><span lang="en">Replicated databases, no load on production</span></h3>
+          <p lang="pt-BR">O banco do seu sistema é copiado continuamente para a AWS, incluindo cada alteração. A análise roda na cópia, e o sistema principal não fica lento por causa dos relatórios.</p>
+          <p lang="en">Your system's database is continuously copied to AWS, including every change. Analysis runs on the copy, so reports never slow down the main system.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: o painel atualiza a cada poucos minutos sem tocar no ERP.</span><span lang="en">Example: the dashboard refreshes every few minutes without touching the ERP.</span></p>
+          <div class="tags"><span>DMS</span><span>CDC</span><span>RDS · Aurora</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/04</span>
+          <h3><span lang="pt-BR">RAG sobre os seus documentos</span><span lang="en">RAG over your documents</span></h3>
+          <p lang="pt-BR">Um assistente que responde com base nos seus contratos, manuais, normas e relatórios, e mostra de qual documento tirou cada resposta. Os documentos ficam no seu S3.</p>
+          <p lang="en">An assistant that answers from your contracts, manuals, policies and reports, and shows which document each answer came from. The documents stay in your S3.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: "Qual é o prazo de rescisão no contrato com o fornecedor X?"</span><span lang="en">Example: "What's the termination notice in our contract with vendor X?"</span></p>
+          <div class="tags"><span>Bedrock</span><span>Knowledge Bases</span><span lang="pt-BR">busca vetorial</span><span lang="en">vector search</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/05</span>
+          <h3><span lang="pt-BR">Pergunte ao seu banco de dados</span><span lang="en">Ask your database</span></h3>
+          <p lang="pt-BR">RAG também sobre dados estruturados: a pergunta em português vira SQL sobre as tabelas do seu sistema, a consulta roda no Athena ou no Redshift e a resposta volta explicada, junto com o SQL usado, para quem quiser conferir.</p>
+          <p lang="en">RAG over structured data too: a plain-language question becomes SQL over your system's tables, runs on Athena or Redshift, and the answer comes back explained, along with the SQL, for anyone who wants to check it.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: "Quais clientes compraram menos neste trimestre do que no anterior?"</span><span lang="en">Example: "Which customers bought less this quarter than last?"</span></p>
+          <div class="tags"><span>Bedrock</span><span>text-to-SQL</span><span>Athena</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/06</span>
+          <h3><span lang="pt-BR">Modelos preditivos com o SageMaker</span><span lang="en">Predictive models with SageMaker</span></h3>
+          <p lang="pt-BR">Modelos treinados com o seu histórico, direto sobre o data lake: previsão de demanda, risco de cancelamento, classificação de documentos e detecção de anomalias. Podem rodar em lote ou responder em tempo real para o seu sistema.</p>
+          <p lang="en">Models trained on your own history, straight from the data lake: demand forecasting, churn risk, document classification, anomaly detection. Run them in batch or as real-time endpoints for your system.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: lista semanal dos clientes com maior risco de sair.</span><span lang="en">Example: a weekly list of customers most likely to churn.</span></p>
+          <div class="tags"><span>SageMaker</span><span>scikit-learn</span><span>endpoints</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/07</span>
+          <h3><span lang="pt-BR">Painéis que se atualizam sozinhos</span><span lang="en">Dashboards that refresh themselves</span></h3>
+          <p lang="pt-BR">Indicadores ligados direto ao data lake, sem ninguém exportar planilha toda segunda-feira. Cada pessoa vê só o que tem permissão para ver.</p>
+          <p lang="en">KPIs wired straight to the data lake, with no one exporting spreadsheets every Monday. Each person sees only what they're allowed to see.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: o painel da diretoria abre pronto às 8h.</span><span lang="en">Example: the leadership dashboard is ready at 8 a.m.</span></p>
+          <div class="tags"><span>QuickSight</span><span>Athena</span></div>
+        </article>
+        <article class="caso">
+          <span class="num">/08</span>
+          <h3><span lang="pt-BR">Privacidade e LGPD desde o início</span><span lang="en">Privacy by design (LGPD/GDPR)</span></h3>
+          <p lang="pt-BR">Descoberta automática de dados pessoais nos arquivos, permissões por tabela e por coluna, criptografia e registro de cada acesso. É o que você precisa mostrar numa auditoria.</p>
+          <p lang="en">Automatic discovery of personal data in files, table- and column-level permissions, encryption, and a log of every access. Exactly what you need to show in an audit.</p>
+          <p class="ex"><span lang="pt-BR">Exemplo: o CPF fica visível só para o financeiro, e o resto da empresa vê mascarado.</span><span lang="en">Example: tax IDs visible only to finance; everyone else sees them masked.</span></p>
+          <div class="tags"><span>Macie</span><span>Lake Formation</span><span>KMS</span><span>CloudTrail</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="comecar">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo"><span lang="pt-BR">03 — Por onde começar</span><span lang="en">03 — Where to start</span></span>
+        <div>
+          <h2><span lang="pt-BR">Você não precisa fazer tudo de uma vez</span><span lang="en">You don't need all of it at once</span></h2>
+          <p lang="pt-BR">O primeiro passo é um diagnóstico curto: mapeio as suas fontes, escolho o caso de uso com mais retorno e entrego uma arquitetura com estimativa de custo mensal. Depois, cada peça entra quando fizer sentido.</p>
+          <p lang="en">The first step is a short assessment: I map your sources, pick the use case with the best return, and deliver an architecture with a monthly cost estimate. After that, each piece comes in when it makes sense.</p>
+        </div>
+      </div>
+      <ol class="etapas">
+        <li><h3><span lang="pt-BR">Diagnóstico</span><span lang="en">Assessment</span></h3><p lang="pt-BR">Fontes, problemas, riscos de LGPD e o caso de uso prioritário.</p><p lang="en">Sources, issues, privacy risks and the priority use case.</p></li>
+        <li><h3><span lang="pt-BR">Fundação</span><span lang="en">Foundation</span></h3><p lang="pt-BR">S3, catálogo, permissões e as primeiras cargas automáticas.</p><p lang="en">S3, catalog, permissions and the first automated loads.</p></li>
+        <li><h3><span lang="pt-BR">Primeiro resultado</span><span lang="en">First result</span></h3><p lang="pt-BR">Um painel, um RAG ou uma consulta consolidada em produção.</p><p lang="en">A dashboard, a RAG assistant or a consolidated query in production.</p></li>
+        <li><h3><span lang="pt-BR">Evolução</span><span lang="en">Evolution</span></h3><p lang="pt-BR">Novos casos de uso sobre a mesma base, com custo acompanhado.</p><p lang="en">New use cases on the same foundation, with cost tracked.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contato" class="contato">
+    <div class="wrap">
+      <span class="rotulo"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></span>
+      <h2><span lang="pt-BR">Qual desses você queria ter amanhã?</span><span lang="en">Which of these would you want tomorrow?</span></h2>
+      <p lang="pt-BR">Me conte de onde vêm os seus dados e qual pergunta você ainda não consegue responder. Eu digo por onde começaria.</p>
+      <p lang="en">Tell me where your data comes from and which question you still can't answer. I'll tell you where I'd start.</p>
+      <div class="canais">
+        <!-- PROTÓTIPO: trocar pelos contatos reais -->
+        <a href="mailto:EMAIL_CONTATO">E-mail</a>
+        <a href="index.html"><span lang="pt-BR">Ver serviços</span><span lang="en">See services</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano">2026</span> colimanlab · Luan Coli · effort &gt; talent</span>
+    <span lang="pt-BR">Brasília, Brasil</span><span lang="en">Brasília, Brazil</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var titulos = { pt: "Dados na AWS — colimanlab", en: "Data on AWS — colimanlab" };
+    function aplicar(l) {
+      root.dataset.lang = l;
+      root.lang = l === "en" ? "en" : "pt-BR";
+      document.title = titulos[l];
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.setLang === l); });
+      try { localStorage.setItem("colimanlab-lang", l); } catch (e) {}
+    }
+    var salvo = null;
+    try { salvo = localStorage.getItem("colimanlab-lang"); } catch (e) {}
+    var url = new URLSearchParams(location.search).get("lang");
+    aplicar(url === "en" || url === "pt" ? url : salvo || "en");
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { aplicar(b.dataset.setLang); }); });
+    document.getElementById("ano").textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

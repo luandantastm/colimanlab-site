@@ -109,6 +109,8 @@
   .cab { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 48px; }
   .cab h2 { font: 400 clamp(34px, 4.4vw, 52px)/1.05 var(--serif); margin: 0; letter-spacing: -.01em; }
   .cab p { color: var(--tinta-2); max-width: 60ch; margin: 14px 0 0; }
+  .link-seta { color: var(--sinal); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+  .link-seta:hover { border-bottom-width: 2px; }
   @media (max-width: 760px) { .cab { grid-template-columns: 1fr; gap: 12px; } }
 
   .servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linha); border: 1px solid var(--linha); }
@@ -166,6 +168,7 @@
     <a class="marca" href="#" aria-label="colimanlab, effort > talent"><img src="favicon.svg" alt=""><span>coliman<b>lab</b></span><span class="lema-topo">effort <b>&gt;</b> talent</span></a>
     <nav aria-label="Principal">
       <a href="#servicos"><span lang="pt-BR">Serviços</span><span lang="en">Services</span></a>
+      <a href="aws.html"><span lang="pt-BR">Na AWS</span><span lang="en">On AWS</span></a>
       <a href="#metodo"><span lang="pt-BR">Método</span><span lang="en">Method</span></a>
       <a href="#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Work</span></a>
       <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
@@ -196,11 +199,11 @@
         <figure class="pipeline" aria-label="Pipeline de dados na AWS / Data pipeline on AWS">
           <figcaption><span lang="pt-BR">Um pipeline típico</span><span lang="en">A typical pipeline</span></figcaption>
           <ol>
-            <li><span class="no">1</span><div><strong><span lang="pt-BR">Fontes</span><span lang="en">Sources</span></strong><span class="svc"><span lang="pt-BR">sistemas, planilhas, APIs, PDFs</span><span lang="en">systems, spreadsheets, APIs, PDFs</span></span></div></li>
-            <li><span class="no">2</span><div><strong><span lang="pt-BR">Ingestão</span><span lang="en">Ingestion</span></strong><span class="svc">Lambda · Glue · Step Functions</span></div></li>
+            <li><span class="no">1</span><div><strong><span lang="pt-BR">Fontes</span><span lang="en">Sources</span></strong><span class="svc"><span lang="pt-BR">bancos de dados, sistemas, planilhas, APIs, PDFs</span><span lang="en">databases, systems, spreadsheets, APIs, PDFs</span></span></div></li>
+            <li><span class="no">2</span><div><strong><span lang="pt-BR">Ingestão</span><span lang="en">Ingestion</span></strong><span class="svc">DMS · Glue · Lambda</span></div></li>
             <li><span class="no">3</span><div><strong>Data lake</strong><span class="svc">S3 · Glue Catalog · Lake Formation</span></div></li>
             <li><span class="no">4</span><div><strong><span lang="pt-BR">Consulta</span><span lang="en">Query</span></strong><span class="svc">Athena · Redshift</span></div></li>
-            <li><span class="no">5</span><div><strong><span lang="pt-BR">Uso</span><span lang="en">Use</span></strong><span class="svc">QuickSight · Bedrock · SageMaker</span></div></li>
+            <li><span class="no">5</span><div><strong><span lang="pt-BR">Uso</span><span lang="en">Use</span></strong><span class="svc">QuickSight · Bedrock RAG · SageMaker</span></div></li>
           </ol>
         </figure>
       </div>
@@ -221,15 +224,16 @@
           <h2><span lang="pt-BR">O que eu faço</span><span lang="en">What I do</span></h2>
           <p lang="pt-BR">Do dado espalhado ao dado útil, tudo dentro da sua conta AWS. Projetos bem delimitados ou acompanhamento contínuo.</p>
           <p lang="en">From scattered data to useful data, all inside your own AWS account. Well-scoped projects or ongoing support.</p>
+          <p><a class="link-seta" href="aws.html"><span lang="pt-BR">O que dá para fazer na AWS com os seus dados</span><span lang="en">What you can do with your data on AWS</span> →</a></p>
         </div>
       </div>
       <div class="servicos">
         <article class="servico">
           <span class="num">/01</span>
           <h3><span lang="pt-BR">Pipelines e engenharia de dados</span><span lang="en">Pipelines &amp; data engineering</span></h3>
-          <p lang="pt-BR">Ingestão automática de sistemas, planilhas, APIs e documentos. Limpeza, padronização e cargas agendadas, com monitoramento e alerta quando algo falha.</p>
-          <p lang="en">Automated ingestion from systems, spreadsheets, APIs and documents. Cleaning, standardization and scheduled loads, with monitoring and alerts when something breaks.</p>
-          <div class="tags"><span>Glue</span><span>Lambda</span><span>Step Functions</span><span>Python</span></div>
+          <p lang="pt-BR">Ingestão automática de bancos de dados, sistemas, planilhas, APIs e documentos. Limpeza, padronização e cargas agendadas, com monitoramento e alerta quando algo falha.</p>
+          <p lang="en">Automated ingestion from databases, systems, spreadsheets, APIs and documents. Cleaning, standardization and scheduled loads, with monitoring and alerts when something breaks.</p>
+          <div class="tags"><span>DMS</span><span>Glue</span><span>Lambda</span><span>Step Functions</span></div>
         </article>
         <article class="servico">
           <span class="num">/02</span>
@@ -240,10 +244,10 @@
         </article>
         <article class="servico">
           <span class="num">/03</span>
-          <h3><span lang="pt-BR">IA sobre os seus dados, com LGPD</span><span lang="en">AI on your data, privacy-safe</span></h3>
-          <p lang="pt-BR">Busca e respostas sobre documentos internos com IA generativa, sem tirar os dados da sua conta. Detecção de dados pessoais, pseudonimização e trilha de auditoria.</p>
-          <p lang="en">Generative AI search and Q&amp;A over internal documents without data leaving your account. Personal-data detection, pseudonymization and audit trails.</p>
-          <div class="tags"><span>Bedrock</span><span>RAG</span><span>PII</span><span lang="pt-BR">auditoria</span><span lang="en">audit</span></div>
+          <h3><span lang="pt-BR">RAG sobre os dados do seu sistema</span><span lang="en">RAG on your own system's data</span></h3>
+          <p lang="pt-BR">Pergunte em linguagem natural e receba respostas tiradas dos seus documentos e dos bancos de dados do seu sistema, com a fonte citada. Tudo fica dentro da sua conta, com detecção de dados pessoais e trilha de auditoria.</p>
+          <p lang="en">Ask in plain language and get answers drawn from your documents and your system's databases, with sources cited. Everything stays in your account, with personal-data detection and audit trails.</p>
+          <div class="tags"><span>Bedrock</span><span>RAG</span><span>text-to-SQL</span><span>PII</span></div>
         </article>
         <article class="servico">
           <span class="num">/04</span>
